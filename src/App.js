@@ -1,13 +1,26 @@
+function Main() {
+  return (
+    <>
+      <div>
+        <h1>직업가치관검사</h1>
+      </div>
+      <div>
+        <p>이름</p>
+        <input />
+      </div>
+      <div>
+        <p>성별</p>
+          <div><input type="radio" />남자</div>
+          <div><input type="radio" />여자</div>
+      </div>
+    </>
+  )
+}
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          안녕하세요?
-        </p>
-      </header>
-    </div>
+    <Main />
   );
 }
 
