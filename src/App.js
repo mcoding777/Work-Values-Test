@@ -13,6 +13,7 @@ function Main() {
           <div><input type="radio" />남자</div>
           <div><input type="radio" />여자</div>
       </div>
+      <button>검사 시작</button>
     </>
   )
 }
