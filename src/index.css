@@ -73,24 +73,20 @@
 
     border: 2px solid darkgray;
     border-radius: 13px;
-    outline: none;
     background: #ffffff;
 }
 
-.container .gender input[type="radio"]::before {
+.container .gender input[type="radio"]:checked::before {
     content:'';
     display:block;
     width: 75%;
     height:75%;
     margin: 13% auto;
     border-radius: 100%;
-}
-
-.container .gender input[type="radio"]:checked::before {
     background: #6558f5;
 }
 
-.container .btn button {
+.container div .btn {
     width: 125px;
     height: 48px;
 
@@ -104,5 +100,27 @@
     border-width: 3px;
     border-style: solid;
     border-radius: 5px;
+
+    cursor: pointer;
+
+}
+
+/* 이름과 성별이 입력되면 활성화 */
+.container div .btn_click {
+    width: 125px;
+    height: 48px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    color: white;
+
+    background-color: #6558f5;
+    border-color: #d3dae0;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 5px;
+
+    cursor: pointer;
 
 }

@@ -15,7 +15,7 @@ function Main() {
         <div><input type="radio" name="radio" />남자</div>
         <div><input type="radio" name="radio" />여자</div>
       </div>
-      <div className="btn"><button>검사 시작</button></div>
+      <div><button className="btn">검사 시작</button></div>
     </div>
   )
 }
