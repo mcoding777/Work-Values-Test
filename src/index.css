@@ -7,14 +7,18 @@
     margin : 40vh auto;
 }
 
-.name {
-    width: 154px;
+.container .title {
+    margin-bottom: 50px;
+}
 
-    margin : auto;
+.container .name {
+    width: 160px;
+
+    margin : 0 auto 30px;
     padding : 0px 0px;
 }
 
-.name p {
+.container .name p {
     text-align: left;
 
     font-size: 15px;
@@ -25,26 +29,34 @@
     margin: 0;
 }
 
-.container .name .namebox {
+.container .name input {
     all: unset;
 
-    width: 150px;
-    height: 30px;
+    width: 160px;
+    height: 35px;
+
     border-color: #d3dae0;
-    border-width: 2px;
+    border-width: 3px;
     border-style: solid;
     border-radius: 5px;
 }
 
-.gender {
+.container .gender {
     width: 60px;
 
-    margin : auto;
+    line-height: 25px;
+
+    margin : 0 auto 30px;
     padding : 0px 0px;
 }
 
-.gender p {
+.container .gender div {
+    font-weight: 500;
+}
+
+.container .gender p {
     margin : 0px;
+    padding-left: 10px;
 
     text-align: left;
 
@@ -53,9 +65,34 @@
     color: #4b5c6b;
 }
 
-.btn button {
-    width: 100px;
-    height: 40px;
+.container .gender input[type="radio"] {
+    -webkit-appearance:none;
+
+    width: 13px;
+    height: 13px;
+
+    border: 2px solid darkgray;
+    border-radius: 13px;
+    outline: none;
+    background: #ffffff;
+}
+
+.container .gender input[type="radio"]::before {
+    content:'';
+    display:block;
+    width: 75%;
+    height:75%;
+    margin: 13% auto;
+    border-radius: 100%;
+}
+
+.container .gender input[type="radio"]:checked::before {
+    background: #6558f5;
+}
+
+.container .btn button {
+    width: 125px;
+    height: 48px;
 
     font-size: 17px;
     font-weight: bold;
@@ -64,7 +101,7 @@
 
     background-color: white;
     border-color: #d3dae0;
-    border-width: 2px;
+    border-width: 3px;
     border-style: solid;
     border-radius: 5px;
 
