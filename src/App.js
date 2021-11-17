@@ -38,6 +38,19 @@ function Example() {
         <progress value="20" max="100" />
         <div className="progressbar"></div>
       </div>
+      <div>
+        <div className="explanation">
+          <p>직업과 관련된 두개의 가치 중에서 자기에게 더 중요한 가치에 표시하세요.</p>
+          <p>가치의 뜻을 잘 모르겠다면 문항 아래에 있는 가치의 설명을 확인해보세요.</p>
+        </div>
+        <div className="checkbox">
+          <p>아래 두 개의 가치 중에서 자신에게 더 중요한 가치를 선택하세요.</p>
+          <div className="radiobox">
+            <div><input type="radio" name="radio" />능력발휘</div>
+            <div><input type="radio" name="radio" />자율성</div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

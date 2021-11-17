@@ -1,3 +1,4 @@
+/* 메인 페이지 */
 .main_container {
     width: 500px;
     height: 500px;
@@ -128,8 +129,13 @@
 
 }
 
+
+/* 예시 페이지 */
 .ex_container {
     margin: 20vh 25vw;
+
+    width: 700px;
+
     line-height: 0px;
 }
 
@@ -151,7 +157,9 @@
 
 .ex_container .gauge .progressbar::before {
     content: "";
+
     display: block;
+
     width: 200px;
     height: 20px;
 
@@ -159,3 +167,71 @@
 
     background-color: #4fada9;
 }
+
+.ex_container .explanation {
+    margin-top: 50px;
+
+    line-height: 5px;
+
+    font-size: 13px;
+    font-weight: bold;
+    color: #293845;
+}
+
+.ex_container .checkbox {
+    width: 700px;
+    height: 150px;
+
+    margin-top: 40px;
+    padding-top: 50px;
+
+    text-align: center;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: #766af6;
+
+    background-color: #b2acfa;
+}
+
+.ex_container .checkbox p {
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.ex_container .checkbox .radiobox {
+    display: flex;
+    justify-content: space-around;
+
+    margin: 50px auto 0;
+
+    width: 500px;
+
+    color: #293845;
+}
+
+.ex_container .checkbox .radiobox input[type="radio"] {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
+
+    width: 13px;
+    height: 13px;
+
+    border: 2px solid darkgray;
+    border-radius: 13px;
+    background: #ffffff;
+}
+
+.ex_container .checkbox .radiobox input[type="radio"]:checked::before {
+    content:'';
+    display:block;
+    width: 75%;
+    height:75%;
+    margin: 13% auto;
+    border-radius: 100%;
+    background: #6558f5;
+}
+
