@@ -3,6 +3,12 @@ import React, {useState} from "react";
 
 function Main() {
   const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
+
+  function getGender(event) {
+    {setGender(event.target.value)}
+  }
+
   return (
     <div className="container">
       <div className="title">
@@ -14,8 +20,8 @@ function Main() {
       </div>
       <div className="gender">
         <p>성별</p>
-        <div><input type="radio" name="radio" />남자</div>
-        <div><input type="radio" name="radio" />여자</div>
+        <div><input type="radio" name="radio" value="male" onClick={getGender} />남자</div>
+        <div><input type="radio" name="radio" value="female" onClick={getGender} />여자</div>
       </div>
       <div><button className="btn">검사 시작</button></div>
     </div>
