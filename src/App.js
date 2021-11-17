@@ -1,6 +1,8 @@
 import './index.css';
+import React, {useState} from "react";
 
 function Main() {
+  const [name, setName] = useState("");
   return (
     <div className="container">
       <div className="title">
@@ -8,7 +10,7 @@ function Main() {
       </div>
       <div className="name">
         <p>이름</p>
-        <input />
+        <input onChange={(event) => {setName(event.target.value)}} />
       </div>
       <div className="gender">
         <p>성별</p>
