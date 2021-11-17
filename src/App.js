@@ -1,6 +1,7 @@
 import './index.css';
 import React, {useState} from "react";
 
+// 검사 시작 페이지
 function Main() {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
@@ -10,7 +11,7 @@ function Main() {
   }
 
   return (
-    <div className="container">
+    <div className="main_container">
       <div className="title">
         <h1>직업가치관검사</h1>
       </div>
@@ -28,10 +29,23 @@ function Main() {
   )
 }
 
+// 검사 예시 페이지
+function Example() {
+  return (
+    <div className="ex_container">
+      <div className="gauge">
+        <h2>검사 예시</h2>
+        <progress value="20" max="100" />
+        <div className="progressbar"></div>
+      </div>
+    </div>
+  )
+}
+
 
 function App() {
   return (
-    <Main />
+    <Example />
   );
 }
 

@@ -1,4 +1,4 @@
-.container {
+.main_container {
     width: 500px;
     height: 500px;
 
@@ -67,6 +67,9 @@
 
 .container .gender input[type="radio"] {
     -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
 
     width: 13px;
     height: 13px;
@@ -123,4 +126,36 @@
 
     cursor: pointer;
 
+}
+
+.ex_container {
+    margin: 20vh 25vw;
+    line-height: 0px;
+}
+
+.ex_container .gauge progress {
+    width: 700px;
+    height: 50px;
+
+    text-align: center;
+}
+
+.ex_container .gauge .progressbar {
+    width: 700px;
+    height: 20px;
+
+    border-radius: 7px;
+
+    background-color: #c1cad2;
+}
+
+.ex_container .gauge .progressbar::before {
+    content: "";
+    display: block;
+    width: 200px;
+    height: 20px;
+
+    border-radius: 7px;
+
+    background-color: #4fada9;
 }
