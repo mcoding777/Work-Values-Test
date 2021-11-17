@@ -23,7 +23,7 @@ function Main() {
         <div><input type="radio" name="radio" value="male" onClick={getGender} />남자</div>
         <div><input type="radio" name="radio" value="female" onClick={getGender} />여자</div>
       </div>
-      <div><button className="btn">검사 시작</button></div>
+      <div><button className={name && gender ? "btn_click" : "btn"}>검사 시작</button></div>
     </div>
   )
 }
