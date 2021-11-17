@@ -1,20 +1,22 @@
+import './index.css';
+
 function Main() {
   return (
-    <>
+    <div className="container">
       <div>
         <h1>직업가치관검사</h1>
       </div>
-      <div>
+      <div className="name">
         <p>이름</p>
-        <input />
+        <input className="namebox" />
       </div>
-      <div>
+      <div className="gender">
         <p>성별</p>
-          <div><input type="radio" />남자</div>
-          <div><input type="radio" />여자</div>
+        <div><input type="radio" />남자</div>
+        <div><input type="radio" />여자</div>
       </div>
-      <button>검사 시작</button>
-    </>
+      <div className="btn"><button>검사 시작</button></div>
+    </div>
   )
 }
 
