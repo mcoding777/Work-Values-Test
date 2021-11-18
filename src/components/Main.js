@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import {
+  Link,
+} from 'react-router-dom';
 
 // 검사 시작 페이지
 export function Main() {
@@ -23,7 +26,11 @@ export function Main() {
         <div><input type="radio" name="radio" value="male" onClick={getGender} />남자</div>
         <div><input type="radio" name="radio" value="female" onClick={getGender} />여자</div>
       </div>
-      <div><button className={name && gender ? "btn_click" : "btn"}>검사 시작</button></div>
+      <div>
+        <Link to={name && gender ? "/example" : "/"}>
+          <button className={name && gender ? "btn_click" : "btn"}>검사 시작</button>
+        </Link>
+      </div>
     </div>
   );
 }

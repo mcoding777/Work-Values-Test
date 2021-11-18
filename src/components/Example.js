@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import {
+  Link,
+} from 'react-router-dom';
 
 // 검사 예시 페이지
 export function Example() {
@@ -29,7 +32,9 @@ export function Example() {
           <div><input type="radio" name="radio" onClick={handleClick} />자율성</div>
         </div>
       </div>
-      <button className={checked ? "go_btn_check" : "go_btn"}>검사 시작</button>
+      <Link to={checked ? "/" : "/example"}>
+        <button className={checked ? "go_btn_check" : "go_btn"}>검사 시작</button>
+      </Link>
     </div>
   );
 }
