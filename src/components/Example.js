@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // 검사 예시 페이지
-function Example() {
+export function Example() {
   const [checked, setChecked] = useState(false);
 
   function handleClick(event) {
@@ -33,5 +33,3 @@ function Example() {
     </div>
   );
 }
-
-export default Example;

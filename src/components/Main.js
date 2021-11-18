@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // 검사 시작 페이지
-function Main() {
+export function Main() {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
 
@@ -27,5 +27,3 @@ function Main() {
     </div>
   );
 }
-
-export default Main;
