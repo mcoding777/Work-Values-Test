@@ -31,6 +31,13 @@ function Main() {
 
 // 검사 예시 페이지
 function Example() {
+  const [checked, setChecked] = useState(false);
+
+  function handleClick(event) {
+    if (event.target.checked) {
+      {setChecked(true);}
+    }
+  }
   return (
     <div className="ex_container">
       <div className="gauge">
@@ -47,11 +54,11 @@ function Example() {
       <div className="checkbox">
         <p>아래 두 개의 가치 중에서 자신에게 더 중요한 가치를 선택하세요.</p>
         <div className="radiobox">
-          <div><input type="radio" name="radio" />능력발휘</div>
-          <div><input type="radio" name="radio" />자율성</div>
+          <div><input type="radio" name="radio" onClick={handleClick}/>능력발휘</div>
+          <div><input type="radio" name="radio" onClick={handleClick} />자율성</div>
         </div>
       </div>
-      <button className="go_btn">검사 시작</button>
+      <button className={checked ? "go_btn_check" : "go_btn"}>검사 시작</button>
     </div>
   )
 }
