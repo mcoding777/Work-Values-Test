@@ -2,6 +2,7 @@ import './index.css';
 import React from "react";
 import { Main } from './components/Main';
 import { Example } from './components/Example';
+import { Test } from './components/Test';
 import {
   Route,
   Routes,
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/example" element={<Example />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </>
   );

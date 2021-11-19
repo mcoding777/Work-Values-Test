@@ -138,21 +138,14 @@
     line-height: 0px;
 }
 
-.ex_container .gauge .percent {
+.ex_container .ex_gauge .ex_percent {
     display: flex;
     justify-content: space-between;
 
     margin-bottom: 10px;
 }
 
-.ex_container .gauge progress {
-    width: 700px;
-    height: 50px;
-
-    text-align: center;
-}
-
-.ex_container .gauge .progressbar {
+.ex_container .ex_gauge .ex_progressbar {
     width: 700px;
     height: 20px;
 
@@ -161,7 +154,7 @@
     background-color: #c1cad2;
 }
 
-.ex_container .gauge .progressbar::before {
+.ex_container .ex_gauge .ex_progressbar::before {
     content: "";
 
     display: block;
@@ -174,7 +167,7 @@
     background-color: #4fada9;
 }
 
-.ex_container .explanation {
+.ex_container .ex_explanation {
     margin-top: 50px;
 
     line-height: 5px;
@@ -184,7 +177,7 @@
     color: #293845;
 }
 
-.ex_container .checkbox {
+.ex_container .ex_checkbox {
     width: 700px;
     height: 150px;
 
@@ -200,13 +193,13 @@
     background-color: #b2acfa;
 }
 
-.ex_container .checkbox p {
+.ex_container .ex_checkbox p {
     color: white;
     font-weight: bold;
     font-size: 13px;
 }
 
-.ex_container .checkbox .radiobox {
+.ex_container .ex_checkbox .ex_radiobox {
     display: flex;
     justify-content: space-around;
 
@@ -217,7 +210,7 @@
     color: #293845;
 }
 
-.ex_container .checkbox .radiobox input[type="radio"] {
+.ex_container .ex_checkbox .ex_radiobox input[type="radio"] {
     -webkit-appearance:none;
     -moz-appearance:none;
     -ms-appearance:none;
@@ -231,7 +224,7 @@
     background: #ffffff;
 }
 
-.ex_container .checkbox .radiobox input[type="radio"]:checked::before {
+.ex_container .ex_checkbox .ex_radiobox input[type="radio"]:checked::before {
     content:'';
     display:block;
     width: 75%;
@@ -241,7 +234,7 @@
     background: #6558f5;
 }
 
-.ex_container .go_btn {
+.ex_container .ex_go_btn {
     margin: 50px 35%;
 
     width: 200px;
@@ -262,9 +255,112 @@
 }
 
 /* 체크박스가 체크되면 활성화 */
-.ex_container .go_btn_check {
+.ex_container .ex_go_btn_check {
     margin: 50px 35%;
 
+    width: 200px;
+    height: 40px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    color: white;
+
+    background-color: #6558f5;
+    border-color: #d3dae0;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+/* 진행 페이지 */
+.ex_container .checkbox {
+    width: 700px;
+    height: 100px;
+
+    margin-top: 40px;
+    padding-top: 20px;
+
+    text-align: center;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: #766af6;
+
+    background-color: #b2acfa;
+}
+
+.ex_container .checkbox p {
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.ex_container .checkbox .ex_radiobox {
+    display: flex;
+    justify-content: space-around;
+
+    margin: 35px auto;
+
+    width: 500px;
+
+    color: #293845;
+}
+
+.ex_container .checkbox .ex_radiobox input[type="radio"] {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
+
+    width: 13px;
+    height: 13px;
+
+    border: 2px solid darkgray;
+    border-radius: 13px;
+    background: #ffffff;
+}
+
+.ex_container .checkbox .ex_radiobox input[type="radio"]:checked::before {
+    content:'';
+    display:block;
+    width: 75%;
+    height:75%;
+    margin: 13% auto;
+    border-radius: 100%;
+    background: #6558f5;
+}
+
+.ex_container .buttonbox {
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+}
+
+.ex_container .prev_btn, .next_btn {
+    width: 130px;
+    height: 40px;
+
+    margin-top: 50px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    color: #6558f5;
+
+    background-color: white;
+    border-color: #d3dae0;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+/* 체크박스가 체크되면 활성화 */
+.ex_container .ex_go_btn_check {
     width: 200px;
     height: 40px;
 
