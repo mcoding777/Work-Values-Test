@@ -4,12 +4,17 @@ import {
 } from 'react-router-dom';
 
 // 검사 시작 페이지
-export function Main() {
+export function Main(props) {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
 
   function getGender(event) {
     { setGender(event.target.value); }
+  }
+
+  function handleChange(event) {
+    { setName(event.target.value); }
+    props.changename(name);
   }
 
   return (
@@ -19,7 +24,7 @@ export function Main() {
       </div>
       <div className="name">
         <p>이름</p>
-        <input onChange={(event) => { setName(event.target.value); }} />
+        <input onChange={handleChange} />
       </div>
       <div className="gender">
         <p>성별</p>

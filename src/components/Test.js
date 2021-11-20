@@ -15,7 +15,8 @@ export function Test() {
   async function asyncCall() {
     try {
       const response = await axios.get('https://inspct.career.go.kr/openapi/test/questions?apikey=fbc9e4d5e474e6e35b5de6d43988d70d&q=6');
-      console.log(response);
+      const result = response.data.RESULT[0];
+      console.log(result);
     } catch (error) {
       console.error(error);
     }
