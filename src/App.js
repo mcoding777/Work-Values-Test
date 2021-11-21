@@ -10,15 +10,20 @@ import {
 
 function App() {
   const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
   
-  function changeName(change) {
-    {setName(change)};
+  function changeUser(name, gender) {
+    setName(name);
+    setGender(gender);
   }
+
+  console.log(name);
+  console.log(gender);
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<Main changename={changeName} />} />
+        <Route path="/" element={<Main changeuser={changeUser} />} />
         <Route path="/example" element={<Example />} />
         <Route path="/test" element={<Test />} />
       </Routes>

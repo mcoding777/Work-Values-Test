@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Link,
 } from 'react-router-dom';
@@ -9,12 +9,15 @@ export function Main(props) {
   const [gender, setGender] = useState("");
 
   function getGender(event) {
-    { setGender(event.target.value); }
+    setGender(event.target.value);
   }
 
   function handleChange(event) {
-    { setName(event.target.value); }
-    props.changename(name);
+    setName(event.target.value);
+  }
+
+  function handleClick() {
+    props.changeuser(name, gender);
   }
 
   return (
@@ -33,7 +36,7 @@ export function Main(props) {
       </div>
       <div>
         <Link to={name && gender ? "/example" : "/"}>
-          <button className={name && gender ? "btn_click" : "btn"}>검사 시작</button>
+          <button className={name && gender ? "btn_click" : "btn"} onClick={handleClick}>검사 시작</button>
         </Link>
       </div>
     </div>
