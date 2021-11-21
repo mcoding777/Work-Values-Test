@@ -32,7 +32,7 @@ export function Example() {
           <div><input type="radio" name="radio" onClick={handleClick} />자율성</div>
         </div>
       </div>
-      <Link to={checked ? "/test" : "/example"}>
+      <Link to={checked ? "/test/1" : "/example"}>
         <button className={checked ? "ex_go_btn_check" : "ex_go_btn"}>검사 시작</button>
       </Link>
     </div>
