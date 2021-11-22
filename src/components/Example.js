@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from './Button';
 import {
   Link,
 } from 'react-router-dom';
@@ -14,7 +15,7 @@ export function Example() {
     }
   }
   return (
-    <div className="container">
+    <div className="container" style={{marginTop:"10%"}}>
       <div className="gauge">
         <div className="percent">
           <h2>검사예시</h2>
@@ -33,9 +34,11 @@ export function Example() {
           <div><input type="radio" name="radio" onClick={handleClick} />자율성</div>
         </div>
       </div>
-      <Link to={checked ? "/test/1" : "/example"}>
-        <button className={checked ? "go_btn_check" : "go_btn"}>검사 시작</button>
-      </Link>
+      <div className="buttonContainer">
+        <Link to={checked ? "/test/1" : "/example"}>
+          <Button checked={checked} text="검사시작" />
+        </Link>
+      </div>
     </div>
   );
 }

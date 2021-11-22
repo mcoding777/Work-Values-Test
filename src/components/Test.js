@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { CheckBox5 } from "./CheckBox5";
+import { Button } from './Button';
+import "../css/Test.css";
 import {
   Link, Routes, Route,
 } from 'react-router-dom';
-import { CheckBox5 } from "./CheckBox5";
-import "../css/Test.css";
 
 
 // 검사 진행 페이지
@@ -31,10 +32,10 @@ export function Test() {
       <CheckBox5 topic={handleCheck} />
       <div className="buttonbox">
         <Link to="/example">
-          <button className="prev_btn">이전</button>
+          <Button text="이전" />
         </Link>
         <Link to={checked ? "/finish" : "/test/1"}>
-          <button className="next_btn">다음</button>
+          <Button text="다음" />
         </Link>
       </div>
     </div>

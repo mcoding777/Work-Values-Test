@@ -1,8 +1,9 @@
-import React, { useState, } from "react";
+import React, { useState } from "react";
+import { Button } from './Button';
+import "../css/Main.css";
 import {
   Link,
 } from 'react-router-dom';
-import "../css/Main.css";
 
 // 검사 시작 페이지
 export function Main(props) {
@@ -17,12 +18,8 @@ export function Main(props) {
     setName(event.target.value);
   }
 
-  function handleClick() {
-    props.changeuser(name, gender);
-  }
-
   return (
-    <div className="container" style={{marginTop:"10%"}}>
+    <div className="container" style={{marginTop:"15%"}}>
       <div className="title">
         <h1>직업가치관검사</h1>
       </div>
@@ -35,9 +32,9 @@ export function Main(props) {
         <div><input type="radio" name="radio" value="male" onClick={getGender} />남자</div>
         <div><input type="radio" name="radio" value="female" onClick={getGender} />여자</div>
       </div>
-      <div>
+      <div className="buttonContainer">
         <Link to={name && gender ? "/example" : "/"}>
-          <button className={name && gender ? "btn_click" : "btn"} onClick={handleClick}>검사 시작</button>
+          <Button checked={name && gender ? true : false} text="검사시작" />
         </Link>
       </div>
     </div>
