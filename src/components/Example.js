@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Link,
 } from 'react-router-dom';
+import "../css/Example.css";
 
 // 검사 예시 페이지
 export function Example() {

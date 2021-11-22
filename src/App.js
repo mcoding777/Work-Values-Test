@@ -1,4 +1,3 @@
-import './index.css';
 import React, { useState } from "react";
 import { Main } from './components/Main';
 import { Example } from './components/Example';

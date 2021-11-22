@@ -3,6 +3,7 @@ import {
   Link, Route, Routes,
 } from 'react-router-dom';
 import { CheckBox5 } from "./CheckBox5";
+import "../css/Test.css";
 
 
 // 검사 진행 페이지

@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import {
   Link,
 } from 'react-router-dom';
+import "../css/Main.css";
 
 // 검사 시작 페이지
 export function Main(props) {

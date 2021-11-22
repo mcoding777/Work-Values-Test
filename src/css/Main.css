@@ -1,0 +1,129 @@
+/* 메인 페이지 */
+.main_container {
+    width: 500px;
+    height: 500px;
+
+    text-align: center;
+
+    margin : 30vh auto;
+}
+
+.main_container .title {
+    margin-bottom: 50px;
+}
+
+.main_container .name {
+    width: 160px;
+
+    margin : 0 auto 30px;
+    padding : 0px 0px;
+}
+
+.main_container .name p {
+    text-align: left;
+
+    font-size: 15px;
+    font-weight: bold;
+    color: #4b5c6b;
+
+    padding: 0;
+    margin: 0;
+}
+
+.main_container .name input {
+    all: unset;
+
+    width: 160px;
+    height: 35px;
+
+    border-color: #d3dae0;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+.main_container .gender {
+    width: 60px;
+
+    line-height: 25px;
+
+    margin : 0 auto 30px;
+    padding : 0px 0px;
+}
+
+.main_container .gender div {
+    font-weight: 500;
+}
+
+.main_container .gender p {
+    margin : 0px;
+    padding-left: 10px;
+
+    text-align: left;
+
+    font-size: 15px;
+    font-weight: bold;
+    color: #4b5c6b;
+}
+
+.main_container .gender input[type="radio"] {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
+
+    width: 13px;
+    height: 13px;
+
+    border: 2px solid darkgray;
+    border-radius: 13px;
+    background: #ffffff;
+}
+
+.main_container .gender input[type="radio"]:checked::before {
+    content:'';
+    display:block;
+    width: 75%;
+    height:75%;
+    margin: 13% auto;
+    border-radius: 100%;
+    background: #6558f5;
+}
+
+.main_container div .btn {
+    width: 125px;
+    height: 48px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    color: #6558f5;
+
+    background-color: white;
+    border-color: #d3dae0;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+/* 이름과 성별이 입력되면 활성화 */
+.main_container div .btn_click {
+    width: 125px;
+    height: 48px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    color: white;
+
+    background-color: #6558f5;
+    border-color: #d3dae0;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+}
