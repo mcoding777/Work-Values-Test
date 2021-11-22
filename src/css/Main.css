@@ -1,19 +1,21 @@
 /* 메인 페이지 */
 .container {
-    width: 500px;
-    height: 500px;
+    width: 700px;
 
     text-align: center;
 
-    margin : 30vh auto;
+    margin: 50px auto;
+
+    line-height: 0px;
 }
 
 .container .title {
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
 
 .container .name {
     width: 160px;
+    height: 50px;
 
     margin : 0 auto 30px;
     padding : 0px 0px;
@@ -26,8 +28,7 @@
     font-weight: bold;
     color: #4b5c6b;
 
-    padding: 0;
-    margin: 0;
+    margin-bottom: 10px;
 }
 
 .container .name input {

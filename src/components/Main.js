@@ -22,7 +22,7 @@ export function Main(props) {
   }
 
   return (
-    <div className="container">
+    <div className="container" style={{marginTop:"10%"}}>
       <div className="title">
         <h1>직업가치관검사</h1>
       </div>
