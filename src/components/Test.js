@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Link, Route, Routes,
+  Link, Routes, Route,
 } from 'react-router-dom';
 import { CheckBox5 } from "./CheckBox5";
 import "../css/Test.css";
@@ -12,24 +12,28 @@ export function Test() {
   const [percent, setPercent] = useState(0);
   let data = "";
 
+  function handleCheck() {
+    setChecked(true);
+  }
+
   return (
-    <div className="ex_container">
-      <div className="ex_gauge">
-        <div className="ex_percent">
+    <div className="container">
+      <div className="gauge">
+        <div className="percent">
           <h2>검사진행</h2>
           <h2>{percent}%</h2>
         </div>
-        <div className="ex_progressbar"></div>
+        <div className="progressbar"></div>
       </div>
       {/* <Routes>
         <Route path="/test/1" element={<CheckBox5 />} />
       </Routes> */}
-      <CheckBox5 />
+      <CheckBox5 topic={handleCheck} />
       <div className="buttonbox">
         <Link to="/example">
           <button className="prev_btn">이전</button>
         </Link>
-        <Link to={checked ? "/example" : "/test/1"}>
+        <Link to={checked ? "/finish" : "/test/1"}>
           <button className="next_btn">다음</button>
         </Link>
       </div>

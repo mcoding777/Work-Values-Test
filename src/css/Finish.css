@@ -1,0 +1,63 @@
+/* 예시 페이지 */
+.container {
+    margin: 40vh 25vw;
+
+    width: 700px;
+
+    line-height: 0px;
+}
+
+.container h2 {
+    color: #6558f5;
+}
+
+.container .explanation {
+    margin-top: 50px;
+
+    line-height: 5px;
+
+    font-size: 13px;
+    font-weight: bold;
+    color: #293845;
+}
+
+.container .go_btn {
+    margin: 50px 35%;
+
+    width: 150px;
+    height: 40px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    color: #6558f5;
+
+    background-color: white;
+    border-color: #d3dae0;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+/* 체크박스가 체크되면 활성화 */
+.container .go_btn_check {
+    margin: 50px 35%;
+
+    width: 150px;
+    height: 40px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    color: white;
+
+    background-color: #6558f5;
+    border-color: #d3dae0;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 5px;
+
+    cursor: pointer;
+}

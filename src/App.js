@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Main } from './components/Main';
 import { Example } from './components/Example';
 import { Test } from './components/Test';
+import { Finish } from './components/Finish';
 import {
   Route,
   Routes,
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<Main changeuser={changeUser} />} />
         <Route path="/example" element={<Example />} />
         <Route path="/test/1" element={<Test />} />
+        <Route path="/finish" element={<Finish />} />
       </Routes>
     </>
   );

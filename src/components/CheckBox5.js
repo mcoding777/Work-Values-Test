@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CheckBox } from "./CheckBox";
 import axios from 'axios';
 
-export function CheckBox5() {
+export function CheckBox5(props) {
   const [result, setResult] = useState([]);
   const [answer01, setAnswer01] = useState("");
   const [answer02, setAnswer02] = useState("");
@@ -18,7 +18,9 @@ export function CheckBox5() {
     }
   }
 
-  console.log(asyncCall());
+  asyncCall();
+
+  props.topic();
 
   return (
     <>

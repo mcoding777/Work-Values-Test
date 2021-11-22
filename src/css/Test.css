@@ -1,5 +1,5 @@
 /* 진행 페이지 */
-.ex_container {
+.container {
     margin: 20vh 25vw;
 
     width: 700px;
@@ -7,14 +7,14 @@
     line-height: 0px;
 }
 
-.ex_container .ex_gauge .ex_percent {
+.container .gauge .percent {
     display: flex;
     justify-content: space-between;
 
     margin-bottom: 10px;
 }
 
-.ex_container .ex_gauge .ex_progressbar {
+.container .gauge .progressbar {
     width: 700px;
     height: 20px;
 
@@ -23,7 +23,7 @@
     background-color: #c1cad2;
 }
 
-.ex_container .ex_gauge .ex_progressbar::before {
+.container .gauge .progressbar::before {
     content: "";
 
     display: block;
@@ -36,7 +36,7 @@
     background-color: #4fada9;
 }
 
-.ex_container .checkbox {
+.container .checkbox {
     width: 700px;
     height: 100px;
 
@@ -52,13 +52,13 @@
     background-color: #b2acfa;
 }
 
-.ex_container .checkbox p {
+.container .checkbox p {
     color: white;
     font-weight: bold;
     font-size: 13px;
 }
 
-.ex_container .checkbox .radiobox {
+.container .checkbox .radiobox {
     display: flex;
     justify-content: space-around;
 
@@ -69,7 +69,7 @@
     color: #293845;
 }
 
-.ex_container .checkbox .radiobox input[type="radio"] {
+.container .checkbox .radiobox input[type="radio"] {
     -webkit-appearance:none;
     -moz-appearance:none;
     -ms-appearance:none;
@@ -83,7 +83,7 @@
     background: #ffffff;
 }
 
-.ex_container .checkbox .radiobox input[type="radio"]:checked::before {
+.container .checkbox .radiobox input[type="radio"]:checked::before {
     content:'';
     display:block;
     width: 75%;
@@ -93,13 +93,13 @@
     background: #6558f5;
 }
 
-.ex_container .buttonbox {
+.container .buttonbox {
     display: flex;
     justify-content: space-between;
     width: 700px;
 }
 
-.ex_container .prev_btn, .next_btn {
+.container .prev_btn, .next_btn {
     width: 130px;
     height: 40px;
 
@@ -120,7 +120,7 @@
 }
 
 /* 체크박스가 체크되면 활성화 */
-.ex_container .go_next_btn {
+.container .go_next_btn {
     width: 130px;
     height: 40px;
 

@@ -1,5 +1,5 @@
 /* 메인 페이지 */
-.main_container {
+.container {
     width: 500px;
     height: 500px;
 
@@ -8,18 +8,18 @@
     margin : 30vh auto;
 }
 
-.main_container .title {
+.container .title {
     margin-bottom: 50px;
 }
 
-.main_container .name {
+.container .name {
     width: 160px;
 
     margin : 0 auto 30px;
     padding : 0px 0px;
 }
 
-.main_container .name p {
+.container .name p {
     text-align: left;
 
     font-size: 15px;
@@ -30,7 +30,7 @@
     margin: 0;
 }
 
-.main_container .name input {
+.container .name input {
     all: unset;
 
     width: 160px;
@@ -42,7 +42,7 @@
     border-radius: 5px;
 }
 
-.main_container .gender {
+.container .gender {
     width: 60px;
 
     line-height: 25px;
@@ -51,11 +51,11 @@
     padding : 0px 0px;
 }
 
-.main_container .gender div {
+.container .gender div {
     font-weight: 500;
 }
 
-.main_container .gender p {
+.container .gender p {
     margin : 0px;
     padding-left: 10px;
 
@@ -66,7 +66,7 @@
     color: #4b5c6b;
 }
 
-.main_container .gender input[type="radio"] {
+.container .gender input[type="radio"] {
     -webkit-appearance:none;
     -moz-appearance:none;
     -ms-appearance:none;
@@ -80,7 +80,7 @@
     background: #ffffff;
 }
 
-.main_container .gender input[type="radio"]:checked::before {
+.container .gender input[type="radio"]:checked::before {
     content:'';
     display:block;
     width: 75%;
@@ -90,7 +90,7 @@
     background: #6558f5;
 }
 
-.main_container div .btn {
+.container div .btn {
     width: 125px;
     height: 48px;
 
@@ -109,7 +109,7 @@
 }
 
 /* 이름과 성별이 입력되면 활성화 */
-.main_container div .btn_click {
+.container div .btn_click {
     width: 125px;
     height: 48px;
 

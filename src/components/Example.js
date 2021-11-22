@@ -14,27 +14,27 @@ export function Example() {
     }
   }
   return (
-    <div className="ex_container">
-      <div className="ex_gauge">
-        <div className="ex_percent">
+    <div className="container">
+      <div className="gauge">
+        <div className="percent">
           <h2>검사예시</h2>
           <h2>0%</h2>
         </div>
-        <div className="ex_progressbar"></div>
+        <div className="progressbar"></div>
       </div>
-      <div className="ex_explanation">
+      <div className="explanation">
         <p>직업과 관련된 두개의 가치 중에서 자기에게 더 중요한 가치에 표시하세요.</p>
         <p>가치의 뜻을 잘 모르겠다면 문항 아래에 있는 가치의 설명을 확인해보세요.</p>
       </div>
-      <div className="ex_checkbox">
+      <div className="checkbox">
         <p>아래 두 개의 가치 중에서 자신에게 더 중요한 가치를 선택하세요.</p>
-        <div className="ex_radiobox">
+        <div className="radiobox">
           <div><input type="radio" name="radio" onClick={handleClick} />능력발휘</div>
           <div><input type="radio" name="radio" onClick={handleClick} />자율성</div>
         </div>
       </div>
       <Link to={checked ? "/test/1" : "/example"}>
-        <button className={checked ? "ex_go_btn_check" : "ex_go_btn"}>검사 시작</button>
+        <button className={checked ? "go_btn_check" : "go_btn"}>검사 시작</button>
       </Link>
     </div>
   );
