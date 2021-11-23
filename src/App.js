@@ -25,7 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main changeuser={changeUser} />} />
         <Route path="/example" element={<Example />} />
-        <Route path="/test/1" element={<Test />} />
+        <Route path="/test/:id" element={<Test />} />
         <Route path="/finish" element={<Finish />} />
       </Routes>
     </>
