@@ -14,14 +14,13 @@ import {
 
 export function Test() {
   const [checked, setChecked] = useState(true);
-  const [percent, setPercent] = useState(0);
+
+  // 페이지 관련 변수
   const [page, setPage] = useState(0);
-  const [currentpage, setCurrentpage] = useState(0);
+  const [startindex, setStartindex] = useState(0);
 
   // 호출한 API 상태 관리하는 변수
   const [result, setResult] = useState([]);
-  let answer01 = "";
-  let answer02 = "";
 
   // CheckBox 컴포넌트 CSS 변수
   const cb_style = {height:100, paddingTop:20};
@@ -40,31 +39,45 @@ export function Test() {
   useEffect(() => asyncCall(), []);
   useEffect(() => setPage(Math.ceil(result.length / 5)), [result]);
 
-  // CheckBox 컴포넌트 5개를 만들어낼 함수
+  // CheckBox 컴포넌트 5개를 만들어낼 map 함수
   function checkmap(Array) {
-    Array.map((item, index) => {
+    const data = Array.map((item, index) => {
       return (
         <CheckBox cb={cb_style} rb={rb_style} 
-          key={item.index}
+          name={index}
           answer01={item["answer01"]} 
           answer02={item["answer02"]} />
       )
     })
+    return data;
+  }
+
+  // 페이지에 따라서 map 함수 호출
+  function handleMap() {
+    let lastpage;
+    if (startindex < result.length) {
+      if (startindex + 5 > result.length) {
+        lastpage = result.length
+      } else {
+        lastpage = startindex + 5;
+      }}
+    const data = checkmap(result.slice(startindex, lastpage))
+    return data;
+  }
+
+  function handleClick() {
+    
   }
 
   return (
     <div className="container">
       <Progressbar text="검사진행" percent="0" />
-      <CheckBox cb={cb_style} rb={rb_style} name="0" answer01={answer01} answer02={answer02} />
-      <CheckBox cb={cb_style} rb={rb_style} name="1" answer01={answer01} answer02={answer02} />
-      <CheckBox cb={cb_style} rb={rb_style} name="2" answer01={answer01} answer02={answer02} />
-      <CheckBox cb={cb_style} rb={rb_style} name="3" answer01={answer01} answer02={answer02} />
-      <CheckBox cb={cb_style} rb={rb_style} name="4" answer01={answer01} answer02={answer02} />
+      { handleMap?.(result.length) }
       <div className="buttonbox">
         <Link to="/example">
           <Button text="이전" />
         </Link>
-        <Link to={checked ? "/finish" : "/test/2"}>
+        <Link to={checked ? "/finish" : "/test/2"} onClick={handleClick}>
           <Button text="다음" />
         </Link>
       </div>

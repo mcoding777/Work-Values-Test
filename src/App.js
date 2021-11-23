@@ -3,6 +3,7 @@ import { Main } from './components/Main';
 import { Example } from './components/Example';
 import { Test } from './components/Test';
 import { Finish } from './components/Finish';
+import { Result } from './components/Result';
 import {
   Route,
   Routes,
@@ -27,6 +28,7 @@ function App() {
         <Route path="/example" element={<Example />} />
         <Route path="/test/:id" element={<Test />} />
         <Route path="/finish" element={<Finish />} />
+        <Route path="/result" element={<Result />} />
       </Routes>
     </>
   );
