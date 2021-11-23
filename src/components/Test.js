@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { CheckBox5 } from "./CheckBox5";
 import { Button } from './Button';
+import { Progressbar } from './Progressbar';
 import "../css/Test.css";
 import {
   Link, Routes, Route,
@@ -19,13 +20,7 @@ export function Test() {
 
   return (
     <div className="container">
-      <div className="gauge">
-        <div className="percent">
-          <h2>검사진행</h2>
-          <h2>{percent}%</h2>
-        </div>
-        <div className="progressbar"></div>
-      </div>
+      <Progressbar text="검사진행" percent="0" />
       {/* <Routes>
         <Route path="/test/1" element={<CheckBox5 />} />
       </Routes> */}
