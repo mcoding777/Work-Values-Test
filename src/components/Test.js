@@ -21,18 +21,20 @@ export function Test(props) {
   const pagenumber = props.pagenumber; 
   const currentradio = props.currentradio;
   const percent = props.percent;
-  
 
   // CheckBox 컴포넌트 5개를 만들어낼 map 함수
   function checkmap(Array) {
     const data = Array.map((item, index) => {
       return (
         <CheckBox cb={cb_style} rb={rb_style} 
-          name={index}
+          key={index}
+          name={"B" + String(index+(pagenumber*5)+1)}
           answer01={item["answer01"]} 
           answer02={item["answer02"]}
           value01={item["answer03"]} 
-          value02={item["answer04"]} />
+          value02={item["answer04"]} 
+          onClick={handleClick}
+           />
       )
     })
     return data;
@@ -53,9 +55,15 @@ export function Test(props) {
   }
   */
 
-  function handleClick() {
-    
+  const [result, setResult] = useState([]);
+
+  function handleClick(input) {
+    setResult((cur) => {
+      return [...cur, input]
+    })
   }
+
+  useEffect(() => console.log(result), [result]);
 
   return (
     <div className="container">
@@ -65,7 +73,7 @@ export function Test(props) {
         <Link to="/example">
           <Button text="이전" />
         </Link>
-        <Link to={checked ? "/finish" : "/test/2"} onClick={handleClick}>
+        <Link to={checked ? "/finish" : "/test/"+String(pagenumber+1)}>
           <Button text="다음" />
         </Link>
       </div>
