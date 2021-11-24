@@ -22,6 +22,10 @@ export function Test() {
   // 호출한 API 상태 관리하는 변수
   const [result, setResult] = useState([]);
 
+  // CheckBox 컴포넌트 CSS 변수
+  const cb_style = {height:100, paddingTop:20};
+  const rb_style = {margin:"35px auto"};
+
   async function asyncCall() {
     try {
       const response = await axios.get('https://inspct.career.go.kr/openapi/test/questions?apikey=fbc9e4d5e474e6e35b5de6d43988d70d&q=6');
@@ -39,10 +43,12 @@ export function Test() {
   function checkmap(Array) {
     const data = Array.map((item, index) => {
       return (
-        <CheckBox  
+        <CheckBox cb={cb_style} rb={rb_style} 
           name={index}
           answer01={item["answer01"]} 
-          answer02={item["answer02"]} />
+          answer02={item["answer02"]}
+          value01={item["answer03"]} 
+          value02={item["answer04"]} />
       )
     })
     return data;
