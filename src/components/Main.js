@@ -12,10 +12,12 @@ export function Main(props) {
 
   function getGender(event) {
     setGender(event.target.value);
+    props.state(name, gender);
   }
 
   function handleChange(event) {
     setName(event.target.value);
+    props.state(name, gender);
   }
 
   return (

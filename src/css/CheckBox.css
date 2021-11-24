@@ -54,3 +54,14 @@
     border-radius: 100%;
     background: #6558f5;
 }
+
+.container .checkbox .whatvalue {
+    margin-top: 30px;
+    line-height: 3px;
+}
+
+.container .checkbox .whatvalue p {
+    color: black;
+
+    font-size: 10px;
+}

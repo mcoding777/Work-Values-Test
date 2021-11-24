@@ -18,13 +18,10 @@ function App() {
     setGender(gender);
   }
 
-  console.log(name);
-  console.log(gender);
-
   return (
     <>
       <Routes>
-        <Route path="/" element={<Main changeuser={changeUser} />} />
+        <Route path="/" element={<Main state={changeUser} />} />
         <Route path="/example" element={<Example />} />
         <Route path="/test/:id" element={<Test />} />
         <Route path="/finish" element={<Finish />} />
