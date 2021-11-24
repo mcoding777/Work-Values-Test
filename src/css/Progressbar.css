@@ -2,19 +2,8 @@
     color: black;
 }
 
-.container .gauge .progressbar {
-    width: 700px;
-    height: 20px;
-
-    border-radius: 5px;
-
-    background-color: #c1cad2;
-}
-
-.container .gauge .progressbar::before {
-    content: "";
-
-    display: block;
+.container .gauge .progressbar_before {
+    float: left;
 
     width: 200px;
     height: 20px;
@@ -22,4 +11,13 @@
     border-radius: 5px;
 
     background-color: #4fada9;
+}
+
+.container .gauge .progressbar {
+    width: 700px;
+    height: 20px;
+
+    border-radius: 5px;
+
+    background-color: #c1cad2;
 }

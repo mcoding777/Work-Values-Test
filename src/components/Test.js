@@ -7,37 +7,21 @@ import { CheckBox } from "./CheckBox";
 import { Button } from './Button';
 import { Progressbar } from './Progressbar';
 import "../css/Test.css";
-import axios from 'axios';
 import {
   Link, Routes, Route,
 } from 'react-router-dom';
 
-export function Test() {
+export function Test(props) {
   const [checked, setChecked] = useState(true);
-
-  // 페이지 관련 변수
-  const [page, setPage] = useState(0);
-  const [startindex, setStartindex] = useState(0);
-
-  // 호출한 API 상태 관리하는 변수
-  const [result, setResult] = useState([]);
 
   // CheckBox 컴포넌트 CSS 변수
   const cb_style = {height:100, paddingTop:20};
   const rb_style = {margin:"35px auto"};
 
-  async function asyncCall() {
-    try {
-      const response = await axios.get('https://inspct.career.go.kr/openapi/test/questions?apikey=fbc9e4d5e474e6e35b5de6d43988d70d&q=6');
-      const res = response.data.RESULT;
-      setResult([...res]);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  useEffect(() => asyncCall(), []);
-  useEffect(() => setPage(Math.ceil(result.length / 5)), [result]);
+  const pagenumber = props.pagenumber; 
+  const currentradio = props.currentradio;
+  const percent = props.percent;
+  
 
   // CheckBox 컴포넌트 5개를 만들어낼 map 함수
   function checkmap(Array) {
@@ -55,6 +39,7 @@ export function Test() {
   }
 
   // 페이지에 따라서 map 함수 호출
+  /*
   function handleMap() {
     let lastpage;
     if (startindex < result.length) {
@@ -66,6 +51,7 @@ export function Test() {
     const data = checkmap(result.slice(startindex, lastpage))
     return data;
   }
+  */
 
   function handleClick() {
     
@@ -73,8 +59,8 @@ export function Test() {
 
   return (
     <div className="container">
-      <Progressbar text="검사진행" percent="0" />
-      { handleMap?.(result.length) }
+      <Progressbar text="검사진행" percent={percent} />
+      { checkmap?.(currentradio) }
       <div className="buttonbox">
         <Link to="/example">
           <Button text="이전" />
