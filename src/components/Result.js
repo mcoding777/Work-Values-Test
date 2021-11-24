@@ -19,19 +19,17 @@ export function Result() {
         <p>검사결과는 여러분이 직업을 선택할 때 상대적으로 어떠한 가치를 중요하게 생각하는지를 알려주고,</p>
         <p>중요 가치를 충족시켜줄 수 있는 직업에 대해 생각해 볼 기회를 제공합니다.</p>
       </div>
-      <div>
-        <table className="usertable">
-            <tr>
-                <th>Lime</th>
-                <th>Lemon</th>
-                <th>Orange</th>
-            </tr>
-            <tr>
-                <td>Green</td>
-                <td>Yellow</td>
-                <td>Orange</td>
-            </tr>
-        </table>
+      <div className="usertable">
+        <div>이름</div>
+        <div>성별</div>
+        <div>검사일</div>
+        <div>엘리스</div>
+        <div>남</div>
+        <div>2021.01.01</div>
+      </div>
+      <div className="graphtable">
+        <p>직업가치관결과</p>
+        <div></div>
       </div>
       <div className="buttonContainer">
         <Link to="/example">
