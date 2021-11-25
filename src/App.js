@@ -18,7 +18,7 @@ function App() {
   function changeUser(name, gender) {
     nameRef.current = name;
     genderRef.current = gender;
-    console.log(nameRef, nameRef);
+    console.log("App 컴포넌트에서 이름과 성별 바뀜");
   }
   
   // 페이지 관련 변수

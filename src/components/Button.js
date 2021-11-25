@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, forwardRef } from "react";
 import "../css/Button.css";
 import {
   useNavigate, useParams,
 } from 'react-router-dom';
 
+
 // 버튼
 export function Button(props) {
+  /*
   const history = useNavigate();
   const params = useParams();
 
@@ -16,8 +18,15 @@ export function Button(props) {
       history(-1);
     }
   }
+  */
+
+  function handleNav() {
+    console.log("검사시작 버튼 클릭했다!");
+    props.onClick();
+  }
 
   return (
-    <button onClick={handleNav} className={props.checked ? "btn_click" : "btn"}>{props.text}</button>
+    <button type="submit" onClick={handleNav} 
+      className={props.classname}>{props.text}</button>
   );
 }

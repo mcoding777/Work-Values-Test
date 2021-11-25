@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button } from './Button';
 import "../css/Main.css";
 import {
@@ -6,18 +6,27 @@ import {
 } from 'react-router-dom';
 
 // 검사 시작 페이지
+
 export function Main(props) {
+  // 이름과 성별 state
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
 
-  function getGender(event) {
-    setGender(event.target.value);
-    props.state(name, gender);
-  }
-
+  // input에 들어온 이름으로 바꾸는 함수
   function handleChange(event) {
     setName(event.target.value);
-    props.state(name, gender);
+    console.log("이름 바꿨당");
+  }
+
+  function getGender(event) {
+    setGender(event.target.value);
+    console.log("성별 바꿨당");
+  }
+
+  function handleClick() {
+    if (name && gender) {
+      props.state(name, gender);
+    }
   }
 
   return (
@@ -27,7 +36,7 @@ export function Main(props) {
       </div>
       <div className="name">
         <p>이름</p>
-        <input onChange={handleChange} />
+        <input type="text" onChange={handleChange} />
       </div>
       <div className="gender">
         <p>성별</p>
@@ -36,9 +45,14 @@ export function Main(props) {
       </div>
       <div className="buttonContainer">
         <Link to={name && gender ? "/example" : "/"}>
-          <Button checked={name && gender ? true : false} text="검사시작" />
+          <Button 
+            classname={name && gender ? "btn_click" : "btn"} 
+            text="검사시작"
+            onClick={handleClick} />
         </Link>
       </div>
     </div>
   );
 }
+
+// 검사 시작 버튼은 이름과 성별이 true 일 때 활성화
