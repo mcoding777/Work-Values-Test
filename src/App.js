@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Main } from './components/Main';
 import { Example } from './components/Example';
 import { Test } from './components/Test';
@@ -11,13 +11,14 @@ import {
 } from 'react-router-dom';
 
 function App() {
-  const [name, setName] = useState("");
-  const [gender, setGender] = useState("");
+  const nameRef = useRef("");
+  const genderRef = useRef("");
 
   // 이름과 성별 바꾸는 함수
   function changeUser(name, gender) {
-    setName(name);
-    setGender(gender);
+    nameRef.current = name;
+    genderRef.current = gender;
+    console.log(nameRef, nameRef);
   }
   
   // 페이지 관련 변수
