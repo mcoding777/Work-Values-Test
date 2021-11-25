@@ -54,6 +54,7 @@ function App() {
         <Route path="/example" element={<Example />} />
         <Route path={"/test/:id"} element={<Test 
           pagenumber={pagenumber} 
+          setpagenumber={setPageNumber} 
           currentradio={currentradio} 
           percent={percent}
            />} />

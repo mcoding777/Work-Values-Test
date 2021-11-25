@@ -55,11 +55,15 @@ export function Test(props) {
   }
   */
 
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState({});
 
   function handleClick(input) {
     setResult((cur) => {
-      return [...cur, input]
+        const newcur = {...cur}
+        const name = input.name;
+        const select = input.select;
+        newcur[name] = select;
+        return newcur;
     })
   }
 
@@ -73,7 +77,7 @@ export function Test(props) {
         <Link to="/example">
           <Button text="이전" />
         </Link>
-        <Link to={checked ? "/finish" : "/test/"+String(pagenumber+1)}>
+        <Link to={checked ? "/test/"+String(pagenumber+1) : "/test/"+String(pagenumber)}>
           <Button text="다음" />
         </Link>
       </div>
