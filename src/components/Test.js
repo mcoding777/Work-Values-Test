@@ -1,7 +1,6 @@
 import React, { 
   useState, 
   useEffect, 
-  useHistory,
   useParams, } from "react";
 import { CheckBox } from "./CheckBox";
 import { Button } from './Button';
@@ -21,6 +20,11 @@ export function Test(props) {
   const pagenumber = props.pagenumber; 
   const currentradio = props.currentradio;
   const percent = props.percent;
+
+  console.log(pagenumber);
+  console.log(currentradio);
+  console.log(percent);
+
 
   // CheckBox 컴포넌트 5개를 만들어낼 map 함수
   function checkmap(Array) {
@@ -67,7 +71,7 @@ export function Test(props) {
     })
   }
 
-  useEffect(() => console.log(result), [result]);
+  // useEffect(() => console.log(result), [result]);
 
   return (
     <div className="container">
