@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, 
+{ useState, 
+  useRef, 
+  useCallback, } from "react";
 import { Button } from './Button';
 import { Progressbar } from './Progressbar';
 import { CheckBox } from "./CheckBox";
@@ -7,12 +10,16 @@ import {
   Link,
 } from 'react-router-dom';
 
-
 // 검사 예시 페이지
+
 export function Example() {
   const [checked, setChecked] = useState(false);
+  const radioRef = useRef();
 
-  function handleCheck() {setChecked(true);}
+  function handleClick() {
+    console.log("checked가 이제 바뀐다!!");
+    setChecked(true);
+  }
 
   return (
     <div className="container" style={{marginTop:"10%"}}>
@@ -21,7 +28,7 @@ export function Example() {
         <p>직업과 관련된 두개의 가치 중에서 자기에게 더 중요한 가치에 표시하세요.</p>
         <p>가치의 뜻을 잘 모르겠다면 문항에 마우스 커서를 올려서 설명을 확인해보세요.</p>
       </div>
-      <CheckBox onClick={handleCheck} 
+      <CheckBox onClick={handleClick} ref={radioRef}
         name="ex" 
         answer01="능력발휘" 
         answer02="자율성" 
@@ -30,7 +37,7 @@ export function Example() {
       />
       <div className="buttonContainer">
         <Link to={checked ? "/test/1" : "/example"}>
-          <Button checked={checked} text="검사시작" />
+          <Button classname={checked ? "btn_click" : "btn"} text="검사시작" />
         </Link>
       </div>
     </div>

@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, 
+{ useState, 
+  useEffect, 
+  useCallback,
+  useRef,
+  forwardRef, } from "react";
 import "../css/CheckBox.css";
 
 export function CheckBox(props) {
@@ -21,6 +26,7 @@ export function CheckBox(props) {
 
   // useCallback(함수, [변경 인지할 값])
   const handleChecked = useCallback((event) => {
+    console.log("선택한 항목이 바뀌었습니다!");
     setInput((cur) => {
       const newcur = {
       ...cur,
@@ -28,10 +34,10 @@ export function CheckBox(props) {
       select: event.target.value,}
       return newcur;
     })
+    props.onClick();
   }, [props.name])
 
-  useEffect(() => {props.onClick(input)}, [input]);
-  // 위의 코드에서 {props.onClick(input)} 부분이 문제 있음
+
 
   return (
     <div className="checkbox" style={props.cb}>

@@ -22,11 +22,11 @@ export function Button(props) {
 
   function handleNav() {
     console.log("검사시작 버튼 클릭했다!");
-    props.onClick();
+    if (typeof props.onClick === "function") {props.onClick();}
   }
 
   return (
-    <button type="submit" onClick={handleNav} 
+    <button type="button" onClick={handleNav} 
       className={props.classname}>{props.text}</button>
   );
 }
