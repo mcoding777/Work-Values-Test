@@ -8,8 +8,8 @@ import {
 // 검사 예시 페이지
 
 export function Finish() {
-  console.log("Finish 컴포넌트가 실행됐습니다.");
-  
+  console.log("Finish 컴포넌트가 렌더링 됐습니다.");
+
   return (
     <div className="container" style={{marginTop:"20%"}}>
         <h2>검사가 완료되었습니다.</h2>

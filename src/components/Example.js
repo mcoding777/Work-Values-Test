@@ -13,13 +13,13 @@ import {
 // 검사 예시 페이지
 
 export function Example() {
-  console.log("Example 컴포넌트가 실행됐습니다.");
-  
+  console.log("Example 컴포넌트가 렌더링 됐습니다.");
+
   const [checked, setChecked] = useState(false);
   const radioRef = useRef();
 
   function handleChecked() {
-    console.log("checked가 이제 바뀐다!!");
+    console.log("검사시작 버튼이 이제 활성화된다!!");
     setChecked(true);
   }
 

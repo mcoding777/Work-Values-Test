@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 
 export function Result() {
-  console.log("Result 컴포넌트가 실행됐습니다.");
-  
+  console.log("Result 컴포넌트가 렌더링 됐습니다.");
+
   return (
     <div className="container" style={{marginTop:"5%"}}>
         <h2 style={{

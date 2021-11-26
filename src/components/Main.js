@@ -8,7 +8,7 @@ import {
 // 검사 시작 페이지
 
 export function Main(props) {
-  console.log("Main 컴포넌트가 실행됐습니다.");
+  console.log("Main 컴포넌트가 렌더링 됐습니다.");
 
   // 이름과 성별 state
   const [name, setName] = useState("");

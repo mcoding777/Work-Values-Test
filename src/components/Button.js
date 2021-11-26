@@ -4,10 +4,10 @@ import {
   useNavigate, useParams,
 } from 'react-router-dom';
 
-
 // 버튼
+
 export function Button(props) {
-  console.log("Button 컴포넌트가 실행됐습니다.");
+  console.log("Button 컴포넌트가 렌더링 됐습니다.");
 
   /*
   const history = useNavigate();

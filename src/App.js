@@ -11,7 +11,7 @@ import {
 } from 'react-router-dom';
 
 function App() {
-  console.log("App 컴포넌트가 실행됐습니다.");
+  console.log("App 컴포넌트가 렌더링 됐습니다.");
 
   const nameRef = useRef("");
   const genderRef = useRef("");

@@ -7,7 +7,7 @@ import React,
 import "../css/CheckBox.css";
 
 export function CheckBox(props) {
-  console.log("CheckBox 컴포넌트가 실행됐습니다.");
+  console.log("CheckBox 컴포넌트가 렌더링 됐습니다.");
 
   /*
   function handleChecked(event) {
