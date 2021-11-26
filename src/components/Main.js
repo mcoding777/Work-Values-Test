@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Button } from './Button';
 import "../css/Main.css";
 import {
-  Link,
+  Link, 
 } from 'react-router-dom';
 
 // 검사 시작 페이지
