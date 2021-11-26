@@ -38,7 +38,7 @@ export function Example() {
         value02="일하는 시간과 방식에 대해서 스스로 결정할 수 있는 것입니다."
       />
       <div className="buttonContainer">
-        <Link to={checked ? "/test/1" : "/example"}>
+        <Link to={checked ? "/test/0" : "/example"}>
           <Button classname={checked ? "btn_click" : "btn"} 
           text="검사시작" name="start" />
         </Link>

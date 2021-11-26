@@ -32,6 +32,7 @@ export function Button(props) {
       console.log("검사시작 버튼을 클릭했습니다 ^^");
     } else if (buttonname === "next") {
       console.log("다음 버튼을 클릭했습니다 ^^");
+      nextpage();
     } else if (buttonname === "prev") {
       console.log("이전 버튼을 클릭했습니다 ^^");
     }

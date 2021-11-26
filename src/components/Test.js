@@ -25,8 +25,9 @@ export function Test(props) {
   const currentradio = props.currentradio;
   const percent = props.percent;
   const questions = checkmap(currentradio);
+  const changpage = props.changpage;
 
-  console.log("현재 pagenumber는 ",pagenumber);
+  console.log("현재 Test 컴포넌트에서 pagenumber는 ",pagenumber);
 
   // CheckBox 컴포넌트 5개를 만들어낼 map 함수
   function checkmap(Array) {
@@ -62,10 +63,10 @@ export function Test(props) {
   */
 
   // 선택한 항목 값을 모아주는 변수, 함수
-  const [result, setResult] = useState({});
+  const [total, setTotal] = useState({});
 
   function handleUpdate(update) {
-    setResult((cur) => {
+    setTotal((cur) => {
         const newcur = {...cur}
         const name = update.name;
         const select = update.select;
@@ -74,19 +75,20 @@ export function Test(props) {
     })
   }
 
-  useEffect(() => console.log("지금까지 선택한 응답이 바뀌었습니다", result), [result]);
+  console.log("현재 선택한 항목은", total);
 
   
 
   function nextPage() {
     console.log("다음 페이지로 이동합니다");
+    changpage(pagenumber+1);
   }
 
   function prevPage() {
     console.log("이전 페이지로 이동합니다");
   }
 
-  if (Object.keys(result).length === ((pagenumber+1)*5)) {
+  if (Object.keys(total).length === ((pagenumber+1)*5)) {
     console.log("5개의 항목을 모두 선택했습니다!!!!!!!! 굿");
   }
 
