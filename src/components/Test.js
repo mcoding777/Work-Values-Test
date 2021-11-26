@@ -37,7 +37,9 @@ export function Test(props) {
           key={index}
           name={"B" + String(index+(pagenumber*5)+1)}
           answer01={item["answer01"]} 
-          answer02={item["answer02"]}
+          answer02={item["answer02"]} 
+          answerscore01={item["answerScore01"]} 
+          answerscore02={item["answerScore02"]} 
           value01={item["answer03"]} 
           value02={item["answer04"]} 
           updateResult={handleUpdate}
@@ -97,10 +99,10 @@ export function Test(props) {
       <Progressbar text="검사진행" percent={percent} />
       { questions }
       <div className="buttonbox">
-        <Link to="/example">
+        <Link to={pagenumber !== 0 ? "/test/"+String(pagenumber-1) : "/Example/"}>
           <Button classname="btn" text="이전" prevpage={prevPage} name="prev"  />
         </Link>
-        <Link to={checked ? "/test/"+String(pagenumber+1) : "/test/"+String(pagenumber)}>
+        <Link to={pagenumber !== 5 ? "/test/"+String(pagenumber+1) : "/Finish/"}>
           <Button classname="btn" text="다음" nextpage={nextPage} name="next"  />
         </Link>
       </div>

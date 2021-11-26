@@ -27,13 +27,20 @@ export function Button(props) {
   const nextbutton = props.nextbutton;
   const buttonname = props.name;
 
+  const navigate = useNavigate();
+  const params = useParams();
+
+  // console.log(navigate);
+  // console.log(params);
+
   function handleClick() {
     if (buttonname === "start") {
       console.log("검사시작 버튼을 클릭했습니다 ^^");
     } else if (buttonname === "next") {
+      nextpage(+1);
       console.log("다음 버튼을 클릭했습니다 ^^");
-      nextpage();
     } else if (buttonname === "prev") {
+      navigate(-1);
       console.log("이전 버튼을 클릭했습니다 ^^");
     }
   }

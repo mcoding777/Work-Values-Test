@@ -36,13 +36,13 @@ export function CheckBox(props) {
         <label title={props.value01}>
           <div><input type="radio" 
           name={props.name} 
-          value={1}
+          value={props.answerscore01}
           onClick={handleChecked} />{props.answer01}</div>
         </label>
         <label title={props.value02}>
           <div><input type="radio" 
           name={props.name} 
-          value={2} 
+          value={props.answerscore02} 
           onClick={handleChecked} />{props.answer02}</div>
         </label>
       </div>

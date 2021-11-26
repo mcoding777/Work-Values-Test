@@ -19,7 +19,7 @@ export function Finish() {
       </div>
       <div className="buttonContainer">
         <Link to="/result">
-          <Button text="결과 보기" />
+          <Button classname="btn" text="결과 보기" />
         </Link>
       </div>
     </div>
