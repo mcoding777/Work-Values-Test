@@ -42,8 +42,13 @@ function App() {
     }
   }
 
+  // API 호출(한번만)
   useEffect(() => asyncCall(), []);
+
+  // API 호출 결과값이 바뀌면 전체 페이지 수를 다시 계산
   useEffect(() => setPage(Math.ceil(result.length / 5)), [result]);
+
+  // 전체 페이지 수 or 현재 페이지가 바뀌면 5개 문항과 진행률을 다시 계산
   useEffect(() => {
     setCurrentRadio(result.splice(pagenumber*5, (pagenumber+1)*5))
     setPercent(Math.floor((pagenumber+1)/page*100))
@@ -57,7 +62,7 @@ function App() {
         <Route path="/example" element={<Example />} />
         <Route path={"/test/:id"} element={<Test 
           pagenumber={pagenumber} 
-          setpagenumber={setPageNumber} 
+          setpagenumber={setPageNumber(pagenumber+1)} 
           currentradio={currentradio} 
           percent={percent}
            />} />

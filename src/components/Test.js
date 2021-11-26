@@ -26,9 +26,7 @@ export function Test(props) {
   const percent = props.percent;
   const questions = checkmap(currentradio);
 
-  console.log(pagenumber);
-  console.log(currentradio);
-  console.log(percent);
+  console.log("현재 pagenumber는 ",pagenumber);
 
   // CheckBox 컴포넌트 5개를 만들어낼 map 함수
   function checkmap(Array) {
@@ -76,7 +74,11 @@ export function Test(props) {
     })
   }
 
-  // useEffect(() => console.log(result), [result]);
+  useEffect(() => console.log("지금까지 선택한 응답이 바뀌었습니다", result), [result]);
+
+  if (Object.keys(result).length === ((pagenumber+1)*5)) {
+    console.log("이번 페이지는 끝났습니다");
+  }
 
   return (
     <div className="container">
@@ -84,10 +86,10 @@ export function Test(props) {
       { questions }
       <div className="buttonbox">
         <Link to="/example">
-          <Button text="이전" />
+          <Button classname="btn" text="이전" />
         </Link>
         <Link to={checked ? "/test/"+String(pagenumber+1) : "/test/"+String(pagenumber)}>
-          <Button text="다음" />
+          <Button classname="btn" text="다음" />
         </Link>
       </div>
     </div>

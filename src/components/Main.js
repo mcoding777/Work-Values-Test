@@ -25,7 +25,7 @@ export function Main(props) {
     console.log("성별 바꿨당");
   }
 
-  function handleClick() {
+  function handleNext() {
     if (name && gender) {
       props.state(name, gender);
     }
@@ -50,7 +50,7 @@ export function Main(props) {
           <Button 
             classname={name && gender ? "btn_click" : "btn"} 
             text="검사시작"
-            onClick={handleClick} />
+            nextbutton={handleNext} />
         </Link>
       </div>
     </div>
