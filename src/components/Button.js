@@ -7,6 +7,8 @@ import {
 
 // 버튼
 export function Button(props) {
+  console.log("Button 컴포넌트가 실행됐습니다.");
+
   /*
   const history = useNavigate();
   const params = useParams();

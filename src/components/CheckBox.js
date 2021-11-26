@@ -7,10 +7,7 @@ import React,
 import "../css/CheckBox.css";
 
 export function CheckBox(props) {
-  const [input, setInput] = useState({
-    name : "",
-    select : "",
-  });
+  console.log("CheckBox 컴포넌트가 실행됐습니다.");
 
   /*
   function handleChecked(event) {
@@ -25,19 +22,12 @@ export function CheckBox(props) {
   */
 
   // useCallback(함수, [변경 인지할 값])
-  const handleChecked = useCallback((event) => {
+  function handleChecked(event) {
     console.log("선택한 항목이 바뀌었습니다!");
-    setInput((cur) => {
-      const newcur = {
-      ...cur,
+    props.updateResult({
       name: event.target.name,
-      select: event.target.value,}
-      return newcur;
-    })
-    props.onClick();
-  }, [props.name])
-
-
+      select: event.target.value});
+  }
 
   return (
     <div className="checkbox" style={props.cb}>

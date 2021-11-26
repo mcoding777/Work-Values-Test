@@ -13,10 +13,12 @@ import {
 // 검사 예시 페이지
 
 export function Example() {
+  console.log("Example 컴포넌트가 실행됐습니다.");
+  
   const [checked, setChecked] = useState(false);
   const radioRef = useRef();
 
-  function handleClick() {
+  function handleChecked() {
     console.log("checked가 이제 바뀐다!!");
     setChecked(true);
   }
@@ -28,7 +30,7 @@ export function Example() {
         <p>직업과 관련된 두개의 가치 중에서 자기에게 더 중요한 가치에 표시하세요.</p>
         <p>가치의 뜻을 잘 모르겠다면 문항에 마우스 커서를 올려서 설명을 확인해보세요.</p>
       </div>
-      <CheckBox onClick={handleClick} ref={radioRef}
+      <CheckBox updateResult={handleChecked} ref={radioRef}
         name="ex" 
         answer01="능력발휘" 
         answer02="자율성" 

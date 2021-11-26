@@ -2,6 +2,8 @@ import React from "react";
 import "../css/Progressbar.css";
 
 export function Progressbar(props) {
+  console.log("Progressbar 컴포넌트가 실행됐습니다.");
+  
   return (
   <div className="gauge">
     <div className="percent">
