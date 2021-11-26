@@ -55,6 +55,10 @@ function App() {
   }, [page, pagenumber]);
   // 반응 후크 사용 효과는 '결과'가 누락된 종속성을 가지고 있습니다. 종속 배열을 포함하거나 제거합니다. 'setCurrentRadio'의 현재 값이 '결과' 반응 후크/철저한 deps의 현재 값이 필요한 경우 여러 사용상태 변수를 사용감소로 대체할 수도 있습니다.
 
+  function changPage() {
+    console.log("페이지를 변경합니다");
+  }
+
   return (
     <>
       <Routes>
@@ -62,7 +66,7 @@ function App() {
         <Route path="/example" element={<Example />} />
         <Route path={"/test/:id"} element={<Test 
           pagenumber={pagenumber} 
-          setpagenumber={setPageNumber(pagenumber+1)} 
+          setpagenumber={changPage} 
           currentradio={currentradio} 
           percent={percent}
            />} />

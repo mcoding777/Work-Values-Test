@@ -76,8 +76,18 @@ export function Test(props) {
 
   useEffect(() => console.log("지금까지 선택한 응답이 바뀌었습니다", result), [result]);
 
+  
+
+  function nextPage() {
+    console.log("다음 페이지로 이동합니다");
+  }
+
+  function prevPage() {
+    console.log("이전 페이지로 이동합니다");
+  }
+
   if (Object.keys(result).length === ((pagenumber+1)*5)) {
-    console.log("이번 페이지는 끝났습니다");
+    console.log("5개의 항목을 모두 선택했습니다!!!!!!!! 굿");
   }
 
   return (
@@ -86,10 +96,10 @@ export function Test(props) {
       { questions }
       <div className="buttonbox">
         <Link to="/example">
-          <Button classname="btn" text="이전" />
+          <Button classname="btn" text="이전" prevpage={prevPage} />
         </Link>
         <Link to={checked ? "/test/"+String(pagenumber+1) : "/test/"+String(pagenumber)}>
-          <Button classname="btn" text="다음" />
+          <Button classname="btn" text="다음" nextpage={nextPage} />
         </Link>
       </div>
     </div>

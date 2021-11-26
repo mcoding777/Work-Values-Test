@@ -22,13 +22,16 @@ export function Button(props) {
   }
   */
 
-  function handleNav() {
-    console.log("검사시작 버튼 클릭했다!");
-    if (typeof props.onClick === "function") {props.onClick();}
+  const nextpage = props.nextpage;
+  const prevpage = props.prevpage;
+  const nextbutton = props.nextbutton;
+
+  function handleClick() {
+    console.log("버튼 이벤트가 시작됐습니다 ^^");
   }
 
   return (
-    <button type="button" onClick={handleNav} 
+    <button type="button" onClick={handleClick} 
       className={props.classname}>{props.text}</button>
   );
 }
