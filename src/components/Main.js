@@ -50,6 +50,7 @@ export function Main(props) {
           <Button 
             classname={name && gender ? "btn_click" : "btn"} 
             text="검사시작"
+            name="start" 
             nextbutton={handleNext} />
         </Link>
       </div>

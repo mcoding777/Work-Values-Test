@@ -96,10 +96,10 @@ export function Test(props) {
       { questions }
       <div className="buttonbox">
         <Link to="/example">
-          <Button classname="btn" text="이전" prevpage={prevPage} />
+          <Button classname="btn" text="이전" prevpage={prevPage} name="prev"  />
         </Link>
         <Link to={checked ? "/test/"+String(pagenumber+1) : "/test/"+String(pagenumber)}>
-          <Button classname="btn" text="다음" nextpage={nextPage} />
+          <Button classname="btn" text="다음" nextpage={nextPage} name="next"  />
         </Link>
       </div>
     </div>

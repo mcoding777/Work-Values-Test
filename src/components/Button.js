@@ -25,13 +25,20 @@ export function Button(props) {
   const nextpage = props.nextpage;
   const prevpage = props.prevpage;
   const nextbutton = props.nextbutton;
+  const buttonname = props.name;
 
   function handleClick() {
-    console.log("버튼 이벤트가 시작됐습니다 ^^");
+    if (buttonname === "start") {
+      console.log("검사시작 버튼을 클릭했습니다 ^^");
+    } else if (buttonname === "next") {
+      console.log("다음 버튼을 클릭했습니다 ^^");
+    } else if (buttonname === "prev") {
+      console.log("이전 버튼을 클릭했습니다 ^^");
+    }
   }
 
   return (
-    <button type="button" onClick={handleClick} 
+    <button type="button" onClick={handleClick} name={props.name} 
       className={props.classname}>{props.text}</button>
   );
 }
