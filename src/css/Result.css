@@ -29,22 +29,67 @@
     line-height: 40px;
 }
 
-.container .graphtable {
-    margin-top: 50px;
-}
-
-.container .graphtable p {
+.container .graphtitle {
     text-align: left;
 
     font-weight: bold;
     font-size: 20px;
+
+    margin-top: 50px;
 }
 
-.container .graphtable div {
+.container .graph {
+    width: 700px;
+    height: 500px;
+
+    background-color: rgb(247, 247, 247);
+
+    display: flex;
+}
+
+.container .graph {
     width: 100%;
-    height: 50px;
+    height: 500px;
+
+    background-color: rgb(247, 247, 247);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.container .graph div {
+    width: 50px;
+    height: 400px;
+    
+    animation-name: changeHeight;
+    animation-duration: 3s;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+
+    margin: 0 15px;
+
     background-color: pink;
 
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+@keyframes changeHeight {
+    from { height: 0; }
+    to { height: 400px; }
+}
+
+.container .graph div span {
+    color: black;
+
+    display: inline-block;
+
+    margin-top: 300px;
+    font-size: 15px;
+    
+    line-height: 18px;
 }
 
 .container .go_btn {

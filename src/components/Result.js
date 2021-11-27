@@ -29,13 +29,20 @@ export function Result() {
         <div>남</div>
         <div>2021.01.01</div>
       </div>
-      <div className="graphtable">
-        <p>직업가치관결과</p>
-        <div></div>
+      <p className="graphtitle">직업가치관결과</p>
+      <div className="graph">
+          <div><span>능력<br/>발휘</span></div>
+          <div><span>자율성</span></div>
+          <div><span>보수</span></div>
+          <div><span>안정성</span></div>
+          <div><span>사회적<br/>인정</span></div>
+          <div><span>사회<br/>봉사</span></div>
+          <div><span>자기<br/>계발</span></div>
+          <div><span>창의성</span></div>
       </div>
       <div className="buttonContainer">
         <Link to="/example">
-          <Button text="결과 보기" />
+          <Button text="결과 보기" classname="btn" />
         </Link>
       </div>
     </div>
