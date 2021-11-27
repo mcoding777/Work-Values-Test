@@ -1,6 +1,7 @@
 import React, { 
   useState, 
-  useEffect, } from "react";
+  useEffect,
+  useRef } from "react";
 import { CheckBox } from "./CheckBox";
 import { Button } from './Button';
 import { Progressbar } from './Progressbar';
@@ -11,6 +12,7 @@ import {
   Route, 
   useNavigate, 
   useParams,
+  useLocation,
 } from 'react-router-dom';
 
 export function Test(props) {
@@ -27,7 +29,6 @@ export function Test(props) {
   const pagenumber = props.pagenumber; 
   const currentradio = props.currentradio;
   const percent = props.percent;
-  const questions = checkmap(currentradio);
   const changpage = props.changpage;
 
   console.log("현재 Test 컴포넌트에서 pagenumber는 ",pagenumber);
@@ -48,9 +49,15 @@ export function Test(props) {
     console.log("현재 선택한 항목은", total);
 
   // CheckBox 컴포넌트 5개를 만들어낼 map 함수
+  const questions = checkmap(currentradio);
+
   function checkmap(Array) {
     const data = Array.map((item, index) => {
       const name = "B" + String(index+(pagenumber*5)+1);
+
+      const checked = total[name];
+      console.log("checked는", checked);
+
       return (
         <CheckBox cb={cb_style} rb={rb_style} 
           key={index}
@@ -62,26 +69,20 @@ export function Test(props) {
           value01={item["answer03"]} 
           value02={item["answer04"]} 
           updateResult={handleUpdate} 
+          checked={checked ? checked : null}
            />
       )
     })
     return data;
   }
 
-  // 히스토리
-  const navigate = useNavigate();
-  const { id } = useParams();
-
   function nextPage() {
     console.log("다음 페이지로 이동합니다");
-    navigate(`${pagenumber !== 5 ? "/test/"+String(pagenumber+1) : "/Finish/"}`, {repale: true, state: total});
     changpage(pagenumber+1);
   }
 
   function prevPage() {
     console.log("이전 페이지로 이동합니다");
-    navigate(`${pagenumber !== 0 ? "/test/"+String(pagenumber-1) : "/Example/"}`,
-      {repale: false, state: total});
     changpage(pagenumber-1);
   }
 
@@ -94,12 +95,12 @@ export function Test(props) {
       <Progressbar text="검사진행" percent={percent} />
       { questions }
       <div className="buttonbox">
-        {/* <Link to={pagenumber !== 0 ? "/test/"+String(pagenumber-1) : "/Example/"}> */}
+        <Link to={pagenumber !== 0 ? "/test/"+String(pagenumber-1) : "/Example/"}>
           <Button classname="btn" text="이전" prevpage={prevPage} name="prev"  />
-        {/* </Link>
-        <Link to={pagenumber !== 5 ? "/test/"+String(pagenumber+1) : "/Finish/"}> */}
+        </Link>
+        <Link to={pagenumber !== 5 ? "/test/"+String(pagenumber+1) : "/Finish/"}>
           <Button classname="btn" text="다음" nextpage={nextPage} name="next"  />
-        {/* </Link> */}
+        </Link>
       </div>
     </div>
   );

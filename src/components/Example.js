@@ -7,7 +7,7 @@ import { Progressbar } from './Progressbar';
 import { CheckBox } from "./CheckBox";
 import "../css/Example.css";
 import {
-  Link,
+  Link, 
 } from 'react-router-dom';
 
 // 검사 예시 페이지
