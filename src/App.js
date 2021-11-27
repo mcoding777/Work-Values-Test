@@ -13,21 +13,21 @@ import {
 function App() {
   console.log("App 컴포넌트가 렌더링 됐습니다.");
 
-  const nameRef = useRef("");
-  const genderRef = useRef("");
+  const [username, setUserName] = useState("");
+  const [usergender, setUserGender] = useState("");
 
   // 이름과 성별 바꾸는 함수
   function changeUser(name, gender) {
-    nameRef.current = name;
-    genderRef.current = gender;
+    setUserName(name);
+    setUserGender(gender);
     console.log("App 컴포넌트에서 이름과 성별 바뀜");
-    console.log("이름은", nameRef.current);
-    console.log("성별은", genderRef.current);
+    console.log("이름은", username);
+    console.log("성별은", usergender);
   }
 
   // 결과값 받아오면서 생긴 변수들
-  const max_value = useRef([]);
-  const min_value = useRef([]);
+  const [maxvalue, setMaxValue] = useState([]);
+  const [minvalue, setMinValue] = useState([]);
 
   // 객체를 value 기준으로 오름차순 정렬해서 배열로 반환하는 함수
   // 반환 값 [['B1', '1'], ['B2', '2'], ['B3', '3'], ...]
@@ -67,11 +67,11 @@ function App() {
         "apikey": "fbc9e4d5e474e6e35b5de6d43988d70d",
         "qestrnSeq": "6",
         "trgetSe": "100209",
-        "name": nameRef.current,
-        "gender": `${genderRef.current === "female" ? "100324" : "100323"}`,
+        "name": username,
+        "gender": `${usergender === "female" ? "100324" : "100323"}`,
         "grade": "",
         "startDtm": 1550466291034,
-        "answers": "B1=1 B2=3 B3=6 B4=8 B5=9 B6=11 B7=14 B8=15 B9=18 B10=19 B11=21 B12=24 B13=26 B14=28 B15=29 B16=32 B17=33 B18=36 B19=38 B20=40 B21=42 B22=43 B23=45 B24=47 B25=50 B26=52 B27=54 B28=56" //string_object
+        "answers": string_object
       },
        }).then((response) => {
           console.log("response.data 입니다", response.data.RESULT.url);
@@ -115,14 +115,14 @@ function App() {
 
             for (var i in score_object_value) {
               if (score_object_value[i] === min) {
-                min_value.current.push(score_object_key[i]);
+                setMinValue([...minvalue, score_object_key[i]]);
               } else if (score_object_value[i] === max) {
-                max_value.current.push(score_object_key[i]);
+                setMaxValue([...maxvalue, score_object_key[i]]);
               }
             }
 
-            console.log("max_value는", max_value.current);
-            console.log("min_value", min_value.current);
+            console.log("max_value는", maxvalue);
+            console.log("min_value", minvalue);
 
           })
           .catch((error) => {
@@ -150,15 +150,15 @@ axios.get('https://www.career.go.kr/inspct/api/psycho/report?seq=NTU3MzEwMTk')
         <Route path="/example" element={<Example />} />
         <Route path={"/test/:id"} element={<Test resultlist={resultList} />} />
         <Route path="/finish" element={<Finish 
-          username={nameRef.current} 
-          maxvalue={max_value.current}
-          minvalue={min_value.current}
+          username={username} 
+          maxvalue={maxvalue}
+          minvalue={minvalue}
            />} />
         <Route path="/result" element={<Result />} 
-          username={nameRef.current} 
-          usergender={genderRef.current}
-          maxvalue={max_value.current}
-          minvalue={min_value.current} />
+          username={username} 
+          usergender={usergender}
+          maxvalue={maxvalue}
+          minvalue={minvalue} />
       </Routes>
     </>
   );
