@@ -16,10 +16,6 @@ function App() {
   const nameRef = useRef("");
   const genderRef = useRef("");
 
-  // 결과값 받아오면서 생긴 변수들
-  const url = useRef("");
-  const score = useRef("");
-
   // 이름과 성별 바꾸는 함수
   function changeUser(name, gender) {
     nameRef.current = name;
@@ -28,6 +24,10 @@ function App() {
     console.log("이름은", nameRef);
     console.log("성별은", genderRef);
   }
+
+  // 결과값 받아오면서 생긴 변수들
+  const max_value = useRef([]);
+  const min_value = useRef([]);
 
   // 객체를 value 기준으로 오름차순 정렬해서 배열로 반환하는 함수
   // 반환 값 [['B1', '1'], ['B2', '2'], ['B3', '3'], ...]
@@ -75,30 +75,55 @@ function App() {
       },
        }).then((response) => {
           console.log("response.data 입니다", response.data.RESULT.url);
-          url.current = response.data.RESULT.url;
 
-          console.log("이것은 추출한 data", url.current);
-          const seq = url.current.split('=')[1];
-          console.log("이것은 추출한 seq", seq);
+          const url = response.data.RESULT.url;
+          console.log("이것은 추출한 data", url);
+
+          const url_seq = url.split('=')[1];
+          console.log("이것은 추출한 url_seq", url_seq);
 
           // Get 요청
-          axios.get(`https://www.career.go.kr/inspct/api/psycho/report?seq=${seq}`)
+          axios.get(`https://www.career.go.kr/inspct/api/psycho/report?seq=${url_seq}`)
           .then((response) => {
             console.log("이것은 결과값을 get한 데이터입니다", response.data);
-            score.current = response.data.result.wonScore;
-            console.log("이것은 score입니다", score.current);
 
-            // 받아온 결과 값(score) 가공
-            // 1:능력발휘, 2:자율성, 3:보수, 4:안정성, 5:사회적 안정, 6:사회봉사, 7:자기계발, 8:창의성
-            const score_list = score.current.split(' ');
-            let score_object = {};
+            const score = response.data.result.wonScore;
+            console.log("이것은 score입니다", score);
 
-            score_list.forEach((num)=>{
-              let data = num.split('=');
-              if (data[0] != "") {
-                score_object = {...score_object, [data[0]] : data[1]};}})
+            // 받아온 결과 값(score) 가공 : 상대적으로 중요시 하는 가치와 덜 중요한 가치 뽑기
+            const score_value = ["능력발휘", "자율성", "보수", "안정성", "사회적 안정", "사회봉사", "자기계발", "창의성"]
+            const score_list = score.split(' ');
+            const score_new_list = score_list.map((num, index)=>{
+              const data = num.split('=');
+              let score_object = [];
+              score_object = {...score_object, [score_value[index]] : Number(data[1])};
+              return score_object
+            })
             
-            console.log("가공된 데이터는", score_object);
+            console.log("가공된 데이터는", score_new_list);
+
+            const score_object_key = Object.keys(score_new_list).slice(0,-1); // 끝에 undefined 없애기
+            const score_object_value = Object.values(score_new_list).slice(0,-1); // 끝에 null 없애기
+
+            const max = Math.max(...score_object_value);
+            const min = Math.min(...score_object_value);
+
+            console.log("key는", score_object_key);
+            console.log("value는", score_object_value);
+            console.log("max는", max);
+            console.log("min은", min);
+
+            for (var i in score_object_value) {
+              if (score_object_value[i] === min) {
+                min_value.current.push(score_object_key[i]);
+              } else if (score_object_value[i] === max) {
+                max_value.current.push(score_object_key[i]);
+              }
+            }
+
+            console.log("max_value는", max_value.current);
+            console.log("min_value", min_value.current);
+
           })
           .catch((error) => {
             console.log(error, "GET 에러입니다 ㅡㅡ");
@@ -125,11 +150,15 @@ axios.get('https://www.career.go.kr/inspct/api/psycho/report?seq=NTU3MzEwMTk')
         <Route path="/example" element={<Example />} />
         <Route path={"/test/:id"} element={<Test resultlist={resultList} />} />
         <Route path="/finish" element={<Finish 
-          username={nameRef} 
-          usergender={genderRef}
-          score={score.current}
+          username={nameRef.current} 
+          maxvalue={max_value.current}
+          min_value={min_value.current}
            />} />
-        <Route path="/result" element={<Result />} />
+        <Route path="/result" element={<Result />} 
+          username={nameRef.current} 
+          usergender={genderRef.current}
+          maxvalue={max_value.current}
+          min_value={min_value.current} />
       </Routes>
     </>
   );
