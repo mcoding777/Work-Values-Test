@@ -1,9 +1,4 @@
-import React, 
-{ useState, 
-  useEffect, 
-  useCallback,
-  useRef,
-  forwardRef, } from "react";
+import React from "react";
 import "../css/CheckBox.css";
 
 export function CheckBox(props) {

@@ -1,8 +1,5 @@
-import React, { useEffect, useState, forwardRef } from "react";
+import React from "react";
 import "../css/Button.css";
-import {
-  useParams,
-} from 'react-router-dom';
 
 // 버튼
 
@@ -13,19 +10,6 @@ export function Button(props) {
   const prevpage = props.prevpage;
   const buttonname = props.name;
   const nextbutton = props.nextbutton;
-
-  /*
-  const history = useNavigate();
-  const params = useParams();
-
-  function handleNav() {
-    if (props.text === "다음") {
-      history(`/test/${parseInt(params)}`);
-    } else if (props.text === "이전") {
-      history(-1);
-    }
-  }
-  */
 
   function handleClick() {
     if (buttonname === "main") {

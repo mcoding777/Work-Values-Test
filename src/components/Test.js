@@ -13,9 +13,6 @@ import {
 export function Test(props) {
   console.log("Test 컴포넌트가 렌더링 됐습니다.");
 
-  // 5가지 항목을 모두 선택했는지 체크해줄 변수
-  const [checked, setChecked] = useState(true);
-
   // 페이지 관련 변수
   const [result, setResult] = useState([]);
   const page = Math.ceil(result.length / 5);
