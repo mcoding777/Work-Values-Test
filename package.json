@@ -12,7 +12,8 @@
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.3",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "homepage":"https://mcoding777.github.io/elice_first_project"
   },
   "scripts": {
     "start": "react-scripts start",
