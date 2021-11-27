@@ -10,7 +10,6 @@ export function Result(props) {
 
   const username = props.username;
   const usergender = props.usergender;
-  const 
 
   return (
     <div className="container" style={{marginTop:"5%"}}>

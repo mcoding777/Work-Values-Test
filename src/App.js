@@ -21,8 +21,8 @@ function App() {
     nameRef.current = name;
     genderRef.current = gender;
     console.log("App 컴포넌트에서 이름과 성별 바뀜");
-    console.log("이름은", nameRef);
-    console.log("성별은", genderRef);
+    console.log("이름은", nameRef.current);
+    console.log("성별은", genderRef.current);
   }
 
   // 결과값 받아오면서 생긴 변수들
@@ -93,17 +93,17 @@ function App() {
             // 받아온 결과 값(score) 가공 : 상대적으로 중요시 하는 가치와 덜 중요한 가치 뽑기
             const score_value = ["능력발휘", "자율성", "보수", "안정성", "사회적 안정", "사회봉사", "자기계발", "창의성"]
             const score_list = score.split(' ');
-            const score_new_list = score_list.map((num, index)=>{
+            let score_object;
+            score_list.forEach((num, index)=>{
               const data = num.split('=');
-              let score_object = [];
               score_object = {...score_object, [score_value[index]] : Number(data[1])};
-              return score_object
+              console.log("가공된 데이터는", score_object);
             })
             
-            console.log("가공된 데이터는", score_new_list);
+            console.log("가공된 데이터는", score_object);
 
-            const score_object_key = Object.keys(score_new_list).slice(0,-1); // 끝에 undefined 없애기
-            const score_object_value = Object.values(score_new_list).slice(0,-1); // 끝에 null 없애기
+            const score_object_key = Object.keys(score_object).slice(0,-1); // 끝에 undefined 없애기
+            const score_object_value = Object.values(score_object).slice(0,-1); // 끝에 null 없애기
 
             const max = Math.max(...score_object_value);
             const min = Math.min(...score_object_value);
@@ -152,13 +152,13 @@ axios.get('https://www.career.go.kr/inspct/api/psycho/report?seq=NTU3MzEwMTk')
         <Route path="/finish" element={<Finish 
           username={nameRef.current} 
           maxvalue={max_value.current}
-          min_value={min_value.current}
+          minvalue={min_value.current}
            />} />
         <Route path="/result" element={<Result />} 
           username={nameRef.current} 
           usergender={genderRef.current}
           maxvalue={max_value.current}
-          min_value={min_value.current} />
+          minvalue={min_value.current} />
       </Routes>
     </>
   );
