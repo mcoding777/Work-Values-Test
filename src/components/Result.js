@@ -5,8 +5,11 @@ import {
   Link,
 } from 'react-router-dom';
 
-export function Result() {
+export function Result(props) {
   console.log("Result 컴포넌트가 렌더링 됐습니다.");
+
+  const username = props.username;
+  const usergender = props.usergender;
 
   return (
     <div className="container" style={{marginTop:"5%"}}>

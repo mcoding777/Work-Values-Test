@@ -16,6 +16,10 @@ function App() {
   const nameRef = useRef("");
   const genderRef = useRef("");
 
+  // 결과값 받아오면서 생긴 변수들
+  const url = useRef("");
+  const score = useRef("");
+
   // 이름과 성별 바꾸는 함수
   function changeUser(name, gender) {
     nameRef.current = name;
@@ -48,13 +52,14 @@ function App() {
     return ob_string;
   }
 
-  // 가공한 결과 값을 활용해서 POST 요청
+  // 가공한 결과 값을 활용해서 POST 요청하는 함수
   const resultList = (ob) => {
     const sorted_object = objectSort(ob);
     console.log("전체 항목을 정렬했습니다", sorted_object);
     const string_object = objectString(sorted_object);
     console.log("전체 항목을 문자로 바꿨습니다", string_object);
 
+    // Post 요청
     axios({
       method: "post",
       url: "https://inspct.career.go.kr/openapi/test/report",
@@ -66,14 +71,43 @@ function App() {
         "gender": `${genderRef.current === "female" ? "100324" : "100323"}`,
         "grade": "",
         "startDtm": 1550466291034,
-        "answers": string_object
+        "answers": "B1=1 B2=3 B3=6 B4=8 B5=9 B6=11 B7=14 B8=15 B9=18 B10=19 B11=21 B12=24 B13=26 B14=28 B15=29 B16=32 B17=33 B18=36 B19=38 B20=40 B21=42 B22=43 B23=45 B24=47 B25=50 B26=52 B27=54 B28=56" //string_object
       },
-    }).then((response) => {
-        console.log("response.data 입니다", response.data.RESULT);
-    });
+       }).then((response) => {
+          console.log("response.data 입니다", response.data.RESULT.url);
+          url.current = response.data.RESULT.url;
 
-  }
+          console.log("이것은 추출한 data", url.current);
+          const seq = url.current.split('=')[1];
+          console.log("이것은 추출한 seq", seq);
 
+          // Get 요청
+          axios.get(`https://www.career.go.kr/inspct/api/psycho/report?seq=${seq}`)
+          .then((response) => {
+            console.log("이것은 결과값을 get한 데이터입니다", response.data);
+            score.current = response.data.result.wonScore;
+            console.log("이것은 score입니다", score.current);
+
+            // 받아온 결과 값(score) 가공
+            // 1:능력발휘, 2:자율성, 3:보수, 4:안정성, 5:사회적 안정, 6:사회봉사, 7:자기계발, 8:창의성
+            const score_list = score.current.split(' ');
+            let score_object = {};
+
+            score_list.forEach((num)=>{
+              let data = num.split('=');
+              if (data[0] != "") {
+                score_object = {...score_object, [data[0]] : data[1]};}})
+            
+            console.log("가공된 데이터는", score_object);
+          })
+          .catch((error) => {
+            console.log(error, "GET 에러입니다 ㅡㅡ");
+          })
+      }).catch((error) => {
+        console.log(error, "POST 에러입니다 ㅡㅡ");
+      });
+  }    
+  
 /* POST로 받은 URL에서 데이터 추출
 axios.get('https://www.career.go.kr/inspct/api/psycho/report?seq=NTU3MzEwMTk')
 .then((response) => {
@@ -90,7 +124,11 @@ axios.get('https://www.career.go.kr/inspct/api/psycho/report?seq=NTU3MzEwMTk')
         <Route path="/" element={<Main changeuser={changeUser} />} />
         <Route path="/example" element={<Example />} />
         <Route path={"/test/:id"} element={<Test resultlist={resultList} />} />
-        <Route path="/finish" element={<Finish />} />
+        <Route path="/finish" element={<Finish 
+          username={nameRef} 
+          usergender={genderRef}
+          score={score.current}
+           />} />
         <Route path="/result" element={<Result />} />
       </Routes>
     </>
