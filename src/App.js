@@ -15,6 +15,7 @@ function App() {
 
   const [username, setUserName] = useState("");
   const [usergender, setUserGender] = useState("");
+  const [objectvalue, setObjectValue] = useState([]);
 
   // 이름과 성별 바꾸는 함수
   function changeUser(name, gender) {
@@ -104,6 +105,7 @@ function App() {
 
             const score_object_key = Object.keys(score_object).slice(0,-1); // 끝에 undefined 없애기
             const score_object_value = Object.values(score_object).slice(0,-1); // 끝에 null 없애기
+            setObjectValue([...score_object_value]);
 
             const max = Math.max(...score_object_value);
             const min = Math.min(...score_object_value);
@@ -157,8 +159,7 @@ axios.get('https://www.career.go.kr/inspct/api/psycho/report?seq=NTU3MzEwMTk')
         <Route path="/result" element={<Result />} 
           username={username} 
           usergender={usergender}
-          maxvalue={maxvalue}
-          minvalue={minvalue} />
+          objectvalue={objectvalue} />
       </Routes>
     </>
   );

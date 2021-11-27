@@ -10,6 +10,18 @@ export function Result(props) {
 
   const username = props.username;
   const usergender = props.usergender;
+  const objectvalue = props.objectvalue;
+
+  console.log("objectvalue는", objectvalue);
+
+  // 날짜 구하기
+  var today = new Date();
+
+  var year = today.getFullYear();
+  var month = ('0' + (today.getMonth() + 1)).slice(-2);
+  var day = ('0' + today.getDate()).slice(-2);
+
+  var dateString = year + '.' + month  + '.' + day;
 
   return (
     <div className="container" style={{marginTop:"5%"}}>
@@ -28,9 +40,9 @@ export function Result(props) {
         <div>이름</div>
         <div>성별</div>
         <div>검사일</div>
-        <div>엘리스</div>
-        <div>남</div>
-        <div>2021.01.01</div>
+        <div>{username}</div>
+        <div>{usergender}</div>
+        <div>{dateString}</div>
       </div>
       <p className="graphtitle">직업가치관결과</p>
       <div className="graph">

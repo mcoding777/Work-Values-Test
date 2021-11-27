@@ -10,7 +10,7 @@ import {
 export function Finish(props) {
   console.log("Finish 컴포넌트가 렌더링 됐습니다.");
 
-  const [username, setUsername] = useState(props.username);
+  const username = props.username;
   let maxvalue = props.maxvalue;
   let minvalue = props.minvalue;
 
