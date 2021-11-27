@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, } from "react";
 import { Button } from './Button';
 import "../css/Main.css";
 import {
-  Link,
+  Link, 
 } from 'react-router-dom';
 
 // 검사 시작 페이지
@@ -27,7 +27,7 @@ export function Main(props) {
 
   function handleNext() {
     if (name && gender) {
-      props.state(name, gender);
+      props.changeuser(name, gender);
     }
   }
 
@@ -50,7 +50,7 @@ export function Main(props) {
           <Button 
             classname={name && gender ? "btn_click" : "btn"} 
             text="검사시작"
-            name="start" 
+            name="main" 
             nextbutton={handleNext} />
         </Link>
       </div>

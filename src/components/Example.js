@@ -41,7 +41,7 @@ export function Example() {
       <div className="buttonContainer">
         <Link to={checked ? "/test/0" : "/example"}>
           <Button classname={checked ? "btn_click" : "btn"} 
-          text="검사시작" name="start" />
+          text="검사시작" name="example" />
         </Link>
       </div>
     </div>

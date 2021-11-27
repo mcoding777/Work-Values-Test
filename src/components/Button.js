@@ -12,6 +12,7 @@ export function Button(props) {
   const nextpage = props.nextpage;
   const prevpage = props.prevpage;
   const buttonname = props.name;
+  const nextbutton = props.nextbutton;
 
   /*
   const history = useNavigate();
@@ -27,8 +28,9 @@ export function Button(props) {
   */
 
   function handleClick() {
-    if (buttonname === "start") {
+    if (buttonname === "main") {
       console.log("검사시작 버튼을 클릭했습니다 ^^");
+      nextbutton();
     } else if (buttonname === "next") {
       nextpage();
       console.log("다음 버튼을 클릭했습니다 ^^");

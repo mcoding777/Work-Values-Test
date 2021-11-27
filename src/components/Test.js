@@ -90,7 +90,11 @@ export function Test(props) {
 
   function nextPage() {
     console.log("다음 페이지로 이동합니다");
-    setPageNumber(pagenumber+1);
+    if (pagenumber !== 5) {setPageNumber(pagenumber+1);}
+      else {
+        setPageNumber(pagenumber);
+        props.resultlist(total);
+      }
   }
 
   function prevPage() {
