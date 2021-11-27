@@ -83,7 +83,8 @@ export function Test(props) {
 
   function prevPage() {
     console.log("이전 페이지로 이동합니다");
-    changpage(pagenumber-1);
+    if (pagenumber !== 0) {changpage(pagenumber-1);}
+      else {changpage(0);}
   }
 
   if (Object.keys(total).length === ((pagenumber+1)*5)) {
