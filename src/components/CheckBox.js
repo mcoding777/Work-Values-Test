@@ -54,7 +54,7 @@ export function CheckBox(props) {
           name={name} 
           value={value01}
           onClick={handleChecked} 
-          checked={checked === value01 ? "checked" : false} 
+          checked={checked === value01 ? "checked" : null} 
           />{answer01}</div>
         </label>
         <label title={title02}>
@@ -62,7 +62,7 @@ export function CheckBox(props) {
           name={name} 
           value={value02} 
           onClick={handleChecked} 
-          checked={checked === value02 ? "checked" : false}
+          checked={checked === value02 ? "checked" : null}
           />{answer02}</div>
         </label>
       </div>

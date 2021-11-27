@@ -69,7 +69,7 @@ export function Test(props) {
           value01={item["answer03"]} 
           value02={item["answer04"]} 
           updateResult={handleUpdate} 
-          checked={checked ? checked : null}
+          checked={checked && checked}
            />
       )
     })
