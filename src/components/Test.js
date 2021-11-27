@@ -16,10 +16,6 @@ export function Test(props) {
   // 5가지 항목을 모두 선택했는지 체크해줄 변수
   const [checked, setChecked] = useState(true);
 
-  // CheckBox 컴포넌트 CSS 변수
-  const cb_style = {height:100, paddingTop:20};
-  const rb_style = {margin:"35px auto"};
-
   // 페이지 관련 변수
   const [result, setResult] = useState([]);
   const page = Math.ceil(result.length / 5);
@@ -71,7 +67,7 @@ export function Test(props) {
       console.log("checked는", checked);
 
       return (
-        <CheckBox cb={cb_style} rb={rb_style} 
+        <CheckBox 
           key={index}
           name={name}
           answer01={item["answer01"]} 

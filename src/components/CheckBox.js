@@ -25,18 +25,6 @@ export function CheckBox(props) {
 
   console.log("checked는", checked);
 
-  /*
-  function handleChecked(event) {
-    setInput((cur) => {
-      const newcur = {
-      ...cur,
-      name: event.target.name,
-      select: event.target.value,}
-      return newcur;
-    });
-  }
-  */
-
   // useCallback(함수, [변경 인지할 값])
   function handleChecked(event) {
     console.log("선택한 항목이 바뀌었습니다!");
@@ -55,7 +43,7 @@ export function CheckBox(props) {
           value={value01}
           onClick={handleChecked} 
           checked={checked === value01 ? "checked" : null} 
-          />{answer01}</div>
+          /><span>{answer01}</span> : {title01}</div>
         </label>
         <label title={title02}>
           <div><input type="radio" 
@@ -63,7 +51,7 @@ export function CheckBox(props) {
           value={value02} 
           onClick={handleChecked} 
           checked={checked === value02 ? "checked" : null}
-          />{answer02}</div>
+          /><span>{answer02}</span> : {title02}</div>
         </label>
       </div>
     </div>

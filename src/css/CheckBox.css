@@ -22,13 +22,21 @@
 
 .container .checkbox .radiobox {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
 
-    margin: 50px auto 0;
+    text-align: left;
 
-    width: 500px;
+    line-height: 30px;
+
+    margin: 30px 0 0 80px;
+
+    width: 600px;
 
     color: #293845;
+}
+
+.container .checkbox .radiobox span {
+    font-weight: bold;
 }
 
 .container .checkbox .radiobox input[type="radio"] {
@@ -43,6 +51,8 @@
     border: 2px solid darkgray;
     border-radius: 13px;
     background: #ffffff;
+
+    margin-right: 10px;
 }
 
 .container .checkbox .radiobox input[type="radio"]:checked::before {
