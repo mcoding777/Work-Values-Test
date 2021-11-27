@@ -13,14 +13,14 @@ export function Button(props) {
 
   function handleClick() {
     if (buttonname === "main") {
-      console.log("검사시작 버튼을 클릭했습니다 ^^");
+      console.log("검사시작 버튼을 클릭했습니다");
       nextbutton();
     } else if (buttonname === "next") {
       nextpage();
-      console.log("다음 버튼을 클릭했습니다 ^^");
+      console.log("다음 버튼을 클릭했습니다");
     } else if (buttonname === "prev") {
       prevpage();
-      console.log("이전 버튼을 클릭했습니다 ^^");
+      console.log("이전 버튼을 클릭했습니다");
     }
   }
 
