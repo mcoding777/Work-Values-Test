@@ -1,13 +1,17 @@
 import React, { useEffect, useState, forwardRef } from "react";
 import "../css/Button.css";
 import {
-  useNavigate, useParams,
+  useParams,
 } from 'react-router-dom';
 
 // 버튼
 
 export function Button(props) {
   console.log("Button 컴포넌트가 렌더링 됐습니다.");
+    
+  const nextpage = props.nextpage;
+  const prevpage = props.prevpage;
+  const buttonname = props.name;
 
   /*
   const history = useNavigate();
@@ -22,27 +26,14 @@ export function Button(props) {
   }
   */
 
-  const nextpage = props.nextpage;
-  const prevpage = props.prevpage;
-  const nextbutton = props.nextbutton;
-  const buttonname = props.name;
-
-  const navigate = useNavigate();
-  const { id } = useParams();
-
-  // console.log(navigate);
-  console.log(id);
-
   function handleClick() {
     if (buttonname === "start") {
       console.log("검사시작 버튼을 클릭했습니다 ^^");
     } else if (buttonname === "next") {
       nextpage();
-      navigate(`/test/${Number(id)+1}`, {replace: true});
       console.log("다음 버튼을 클릭했습니다 ^^");
     } else if (buttonname === "prev") {
       prevpage();
-      navigate(-1);
       console.log("이전 버튼을 클릭했습니다 ^^");
     }
   }

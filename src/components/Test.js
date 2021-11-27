@@ -1,13 +1,16 @@
 import React, { 
   useState, 
-  useEffect, 
-  useParams, } from "react";
+  useEffect, } from "react";
 import { CheckBox } from "./CheckBox";
 import { Button } from './Button';
 import { Progressbar } from './Progressbar';
 import "../css/Test.css";
 import {
-  Link, Routes, Route,
+  Link, 
+  Routes, 
+  Route, 
+  useNavigate, 
+  useParams,
 } from 'react-router-dom';
 
 export function Test(props) {
@@ -29,65 +32,57 @@ export function Test(props) {
 
   console.log("현재 Test 컴포넌트에서 pagenumber는 ",pagenumber);
 
+    // 선택한 항목 값을 모아주는 변수, 함수
+    const [total, setTotal] = useState({});
+
+    function handleUpdate(update) {
+      setTotal((cur) => {
+          const newcur = {...cur}
+          const name = update.name;
+          const select = update.select;
+          newcur[name] = select;
+          return newcur;
+      })
+    }
+  
+    console.log("현재 선택한 항목은", total);
+
   // CheckBox 컴포넌트 5개를 만들어낼 map 함수
   function checkmap(Array) {
     const data = Array.map((item, index) => {
+      const name = "B" + String(index+(pagenumber*5)+1);
       return (
         <CheckBox cb={cb_style} rb={rb_style} 
           key={index}
-          name={"B" + String(index+(pagenumber*5)+1)}
+          name={name}
           answer01={item["answer01"]} 
           answer02={item["answer02"]} 
           answerscore01={item["answerScore01"]} 
           answerscore02={item["answerScore02"]} 
           value01={item["answer03"]} 
           value02={item["answer04"]} 
-          updateResult={handleUpdate}
+          updateResult={handleUpdate} 
            />
       )
     })
     return data;
   }
 
-  // 페이지에 따라서 map 함수 호출
-  /*
-  function handleMap() {
-    let lastpage;
-    if (startindex < result.length) {
-      if (startindex + 5 > result.length) {
-        lastpage = result.length
-      } else {
-        lastpage = startindex + 5;
-      }}
-    const data = checkmap(result.slice(startindex, lastpage))
-    return data;
-  }
-  */
-
-  // 선택한 항목 값을 모아주는 변수, 함수
-  const [total, setTotal] = useState({});
-
-  function handleUpdate(update) {
-    setTotal((cur) => {
-        const newcur = {...cur}
-        const name = update.name;
-        const select = update.select;
-        newcur[name] = select;
-        return newcur;
-    })
-  }
-
-  console.log("현재 선택한 항목은", total);
-
-  
+  // 히스토리
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   function nextPage() {
     console.log("다음 페이지로 이동합니다");
+    navigate(`${pagenumber !== 5 ? "/test/"+String(pagenumber+1) : "/Finish/"}`, {repale: true, state: total});
     changpage(pagenumber+1);
   }
 
   function prevPage() {
     console.log("이전 페이지로 이동합니다");
+    navigate(`${pagenumber !== 0 ? "/test/"+String(pagenumber-1) : "/Example/"}`,
+      {repale: false, state: total});
+    changpage(pagenumber-1);
   }
 
   if (Object.keys(total).length === ((pagenumber+1)*5)) {
@@ -99,12 +94,12 @@ export function Test(props) {
       <Progressbar text="검사진행" percent={percent} />
       { questions }
       <div className="buttonbox">
-        <Link to={pagenumber !== 0 ? "/test/"+String(pagenumber-1) : "/Example/"}>
+        {/* <Link to={pagenumber !== 0 ? "/test/"+String(pagenumber-1) : "/Example/"}> */}
           <Button classname="btn" text="이전" prevpage={prevPage} name="prev"  />
-        </Link>
-        <Link to={pagenumber !== 5 ? "/test/"+String(pagenumber+1) : "/Finish/"}>
+        {/* </Link>
+        <Link to={pagenumber !== 5 ? "/test/"+String(pagenumber+1) : "/Finish/"}> */}
           <Button classname="btn" text="다음" nextpage={nextPage} name="next"  />
-        </Link>
+        {/* </Link> */}
       </div>
     </div>
   );
