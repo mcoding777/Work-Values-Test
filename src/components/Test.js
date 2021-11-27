@@ -1,18 +1,13 @@
 import React, { 
   useState, 
-  useEffect,
-  useRef } from "react";
+  useEffect, } from "react";
 import { CheckBox } from "./CheckBox";
 import { Button } from './Button';
 import { Progressbar } from './Progressbar';
 import "../css/Test.css";
+import axios from 'axios';
 import {
   Link, 
-  Routes, 
-  Route, 
-  useNavigate, 
-  useParams,
-  useLocation,
 } from 'react-router-dom';
 
 export function Test(props) {
@@ -25,11 +20,28 @@ export function Test(props) {
   const cb_style = {height:100, paddingTop:20};
   const rb_style = {margin:"35px auto"};
 
-  // App에서 넘어온 페이지네이션 정보
-  const pagenumber = props.pagenumber; 
-  const currentradio = props.currentradio;
-  const percent = props.percent;
-  const changpage = props.changpage;
+  // 페이지 관련 변수
+  const [result, setResult] = useState([]);
+  const page = Math.ceil(result.length / 5);
+  const [pagenumber, setPageNumber] = useState(0);
+  const currentradio = result.slice(pagenumber*5, (pagenumber+1)*5)
+  const percent = Math.floor((pagenumber+1)/page*100)
+
+  // 호출한 API 상태 관리하는 변수
+  async function asyncCall() {
+    try {
+      const response = await axios.get('https://inspct.career.go.kr/openapi/test/questions?apikey=fbc9e4d5e474e6e35b5de6d43988d70d&q=6');
+      const res = response.data.RESULT;
+      setResult([...res]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // API 호출(한번만)
+  useEffect(() => asyncCall(), []);
+
+  // 반응 후크 사용 효과는 '결과'가 누락된 종속성을 가지고 있습니다. 종속 배열을 포함하거나 제거합니다. 'setCurrentRadio'의 현재 값이 '결과' 반응 후크/철저한 deps의 현재 값이 필요한 경우 여러 사용상태 변수를 사용감소로 대체할 수도 있습니다.
 
   console.log("현재 Test 컴포넌트에서 pagenumber는 ",pagenumber);
 
@@ -78,13 +90,13 @@ export function Test(props) {
 
   function nextPage() {
     console.log("다음 페이지로 이동합니다");
-    changpage(pagenumber+1);
+    setPageNumber(pagenumber+1);
   }
 
   function prevPage() {
     console.log("이전 페이지로 이동합니다");
-    if (pagenumber !== 0) {changpage(pagenumber-1);}
-      else {changpage(0);}
+    if (pagenumber !== 0) {setPageNumber(pagenumber-1);}
+      else {setPageNumber(0);}
   }
 
   if (Object.keys(total).length === ((pagenumber+1)*5)) {
