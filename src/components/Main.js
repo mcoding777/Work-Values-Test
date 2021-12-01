@@ -17,11 +17,13 @@ export function Main(props) {
   // input에 들어온 이름으로 바꾸는 함수
   function handleChange(event) {
     setName(event.target.value);
+    localStorage.setItem("user_name", event.target.value);
     console.log("이름 바꿨당");
   }
 
   function getGender(event) {
     setGender(event.target.value);
+    localStorage.setItem("user_gender", event.target.value);
     console.log("성별 바꿨당");
   }
 
