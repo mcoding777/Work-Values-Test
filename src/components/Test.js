@@ -86,7 +86,6 @@ export function Test(props) {
     if (pagenumber !== 5) {setPageNumber(pagenumber+1);}
       else {
         setPageNumber(pagenumber);
-        props.resultlist(total);
       }
   }
 

@@ -27,12 +27,6 @@ export function Main(props) {
     console.log("성별 바꿨당");
   }
 
-  function handleNext() {
-    if (name && gender) {
-      props.changeuser(name, gender);
-    }
-  }
-
   return (
     <div className="container" style={{marginTop:"15%"}}>
       <div className="title">
@@ -56,8 +50,7 @@ export function Main(props) {
           <Button 
             classname={name && gender ? "btn_click" : "btn"} 
             text="검사시작"
-            name="main" 
-            nextbutton={handleNext} />
+            name="main" />
         </Link>
       </div>
     </div>
