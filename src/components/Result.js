@@ -57,7 +57,7 @@ export function Result(props) {
       </div>
       <div className="buttonContainer">
         <Link to="/example">
-          <Button text="결과 보기" classname="btn" />
+          <Button text="다시 검사" classname="btn" />
         </Link>
       </div>
     </div>
