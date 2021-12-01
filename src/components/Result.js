@@ -46,7 +46,7 @@ export function Result(props) {
       </div>
       <p className="graphtitle">직업가치관결과</p>
       <div className="graph">
-          <div><span>능력<br/>발휘</span></div>
+          <div style={{height: 500}}><span>능력<br/>발휘</span></div>
           <div><span>자율성</span></div>
           <div><span>보수</span></div>
           <div><span>안정성</span></div>
