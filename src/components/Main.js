@@ -42,8 +42,12 @@ export function Main(props) {
       </div>
       <div className="gender">
         <p>성별</p>
-        <div><input type="radio" name="radio" value="male" onClick={getGender} />남자</div>
-        <div><input type="radio" name="radio" value="female" onClick={getGender} />여자</div>
+        <label>
+          <div><input type="radio" name="radio" value="male" onClick={getGender} />남자</div>
+        </label>
+        <label>
+          <div><input type="radio" name="radio" value="female" onClick={getGender} />여자</div>
+        </label>
       </div>
       <div className="buttonContainer">
         <Link to={name && gender ? "/example" : "/"}>
