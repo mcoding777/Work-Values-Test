@@ -8,6 +8,7 @@ export function Button(props) {
     
   const nextpage = props.nextpage;
   const prevpage = props.prevpage;
+  const repage = props.repage;
   const buttonname = props.name;
   const nextbutton = props.nextbutton;
 
@@ -18,6 +19,9 @@ export function Button(props) {
     } else if (buttonname === "prev") {
       prevpage();
       console.log("이전 버튼을 클릭했습니다");
+    } else if (buttonname === "repage") {
+      console.log("다시검사 버튼을 클릭했습니다");
+      repage();
     }
   }
 

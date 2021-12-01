@@ -23,6 +23,10 @@ export function Result(props) {
 
   var dateString = year + '.' + month  + '.' + day;
 
+  function rePage() {
+    localStorage.clear();
+  }
+
   return (
     <div className="container" style={{marginTop:"5%"}}>
         <h2 style={{
@@ -56,8 +60,8 @@ export function Result(props) {
           <div style={{height: `${10 * result["창의성"]}%`}}><span>창의성</span></div>
       </div>
       <div className="buttonContainer">
-        <Link to="/example">
-          <Button text="다시 검사" classname="btn" />
+        <Link to="/">
+          <Button text="다시 검사" classname="btn" repage={rePage} name="repage" />
         </Link>
       </div>
     </div>
