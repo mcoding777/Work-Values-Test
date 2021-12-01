@@ -20,6 +20,8 @@ export function Test(props) {
   const currentradio = result.slice(pagenumber*5, (pagenumber+1)*5)
   const percent = Math.floor((pagenumber+1)/page*100)
 
+  console.log("현재 Test 컴포넌트에서 pagenumber는 ",pagenumber);
+
   // 호출한 API 상태 관리하는 변수
   async function asyncCall() {
     try {
@@ -34,24 +36,22 @@ export function Test(props) {
   // API 호출(한번만)
   useEffect(() => asyncCall(), []);
 
-  // 반응 후크 사용 효과는 '결과'가 누락된 종속성을 가지고 있습니다. 종속 배열을 포함하거나 제거합니다. 'setCurrentRadio'의 현재 값이 '결과' 반응 후크/철저한 deps의 현재 값이 필요한 경우 여러 사용상태 변수를 사용감소로 대체할 수도 있습니다.
+  // 선택한 항목 값을 모아주는 변수, 함수
+  const [total, setTotal] = useState({});
+  localStorage.setItem('total', JSON.stringify(
+    total
+    ))
+  function handleUpdate(update) {
+    const name = update.name;
+    const select = update.select;
+    setTotal((cur) => {
+        const newcur = {...cur}
+        newcur[name] = select;
+        return newcur;
+    })
+  }
 
-  console.log("현재 Test 컴포넌트에서 pagenumber는 ",pagenumber);
-
-    // 선택한 항목 값을 모아주는 변수, 함수
-    const [total, setTotal] = useState({});
-
-    function handleUpdate(update) {
-      setTotal((cur) => {
-          const newcur = {...cur}
-          const name = update.name;
-          const select = update.select;
-          newcur[name] = select;
-          return newcur;
-      })
-    }
-  
-    console.log("현재 선택한 항목은", total);
+  console.log("현재 선택한 항목은", total);
 
   // CheckBox 컴포넌트 5개를 만들어낼 map 함수
   const questions = checkmap(currentradio);
