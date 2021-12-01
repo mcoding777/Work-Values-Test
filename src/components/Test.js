@@ -60,7 +60,7 @@ export function Test(props) {
     const data = Array.map((item, index) => {
       const name = "B" + String(index+(pagenumber*5)+1);
 
-      const checked = total[name];
+      const checked = JSON.parse(localStorage.getItem('total'))[name];
       console.log("checked는", checked);
 
       return (
