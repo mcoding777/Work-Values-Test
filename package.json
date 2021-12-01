@@ -17,7 +17,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "cp build/index.html build/404.html",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -38,7 +37,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-    "homepage":"https://mcoding777.github.io/elice_first_project"
+  }
 }
 
