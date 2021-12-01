@@ -8,11 +8,11 @@ import {
 export function Result(props) {
   console.log("Result 컴포넌트가 렌더링 됐습니다.");
 
-  const username = props.username;
-  const usergender = props.usergender;
-  const objectvalue = props.objectvalue;
+  const username = localStorage.getItem('user_name');
+  const usergender = localStorage.getItem('user_gender');
+  const result = JSON.parse(localStorage.getItem('result'));
 
-  console.log("objectvalue는", objectvalue);
+  console.log("result는", result);
 
   // 날짜 구하기
   var today = new Date();
@@ -46,14 +46,14 @@ export function Result(props) {
       </div>
       <p className="graphtitle">직업가치관결과</p>
       <div className="graph">
-          <div style={{height: 500}}><span>능력<br/>발휘</span></div>
-          <div><span>자율성</span></div>
-          <div><span>보수</span></div>
-          <div><span>안정성</span></div>
-          <div><span>사회적<br/>인정</span></div>
-          <div><span>사회<br/>봉사</span></div>
-          <div><span>자기<br/>계발</span></div>
-          <div><span>창의성</span></div>
+          <div style={{height: `${10 * result["능력발휘"]}%`}}><span>능력<br/>발휘</span></div>
+          <div style={{height: `${10 * result["자율성"]}%`}}><span>자율성</span></div>
+          <div style={{height: `${10 * result["보수"]}%`}}><span>보수</span></div>
+          <div style={{height: `${10 * result["안정성"]}%`}}><span>안정성</span></div>
+          <div style={{height: `${10 * result["사회적인정"]}%`}}><span>사회적<br/>인정</span></div>
+          <div style={{height: `${10 * result["사회봉사"]}%`}}><span>사회<br/>봉사</span></div>
+          <div style={{height: `${10 * result["자기계발"]}%`}}><span>자기<br/>계발</span></div>
+          <div style={{height: `${10 * result["창의성"]}%`}}><span>창의성</span></div>
       </div>
       <div className="buttonContainer">
         <Link to="/example">

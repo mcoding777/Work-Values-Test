@@ -13,7 +13,7 @@ export function Finish(props) {
 
   const username = localStorage.getItem('user_name');
   const usergender = localStorage.getItem('user_gender');
-  const resultList = JSON.parse(localStorage.getItem('total'));
+  const total = JSON.parse(localStorage.getItem('total'));
 
   // 최종 결과(항목별 점수)를 개체화한 변수
   const [objectvalue, setObjectValue] = useState([]);
@@ -59,7 +59,7 @@ export function Finish(props) {
 
   // 가공한 결과 값을 활용해서 POST 요청하는 함수
   useEffect(() => {
-    const sorted_object = objectSort(resultList);
+    const sorted_object = objectSort(total);
     console.log("전체 항목을 정렬했습니다", sorted_object);
     const string_object = objectString(sorted_object);
     console.log("전체 항목을 문자로 바꿨습니다", string_object);
@@ -96,16 +96,19 @@ export function Finish(props) {
             console.log("이것은 score입니다", score);
 
             // 받아온 결과 값(score) 가공 : 상대적으로 중요시 하는 가치와 덜 중요한 가치 뽑기
-            const score_value = ["능력발휘", "자율성", "보수", "안정성", "사회적 안정", "사회봉사", "자기계발", "창의성"]
+            const score_value = ["능력발휘", "자율성", "보수", "안정성", "사회적인정", "사회봉사", "자기계발", "창의성"]
             const score_list = score.split(' ');
             let score_object;
             score_list.forEach((num, index)=>{
               const data = num.split('=');
               score_object = {...score_object, [score_value[index]] : Number(data[1])};
-              console.log("가공된 데이터는", score_object);
             })
-            
+
             console.log("가공된 데이터는", score_object);
+
+            localStorage.setItem('result', JSON.stringify(
+              score_object
+              ))
 
             const score_object_key = Object.keys(score_object).slice(0,-1); // 끝에 undefined 없애기
             const score_object_value = Object.values(score_object).slice(0,-1); // 끝에 null 없애기
