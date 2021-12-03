@@ -46,9 +46,7 @@ export function Result(props) {
 
   return (
     <div className="container" style={{marginTop:"5%"}}>
-        <h1 style={{
-            
-            }}>직업가치관검사 결과표</h1>
+        <h2 className="result_h2">직업가치관검사 결과표</h2>
       <div className="explanation">
         <p>검사결과는 여러분이 직업을 선택할 때 상대적으로 어떠한 가치를 중요하게 생각하는지를 알려주고,</p>
         <p>중요 가치를 충족시켜줄 수 있는 직업에 대해 생각해 볼 기회를 제공합니다.</p>
