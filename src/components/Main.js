@@ -32,7 +32,7 @@ export function Main() {
       </div>
       <div className="name">
         <p>이름</p>
-        <input type="text" onChange={handleChange} />
+        <input value={name} type="text" onChange={handleChange} />
       </div>
       <div className="gender">
         <p>성별</p>
