@@ -29,13 +29,9 @@ export function Result(props) {
 
   return (
     <div className="container" style={{marginTop:"5%"}}>
-        <h2 style={{
-            borderBottom:"2px solid gray",
-            width: 300,
-            height: 20,
-            margin: "auto",
-            color: "black",
-            }}>직업가치관검사 결과표</h2>
+        <h1 style={{
+            
+            }}>직업가치관검사 결과표</h1>
       <div className="explanation">
         <p>검사결과는 여러분이 직업을 선택할 때 상대적으로 어떠한 가치를 중요하게 생각하는지를 알려주고,</p>
         <p>중요 가치를 충족시켜줄 수 있는 직업에 대해 생각해 볼 기회를 제공합니다.</p>
@@ -48,7 +44,7 @@ export function Result(props) {
         <div>{usergender}</div>
         <div>{dateString}</div>
       </div>
-      <p className="graphtitle">직업가치관결과</p>
+      <p className="table_title">직업가치관 결과</p>
       <div className="graph">
           <div style={{height: `${10 * result["능력발휘"]}%`}}><span>능력<br/>발휘</span></div>
           <div style={{height: `${10 * result["자율성"]}%`}}><span>자율성</span></div>
@@ -58,6 +54,21 @@ export function Result(props) {
           <div style={{height: `${10 * result["사회봉사"]}%`}}><span>사회<br/>봉사</span></div>
           <div style={{height: `${10 * result["자기계발"]}%`}}><span>자기<br/>계발</span></div>
           <div style={{height: `${10 * result["창의성"]}%`}}><span>창의성</span></div>
+      </div>
+      <div className="values">
+        <p className="table_title">나의 가치관과 관련이 높은 직업</p>
+        <div className="schooltable">
+          <div>분야</div>
+          <div>직업명</div>
+          <div>고졸</div>
+          <div>고졸내용</div>
+          <div>전문대졸</div>
+          <div>전문대졸내용</div>
+          <div>대졸</div>
+          <div>대졸내용</div>
+          <div>대학원졸</div>
+          <div>대학원졸내용</div>
+      </div>
       </div>
       <div className="buttonContainer">
         <Link to="/">
