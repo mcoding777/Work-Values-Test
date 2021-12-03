@@ -56,8 +56,8 @@ export function Result(props) {
           <div style={{height: `${10 * result["창의성"]}%`}}><span>창의성</span></div>
       </div>
       <div className="values">
-        <p className="table_title">나의 가치관과 관련이 높은 직업</p>
-        <div className="schooltable">
+        <p className="table_title">나의 가치관과 관련이 높은 직업 (학력별)</p>
+        <div className="jobtable">
           <div>분야</div>
           <div>직업명</div>
           <div>고졸</div>
@@ -68,6 +68,25 @@ export function Result(props) {
           <div>대졸내용</div>
           <div>대학원졸</div>
           <div>대학원졸내용</div>
+      </div>
+      <p className="table_title">나의 가치관과 관련이 높은 직업 (전공별)</p>
+        <div className="jobtable" style={{height: 700}}>
+          <div>계열무관</div>
+          <div>계열무관내용</div>
+          <div>인문</div>
+          <div>인문내용</div>
+          <div>사회</div>
+          <div>사회내용</div>
+          <div>교육</div>
+          <div>교육내용</div>
+          <div>공학</div>
+          <div>공학내용</div>
+          <div>자연</div>
+          <div>자연내용</div>
+          <div>의학</div>
+          <div>의학내용</div>
+          <div>예체능</div>
+          <div>예체능내용</div>
       </div>
       </div>
       <div className="buttonContainer">
