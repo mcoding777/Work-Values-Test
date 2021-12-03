@@ -21,7 +21,6 @@ export function Finish(props) {
   // 결과값 받아오면서 생긴 변수들
   const [maxvalue, setMaxValue] = useState([]);
   const [minvalue, setMinValue] = useState([]);
-  localStorage.setItem('maxValue', JSON.stringify(maxvalue))
   let maxvalue_join = maxvalue.join('');
   let minvalue_join = minvalue.join('');
 

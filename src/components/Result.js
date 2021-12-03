@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "../css/Result.css";
 import { Button } from './Button';
+import axios from 'axios';
 import {
   Link,
 } from 'react-router-dom';
@@ -11,6 +12,7 @@ export function Result(props) {
   const username = localStorage.getItem('user_name');
   const usergender = localStorage.getItem('user_gender');
   const result = JSON.parse(localStorage.getItem('result'));
+  const maxValue = JSON.parse(localStorage.getItem('maxValue'));
 
   console.log("result는", result);
 
@@ -27,9 +29,19 @@ export function Result(props) {
     localStorage.clear();
   }
 
+  // 학력별 직업 정보 가져오는 함수
+  async function schoolCall() {
+    try {
+      const response = await axios.get(`https://inspct.career.go.kr/inspct/api/psycho/value/jobs?no1="${maxValue[0]}"&no2="${maxValue[1] || null}"`);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   // 추천 직업 받아오기
   useEffect(() => {
-
+    schoolCall()
   }, []);
 
   return (
