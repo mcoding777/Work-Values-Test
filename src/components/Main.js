@@ -1,13 +1,11 @@
 import React, { useState, } from "react";
 import { Button } from './Button';
 import "../css/Main.css";
-import {
-  Link, 
-} from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 
 // 검사 시작 페이지
 
-export function Main(props) {
+export function Main() {
   console.log("Main 컴포넌트가 렌더링 됐습니다.");
 
   // 이름과 성별 state
