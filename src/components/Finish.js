@@ -21,6 +21,7 @@ export function Finish(props) {
   // 결과값 받아오면서 생긴 변수들
   const [maxvalue, setMaxValue] = useState([]);
   const [minvalue, setMinValue] = useState([]);
+  localStorage.setItem('maxValue', JSON.stringify(maxvalue))
   let maxvalue_join = maxvalue.join('');
   let minvalue_join = minvalue.join('');
 
@@ -29,10 +30,9 @@ export function Finish(props) {
   console.log("minvalue는", minvalue);
 
   if (maxvalue && maxvalue.length >= 2) {
-    maxvalue_join = maxvalue.join('와(과)');
-  } else if (minvalue && minvalue.length >= 2) {
-    minvalue_join = minvalue.join('와(과)');
-  }
+    maxvalue_join = maxvalue.join('와(과)');}
+  if (minvalue && minvalue.length >= 2) {
+    minvalue_join = minvalue.join('와(과)');}
 
   // 객체를 value 기준으로 오름차순 정렬해서 배열로 반환하는 함수
   // 반환 값 [['B1', '1'], ['B2', '2'], ['B3', '3'], ...]
@@ -124,10 +124,9 @@ export function Finish(props) {
 
             for (let x in score_object_value) {
               if (score_object_value[x] === min) {
-                setMinValue([...minvalue, score_object_key[x]]);
-              } else if (score_object_value[x] === max) {
-                setMaxValue([...maxvalue, score_object_key[x]]);
-              }
+                setMinValue([...minvalue, score_object_key[x]]);}
+              if (score_object_value[x] === max) {
+                setMaxValue([...maxvalue, score_object_key[x]]);}
             }
 
             console.log("max_value는", maxvalue);

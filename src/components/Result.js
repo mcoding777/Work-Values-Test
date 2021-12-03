@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../css/Result.css";
 import { Button } from './Button';
 import {
@@ -26,6 +26,11 @@ export function Result(props) {
   function rePage() {
     localStorage.clear();
   }
+
+  // 추천 직업 받아오기
+  useEffect(() => {
+
+  }, []);
 
   return (
     <div className="container" style={{marginTop:"5%"}}>
