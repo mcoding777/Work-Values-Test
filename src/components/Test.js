@@ -78,7 +78,6 @@ export function Test(props) {
   }
 
   function nextPage() {
-    console.log("다음 페이지로 이동합니다");
     if (pagenumber !== 5) {setPageNumber(pagenumber+1);}
       else {
         setPageNumber(pagenumber);
@@ -86,7 +85,6 @@ export function Test(props) {
   }
 
   function prevPage() {
-    console.log("이전 페이지로 이동합니다");
     if (pagenumber !== 0) {setPageNumber(pagenumber-1);}
       else {setPageNumber(0);}
   }
