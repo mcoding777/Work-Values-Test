@@ -33,10 +33,9 @@ export function Test(props) {
   useEffect(() => QuestionCall(), []);
 
   // 선택한 항목 값을 모아주는 변수, 함수
-  const [total, setTotal] = useState({});
-  if (pagenumber + 1 === page) {
-    sessionStorage.setItem('total', JSON.stringify(total));
-  } 
+  const [total, setTotal] = useState(JSON.parse(sessionStorage.getItem('total')) || {});
+  sessionStorage.setItem('total', JSON.stringify(total));
+
   function handleUpdate(update) {
     const name = update.name;
     const select = update.select;
@@ -56,7 +55,7 @@ export function Test(props) {
     const data = Array.map((item, index) => {
       const name = "B" + String(index+(pagenumber*5)+1);
 
-      const checked = JSON.parse(sessionStorage.getItem('total'))[name];
+      const checked = total[name];
       console.log("checked는", checked);
 
       return (
@@ -93,6 +92,11 @@ export function Test(props) {
     console.log("5개의 항목을 모두 선택했습니다!!!!!!!! 굿");
   }
 
+  function submitPage() {
+    sessionStorage.setItem('total', JSON.stringify(total));
+    console.log("세션스토리지에 현재 선택한 항목을 모두 저장했습니다");
+  }
+
   return (
     <div className="container">
       <Progressbar text="검사진행" percent={percent} />
@@ -102,7 +106,11 @@ export function Test(props) {
           <Button classname="btn" text="이전" prevpage={prevPage} name="prev"  />
         </Link>
         <Link to={pagenumber !== 5 ? "/test/"+String(pagenumber+1) : "/Finish/"}>
-          <Button classname="btn" text="다음" nextpage={nextPage} name="next"  />
+          <Button classname="btn" 
+            text={pagenumber !== 5 ? "다음" : "제출"} 
+            nextpage={nextPage} 
+            submitpage={submitPage} 
+            name={pagenumber !== 5 ? "next" : "submit"}  />
         </Link>
       </div>
     </div>
