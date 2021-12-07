@@ -34,9 +34,9 @@ export function Test(props) {
 
   // 선택한 항목 값을 모아주는 변수, 함수
   const [total, setTotal] = useState({});
-  localStorage.setItem('total', JSON.stringify(
-    total
-    ))
+  if (pagenumber + 1 === page) {
+    sessionStorage.setItem('total', JSON.stringify(total));
+  } 
   function handleUpdate(update) {
     const name = update.name;
     const select = update.select;
@@ -56,7 +56,7 @@ export function Test(props) {
     const data = Array.map((item, index) => {
       const name = "B" + String(index+(pagenumber*5)+1);
 
-      const checked = JSON.parse(localStorage.getItem('total'))[name];
+      const checked = JSON.parse(sessionStorage.getItem('total'))[name];
       console.log("checked는", checked);
 
       return (
