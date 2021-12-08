@@ -3,7 +3,7 @@ import { CheckBox } from "./CheckBox";
 import { Button } from './Button';
 import { Progressbar } from './Progressbar';
 import "../css/Test.css";
-import axios from 'axios';
+import { useGet } from "../functions/useGet";
 import { Link, } from 'react-router-dom';
 
 export function Test(props) {
@@ -18,19 +18,12 @@ export function Test(props) {
 
   console.log("현재 Test 컴포넌트에서 pagenumber는 ",pagenumber);
 
-  // 심리검사 항목 API 호출 함수
-  async function QuestionCall() {
-    try {
-      const response = await axios.get('https://inspct.career.go.kr/openapi/test/questions?apikey=fbc9e4d5e474e6e35b5de6d43988d70d&q=6');
-      const res = response.data.RESULT;
-      setResult([...res]);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  // API 호출(한번만)
-  useEffect(() => QuestionCall(), []);
+  // API 호출 (한번만)
+  useEffect(() => {
+    const data = useGet("https://inspct.career.go.kr/openapi/test/questions?apikey=fbc9e4d5e474e6e35b5de6d43988d70d&q=6");
+    const res = data.RESULT;
+    setResult([...res]);
+  }, [])
 
   // 선택한 항목 값을 모아주는 변수, 함수
   const [total, setTotal] = useState(JSON.parse(sessionStorage.getItem('total')) || {});
