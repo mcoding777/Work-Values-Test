@@ -10,20 +10,16 @@ export function Test(props) {
   console.log("Test 컴포넌트가 렌더링 됐습니다.");
 
   // 페이지 관련 변수
-  const [result, setResult] = useState([]);
-  const page = Math.ceil(result.length / 5);
+  const Q = useGet("https://inspct.career.go.kr/openapi/test/questions?apikey=fbc9e4d5e474e6e35b5de6d43988d70d&q=6").RESULT;
+  const page = Math.ceil(Q?.length / 5);
   const [pagenumber, setPageNumber] = useState(0);
-  const currentradio = result.slice(pagenumber*5, (pagenumber+1)*5)
+  const currentradio = Q?.slice(pagenumber*5, (pagenumber+1)*5)
   const percent = Math.floor((pagenumber+1)/page*100)
 
   console.log("현재 Test 컴포넌트에서 pagenumber는 ",pagenumber);
 
   // API 호출 (한번만)
-  useEffect(() => {
-    const data = useGet("https://inspct.career.go.kr/openapi/test/questions?apikey=fbc9e4d5e474e6e35b5de6d43988d70d&q=6");
-    const res = data.RESULT;
-    setResult([...res]);
-  }, [])
+
 
   // 선택한 항목 값을 모아주는 변수, 함수
   const [total, setTotal] = useState(JSON.parse(sessionStorage.getItem('total')) || {});
@@ -42,7 +38,7 @@ export function Test(props) {
   console.log("현재 선택한 항목은", total);
 
   // CheckBox 컴포넌트 5개를 만들어낼 map 함수
-  const questions = checkmap(currentradio);
+  const questions = checkmap(currentradio) || null;
 
   function checkmap(Array) {
     const data = Array.map((item, index) => {
