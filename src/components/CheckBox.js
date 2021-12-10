@@ -20,7 +20,6 @@ export function CheckBox(props) {
 
   console.log("checked는", checked);
 
-  // useCallback(함수, [변경 인지할 값])
   function handleChecked(event) {
     console.log("선택한 항목이 바뀌었습니다!");
     props.updateResult({
@@ -37,7 +36,7 @@ export function CheckBox(props) {
           name={name} 
           value={value01}
           onClick={handleChecked} 
-          checked={checked === value01 ? "checked" : null} 
+          checked={checked === value01 || null} 
           /><span>{answer01}</span> : {title01}</div>
         </label>
         <label title={title02}>
@@ -45,7 +44,7 @@ export function CheckBox(props) {
           name={name} 
           value={value02} 
           onClick={handleChecked} 
-          checked={checked === value02 ? "checked" : null}
+          checked={checked === value02 || null} 
           /><span>{answer02}</span> : {title02}</div>
         </label>
       </div>

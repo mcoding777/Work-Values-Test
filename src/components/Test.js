@@ -13,13 +13,18 @@ export function Test(props) {
   const [result, setResult] = useState([]);
   const page = Math.ceil(result.length / 5);
   const [pagenumber, setPageNumber] = useState(0);
-  const currentradio = result.slice(pagenumber*5, (pagenumber+1)*5)
+  const currentQ = result.slice(pagenumber*5, (pagenumber+1)*5)
   const percent = Math.floor((pagenumber+1)/page*100)
 
   console.log("현재 Test 컴포넌트에서 pagenumber는 ",pagenumber);
 
-  // 5개 항목에 대한 버튼 활성화/비활성화
+  // 5개 항목에 대한 다음 버튼 활성화/비활성화
   const isOn = useRef(false);
+
+  // 선택한 항목 값을 모아주는 변수, 함수
+  const [total, setTotal] = useState({});
+  const sessionTotal = JSON.parse(sessionStorage.getItem('total')) || {};
+  console.log("sessionTotal은", sessionTotal);
 
   // 심리검사 항목 API 호출 함수
   async function QuestionCall() {
@@ -32,16 +37,11 @@ export function Test(props) {
     }
   }
 
-  // API 호출(한번만)
-  useEffect(() => QuestionCall(), []);
-
-  // 선택한 항목 값을 모아주는 변수, 함수
-  const [total, setTotal] = useState({});
-  sessionStorage.setItem('total', JSON.stringify(total));
-
   function handleUpdate(update) {
     const name = update.name;
     const select = update.select;
+    sessionTotal[name] = select;
+    sessionStorage.setItem('total', JSON.stringify(sessionTotal));
     setTotal((cur) => {
         const newcur = {...cur}
         newcur[name] = select;
@@ -52,13 +52,13 @@ export function Test(props) {
   console.log("현재 선택한 항목은", total);
 
   // CheckBox 컴포넌트 5개를 만들어낼 map 함수
-  const questions = checkmap(currentradio);
+  const questions = checkmap(currentQ);
 
-  function checkmap(Array) {
-    const data = Array.map((item, index) => {
+  function checkmap(array) {
+    const data = array.map((item, index) => {
       const name = "B" + String(index+(pagenumber*5)+1);
 
-      const checked = total[name];
+      const checked = sessionTotal?.[name];
       console.log("checked는", checked);
 
       return (
@@ -72,7 +72,7 @@ export function Test(props) {
           value01={item["answer03"]} 
           value02={item["answer04"]} 
           updateResult={handleUpdate} 
-          checked={checked && checked}
+          checked={checked}
            />
       )
     })
@@ -90,12 +90,17 @@ export function Test(props) {
     if (pagenumber !== 0) {setPageNumber(pagenumber-1);}
   }
 
-  if (Object.keys(total).length === ((pagenumber+1)*5)) {
+  if (Object.keys(sessionTotal).length >= ((pagenumber+1)*5)) {
     console.log("5개의 항목을 모두 선택했습니다!!!!!!!! 굿");
     isOn.current = true;
   } else {
     isOn.current = false;
   }
+
+  // API 호출(한번만)
+  useEffect(() => {
+    QuestionCall()
+  }, []);
 
   return (
     <div className="container">
