@@ -9,7 +9,6 @@ export function Button(props) {
   const nextpage = props.nextpage;
   const prevpage = props.prevpage;
   const repage = props.repage;
-  const submitpage = props.submitpage;
   const buttonname = props.name;
   const nextbutton = props.nextbutton;
 
@@ -23,9 +22,6 @@ export function Button(props) {
     } else if (buttonname === "repage") {
       console.log("다시검사 버튼을 클릭했습니다");
       repage();
-    } else if (buttonname == "submit") {
-      console.log("제출 버튼을 클릭했습니다");
-      submitpage();
     }
   }
 

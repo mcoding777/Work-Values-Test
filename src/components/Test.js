@@ -1,4 +1,4 @@
-import React, { useState, useEffect, } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CheckBox } from "./CheckBox";
 import { Button } from './Button';
 import { Progressbar } from './Progressbar';
@@ -15,6 +15,9 @@ export function Test(props) {
   const [pagenumber, setPageNumber] = useState(0);
   const currentradio = result.slice(pagenumber*5, (pagenumber+1)*5)
   const percent = Math.floor((pagenumber+1)/page*100)
+
+  // 5개 항목에 대한 버튼 활성화/비활성화
+  const isOn = useRef(false);
 
   console.log("현재 Test 컴포넌트에서 pagenumber는 ",pagenumber);
 
@@ -33,7 +36,7 @@ export function Test(props) {
   useEffect(() => QuestionCall(), []);
 
   // 선택한 항목 값을 모아주는 변수, 함수
-  const [total, setTotal] = useState(JSON.parse(sessionStorage.getItem('total')) || {});
+  const [total, setTotal] = useState({});
   sessionStorage.setItem('total', JSON.stringify(total));
 
   function handleUpdate(update) {
@@ -77,10 +80,10 @@ export function Test(props) {
   }
 
   function nextPage() {
-    if (pagenumber !== 5) {setPageNumber(pagenumber+1);}
-      else {
-        setPageNumber(pagenumber);
-      }
+    if (pagenumber !== 5) {
+      if (isOn.current) {setPageNumber(pagenumber+1);}
+      else {alert("선택하지 않은 항목이 있습니다.")}
+    }
   }
 
   function prevPage() {
@@ -90,11 +93,9 @@ export function Test(props) {
 
   if (Object.keys(total).length === ((pagenumber+1)*5)) {
     console.log("5개의 항목을 모두 선택했습니다!!!!!!!! 굿");
-  }
-
-  function submitPage() {
-    sessionStorage.setItem('total', JSON.stringify(total));
-    console.log("세션스토리지에 현재 선택한 항목을 모두 저장했습니다");
+    isOn.current = true;
+  } else {
+    isOn.current = false;
   }
 
   return (
@@ -109,7 +110,6 @@ export function Test(props) {
           <Button classname="btn" 
             text={pagenumber !== 5 ? "다음" : "제출"} 
             nextpage={nextPage} 
-            submitpage={submitPage} 
             name={pagenumber !== 5 ? "next" : "submit"}  />
         </Link>
       </div>
