@@ -30,8 +30,8 @@ export function Example() {
         answer02="자율성" 
         value01="직업을 통해 자신의 능력을 발휘하는 것입니다." 
         value02="일하는 시간과 방식에 대해서 스스로 결정할 수 있는 것입니다." 
-        answerscore01={-1} 
-        checked="" 
+        answerscore01={-1}
+        answerscore02={-2}
       />
       <div className="buttonContainer">
         <Link to={checked ? "/test/0" : "/example"}>

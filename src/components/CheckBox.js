@@ -28,15 +28,15 @@ export function CheckBox(props) {
   }
 
   return (
-    <div className="checkbox" style={props.cb}>
+    <div className="checkbox">
       <p>두 개 가치 중에 자신에게 더 중요한 가치를 선택하세요.</p>
-      <div className="radiobox" style={props.rb}>
+      <div className="radiobox">
         <label title={title01}>
           <div><input type="radio" 
           name={name} 
           value={value01}
           onClick={handleChecked} 
-          checked={checked === value01 || null} 
+          checked={checked === value01} 
           /><span>{answer01}</span> : {title01}</div>
         </label>
         <label title={title02}>
@@ -44,7 +44,7 @@ export function CheckBox(props) {
           name={name} 
           value={value02} 
           onClick={handleChecked} 
-          checked={checked === value02 || null} 
+          checked={checked === value02} 
           /><span>{answer02}</span> : {title02}</div>
         </label>
       </div>
