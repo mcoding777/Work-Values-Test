@@ -1,29 +1,27 @@
 import React, { useState, } from "react";
 import { Button } from './Button';
 import { Progressbar } from './Progressbar';
+import { Article } from './Area'; 
 import { CheckBox } from "./CheckBox";
-import "../css/Example.css";
+import styled from "styled-components";
 import { Link, } from 'react-router-dom';
 
 // 검사 예시 페이지
 
 export function Example() {
-  console.log("Example 컴포넌트가 렌더링 됐습니다.");
-
   const [checked, setChecked] = useState(false);
 
   function handleChecked() {
-    console.log("검사시작 버튼이 이제 활성화된다!!");
     setChecked(true);
   }
 
   return (
-    <div className="container" style={{marginTop:"10%"}}>
+    <Article>
       <Progressbar text="검사예시" percent="0" />
-      <div className="explanation">
+      <Explanation>
         <p>직업과 관련된 두개의 가치 중에서 자기에게 더 중요한 가치에 표시하세요.</p>
         <p>가치의 뜻을 잘 모르겠다면 문항에 마우스 커서를 올려서 설명을 확인해보세요.</p>
-      </div>
+      </Explanation>
       <CheckBox updateResult={handleChecked} 
         name="ex" 
         answer01="능력발휘" 
@@ -37,6 +35,17 @@ export function Example() {
           text="검사시작" name="example" />
         </Link>
       </div>
-    </div>
+    </Article>
   );
 }
+
+// styled-components
+const Explanation = styled.div`
+  margin-top: 50px;
+
+  line-height: 5px;
+
+  font-size: 13px;
+  font-weight: bold;
+  color: #293845;
+`;

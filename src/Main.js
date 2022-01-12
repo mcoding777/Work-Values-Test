@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import { Button } from './Button';
+import { Article } from './components/Area';
+import { Button } from './components/Button';
 import styled from 'styled-components';
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 // 검사 시작 페이지
 
@@ -25,7 +26,7 @@ export function Main() {
   }
 
   return (
-    <Container>
+    <Article>
       <h1>직업 가치관 검사</h1>
       <UserBox onSubmit={handleSubmit(onSubmit)}>
         <NameBox>
@@ -59,20 +60,11 @@ export function Main() {
           text="검사시작"
           type="submit" />
       </UserBox>
-    </Container>
+    </Article>
   );
 }
 
 // styled-components
-
-const Container = styled.article`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  height: 100vh;
-`;
 
 const UserBox = styled.form`
   margin : 30px 0;

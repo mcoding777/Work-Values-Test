@@ -1,5 +1,5 @@
 import React from "react";
-import { Main } from './components/Main';
+import { Main } from './Main';
 import { Example } from './components/Example';
 import { Test } from './components/Test';
 import { Finish } from './components/Finish';

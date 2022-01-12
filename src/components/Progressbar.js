@@ -1,16 +1,41 @@
-import React from "react";
-import "../css/Progressbar.css";
+import styled from "styled-components";
 
 export function Progressbar(props) {
-  console.log("Progressbar 컴포넌트가 렌더링 됐습니다.");
-
   return (
-  <div className="gauge">
-    <div className="percent">
+  <div>
+    <Percent>
       <h2>{props.text}</h2>
       <h2>{props.percent}%</h2>
-    </div>
-    <div className="progressbar_before" style={{width:props.percent+"%"}}></div>
-    <div className="progressbar"></div>
+    </Percent>
+    <ProgressbarBox>
+      <ProgressbarGauge />
+    </ProgressbarBox>
   </div>);
   }
+
+// styled-components
+const Percent = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+const ProgressbarBox = styled.div`
+  width: 700px;
+  height: 30px;
+
+  border-radius: 10px;
+
+  background-color: white;
+
+  overflow: hidden;
+
+  margin: 10px 0;
+`;
+
+const ProgressbarGauge = styled.div`
+  width: ${props => props.percent ? props.percent + "%" : "200px"};
+  height: 100%;
+
+  background-color: #ec5990;
+
+`;
