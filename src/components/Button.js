@@ -1,32 +1,64 @@
-import React from "react";
-import "../css/Button.css";
-
-// 버튼
+import styled from "styled-components";
 
 export function Button(props) {
-  console.log("Button 컴포넌트가 렌더링 됐습니다.");
-    
-  const nextpage = props.nextpage;
-  const prevpage = props.prevpage;
-  const repage = props.repage;
+
   const buttonname = props.name;
   const nextbutton = props.nextbutton;
 
   function handleClick() {
     if (buttonname === "next") {
-      nextpage();
-      console.log("다음 버튼을 클릭했습니다");
+      props.nextpage();
     } else if (buttonname === "prev") {
-      prevpage();
-      console.log("이전 버튼을 클릭했습니다");
+      props.prevpage();
     } else if (buttonname === "repage") {
-      console.log("다시검사 버튼을 클릭했습니다");
-      repage();
+      props.repage();
     }
   }
 
   return (
-    <button type="button" onClick={handleClick} name={props.name} 
-      className={props.classname}>{props.text}</button>
+    <ButtonStyle 
+      type="button" 
+      onClick={handleClick} 
+      name={props.name} 
+      className={props.classname}>
+        {props.text}
+    </ButtonStyle>
   );
 }
+
+// styled-components
+const ButtonStyle = styled.button`
+    width: 130px;
+    height: 40px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    color: #6558f5;
+
+    background-color: white;
+    border-color: #d3dae0;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    &.btn_click {
+      width: 130px;
+      height: 40px;
+
+      font-size: 17px;
+      font-weight: bold;
+
+      color: white;
+
+      background-color: #6558f5;
+      border-color: #d3dae0;
+      border-width: 3px;
+      border-style: solid;
+      border-radius: 5px;
+
+      cursor: pointer;
+    }
+`;
