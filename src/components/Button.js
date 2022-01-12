@@ -5,22 +5,9 @@ export function Button(props) {
   const buttonname = props.name;
   const nextbutton = props.nextbutton;
 
-  function handleClick() {
-    if (buttonname === "next") {
-      props.nextpage();
-    } else if (buttonname === "prev") {
-      props.prevpage();
-    } else if (buttonname === "repage") {
-      props.repage();
-    }
-  }
-
   return (
     <ButtonStyle 
-      type="button" 
-      onClick={handleClick} 
-      name={props.name} 
-      className={props.classname}>
+      type={props.type}>
         {props.text}
     </ButtonStyle>
   );
@@ -30,7 +17,6 @@ export function Button(props) {
 const ButtonStyle = styled.button`
     all: unset;
 
-    width: 200px;
     height: 40px;
 
     font-weight: bold;
