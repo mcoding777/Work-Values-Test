@@ -1,6 +1,6 @@
 import React from "react";
 import { Main } from './Main';
-import { Example } from './components/Example';
+import { Example } from './Example';
 import { Test } from './components/Test';
 import { Finish } from './components/Finish';
 import { Result } from './components/Result';

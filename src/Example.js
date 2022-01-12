@@ -1,8 +1,8 @@
-import React, { useState, } from "react";
-import { Button } from './Button';
-import { Progressbar } from './Progressbar';
-import { Article } from './Area'; 
-import { CheckBox } from "./CheckBox";
+import { useState, } from "react";
+import { Button } from './components/Button';
+import { Progressbar } from './components/Progressbar';
+import { Article } from './components/Area'; 
+import { CheckBox } from "./components/CheckBox";
 import styled from "styled-components";
 import { Link, } from 'react-router-dom';
 
