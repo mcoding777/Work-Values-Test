@@ -16,13 +16,11 @@ export function Main() {
   function handleChange(event) {
     setName(event.target.value);
     sessionStorage.setItem("user_name", event.target.value);
-    console.log("이름 바꿨당");
   }
 
   function getGender(event) {
     setGender(event.target.value);
     sessionStorage.setItem("user_gender", event.target.value);
-    console.log("성별 바꿨당");
   }
 
   return (
@@ -84,7 +82,6 @@ const ItemText = styled.p`
   text-align: left;
 
   font-weight: bold;
-  color: #4b5c6b;
 `;
 
 const GenderBox = styled.div`
@@ -105,7 +102,6 @@ const GenderBox = styled.div`
       width: 13px;
       height: 13px;
 
-      border: 2px solid darkgray;
       border-radius: 13px;
       background: #ffffff;
 
@@ -121,7 +117,7 @@ const GenderBox = styled.div`
 
           border-radius: 100%;
 
-          background: #6558f5;
+          background: #ec5990;
         }
     }
   

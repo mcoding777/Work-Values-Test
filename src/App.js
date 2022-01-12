@@ -36,9 +36,20 @@ const GlobalStyle = createGlobalStyle`
 
     margin: 0;
     padding: 0;
+
+    color: white;
+
+    text-decoration: none;
   }
 
   body {   
     text-align: center;
+
+    background-color: #081229;
+  }
+
+  h1 {
+    font-weight: bold;
+    font-size: 40px;
   }
 `;

@@ -31,34 +31,14 @@ const ButtonStyle = styled.button`
     width: 130px;
     height: 40px;
 
-    font-size: 17px;
+    all: unset;
+
     font-weight: bold;
 
-    color: #6558f5;
-
-    background-color: white;
-    border-color: #d3dae0;
-    border-width: 3px;
-    border-style: solid;
+    background-color: #ec5990;
     border-radius: 5px;
 
+    padding: 10px 30px;
+
     cursor: pointer;
-
-    &.activity {
-      width: 130px;
-      height: 40px;
-
-      font-size: 17px;
-      font-weight: bold;
-
-      color: white;
-
-      background-color: #6558f5;
-      border-color: #d3dae0;
-      border-width: 3px;
-      border-style: solid;
-      border-radius: 5px;
-
-      cursor: pointer;
-    }
 `;
