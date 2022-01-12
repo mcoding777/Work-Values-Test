@@ -44,7 +44,7 @@ const ButtonStyle = styled.button`
 
     cursor: pointer;
 
-    &.btn_click {
+    &.activity {
       width: 130px;
       height: 40px;
 

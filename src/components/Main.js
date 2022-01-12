@@ -43,14 +43,12 @@ export function Main() {
           여자
         </label>
       </GenderBox>
-      <div className="buttonContainer">
-        <Link to={name && gender ? "/example" : "/"}>
-          <Button 
-            classname={name && gender ? "btn_click" : "btn"} 
-            text="검사시작"
-            name="main" />
-        </Link>
-      </div>
+      <Link to={name && gender ? "/example" : "/"}>
+        <Button 
+          classname={name && gender ? "activity" : null} 
+          text="검사시작"
+          name="main" />
+      </Link>
     </Container>
   );
 }
