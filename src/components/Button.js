@@ -28,15 +28,15 @@ export function Button(props) {
 
 // styled-components
 const ButtonStyle = styled.button`
-    width: 130px;
-    height: 40px;
-
     all: unset;
+
+    width: 200px;
+    height: 40px;
 
     font-weight: bold;
 
     background-color: #ec5990;
-    border-radius: 5px;
+    border-radius: 10px;
 
     padding: 10px 30px;
 

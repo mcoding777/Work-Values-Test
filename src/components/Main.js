@@ -25,12 +25,10 @@ export function Main() {
 
   return (
     <Container>
-      <h1>직업가치관검사</h1>
-      <NameBox>
+      <h1>직업 가치관 검사</h1>
+      <UserBox>
         <ItemText>이름</ItemText>
         <input value={name} type="text" onChange={handleChange} />
-      </NameBox>
-      <GenderBox>
         <ItemText>성별</ItemText>
         <label>
           <input type="radio" name="radio" value="male" onClick={getGender} />
@@ -40,7 +38,7 @@ export function Main() {
           <input type="radio" name="radio" value="female" onClick={getGender} />
           여자
         </label>
-      </GenderBox>
+      </UserBox>
       <Link to={name && gender ? "/example" : "/"}>
         <Button 
           classname={name && gender ? "activity" : null} 
@@ -62,38 +60,38 @@ const Container = styled.article`
   height: 100vh;
 `;
 
-const NameBox = styled.div`
-    margin : 30px 0;
+const UserBox = styled.div`
+  margin : 30px 0;
 
-    display: flex;
-    flex-direction: column;
+  width: 200px;
 
-    & input {
-      all: unset;
-
-      border-color: #d3dae0;
-      border-width: 3px;
-      border-style: solid;
-      border-radius: 5px;
-    }
-`;
-
-const ItemText = styled.p`
-  text-align: left;
-
-  font-weight: bold;
-`;
-
-const GenderBox = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 30px;
+  & input[type="text"] {
+    all: unset;
 
+    border-color: #d3dae0;
+    border-radius: 5px;
+
+    background-color: white;
+
+    color: black;
+
+    height: 50px;
+
+    margin-top: 2px;
+    margin-bottom: 30px;
+  };
+    
   & label {
     font-weight: 500;
+
+    text-align: left;
+
+    padding: 2px;
   
-    & input {
+    & input[type="radio"] {
       -webkit-appearance:none;
       -moz-appearance:none;
       -ms-appearance:none;
@@ -105,21 +103,29 @@ const GenderBox = styled.div`
       border-radius: 13px;
       background: #ffffff;
 
+      margin-right: 5px;
+
         &:checked::before {
           content:'';
 
           display:block;
 
           width: 75%;
-          height:75%;
+          height: 75%;
 
           margin: 13% auto;
 
           border-radius: 100%;
 
           background: #ec5990;
-        }
-    }
+        };
+    };
   
-  }
+  };
+`;
+
+const ItemText = styled.p`
+  text-align: left;
+
+  font-weight: bold;
 `;

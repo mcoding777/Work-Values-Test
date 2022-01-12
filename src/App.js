@@ -42,6 +42,10 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  html {
+    font-size: 18px;
+  }
+
   body {   
     text-align: center;
 
@@ -50,6 +54,6 @@ const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-weight: bold;
-    font-size: 40px;
+    font-size: 2rem;
   }
 `;
