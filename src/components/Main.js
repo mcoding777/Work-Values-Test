@@ -1,12 +1,16 @@
-import React, { useState, } from "react";
+import { useState, } from "react";
 import { Button } from './Button';
 import { Link, } from 'react-router-dom';
 import styled from 'styled-components';
+import { useForm } from "react-hook-form";
 
 // 검사 시작 페이지
 
 export function Main() {
-  console.log("Main 컴포넌트가 렌더링 됐습니다.");
+  // useForm
+  const { register, formState: { errors }, handleSubmit } = useForm();
+  const registerParams = { required: true };
+  const onSubmit = data => console.log(data);
 
   // 이름과 성별 state
   const [name, setName] = useState("");
@@ -26,24 +30,39 @@ export function Main() {
   return (
     <Container>
       <h1>직업 가치관 검사</h1>
-      <UserBox>
+      <UserBox onSubmit={handleSubmit(onSubmit)}>
         <ItemText>이름</ItemText>
-        <input value={name} type="text" onChange={handleChange} />
+        <input 
+          value={name} 
+          type="text" 
+          onChange={handleChange} 
+          {...register("user_name", { required: true })} />
+        {errors.user_name?.type === 'required' && <p>이름을 입력해주세요</p>}
         <ItemText>성별</ItemText>
         <label>
-          <input type="radio" name="radio" value="male" onClick={getGender} />
+          <input 
+            type="radio" 
+            name="radio" 
+            value="male" 
+            onClick={getGender} 
+            {...register("user_gender", { required: true })} />
           남자
         </label>
         <label>
-          <input type="radio" name="radio" value="female" onClick={getGender} />
+          <input 
+            type="radio" 
+            name="radio" 
+            value="female" 
+            onClick={getGender}
+            {...register("user_gender", { required: true })} />
           여자
         </label>
+        {errors.user_name?.type === 'user_gender' && <p>성별을 선택해주세요</p>}
       </UserBox>
       <Link to={name && gender ? "/example" : "/"}>
         <Button 
-          classname={name && gender ? "activity" : null} 
           text="검사시작"
-          name="main" />
+          type="submit" />
       </Link>
     </Container>
   );
@@ -60,7 +79,7 @@ const Container = styled.article`
   height: 100vh;
 `;
 
-const UserBox = styled.div`
+const UserBox = styled.form`
   margin : 30px 0;
 
   width: 200px;
@@ -78,6 +97,7 @@ const UserBox = styled.div`
 
     color: black;
 
+    width: 100%;
     height: 50px;
 
     margin-top: 2px;

@@ -49,7 +49,7 @@ const GlobalStyle = createGlobalStyle`
   body {   
     text-align: center;
 
-    background-color: #081229;
+    background: radial-gradient( circle, #23324d, #0e172e, #081229 );
   }
 
   h1 {
