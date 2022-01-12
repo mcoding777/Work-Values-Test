@@ -64,7 +64,7 @@ const FlexBox = styled.div`
     background-color: white;
     border-radius: 10px;
 
-    margin: 10px 0;
+    margin-bottom: 30px;
 `;
 
 const Text = styled.p`

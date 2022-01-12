@@ -17,10 +17,10 @@ export function Example() {
 
   return (
     <Article>
-      <Progressbar text="검사예시" percent="0" />
+      <Progressbar text="진행률 예시" percent="0" />
       <Explanation>
         <p>직업과 관련된 두개의 가치 중에서 자기에게 더 중요한 가치에 표시하세요.</p>
-        <p>가치의 뜻을 잘 모르겠다면 문항에 마우스 커서를 올려서 설명을 확인해보세요.</p>
+        <p>가치의 뜻을 잘 모르겠다면 설명을 확인해보세요.</p>
       </Explanation>
       <CheckBox updateResult={handleChecked} 
         name="ex" 
@@ -41,11 +41,8 @@ export function Example() {
 
 // styled-components
 const Explanation = styled.div`
-  margin-top: 50px;
-
-  line-height: 5px;
-
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 1rem;
   color: #293845;
+
+  margin: 30px 0;
 `;
