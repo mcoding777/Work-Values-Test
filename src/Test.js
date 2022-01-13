@@ -3,7 +3,7 @@ import { CheckBox } from "./components/CheckBox";
 import { Button } from './components/Button';
 import { Progressbar } from './components/Progressbar';
 import axios from 'axios';
-import { useNavigate, } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Article, Form } from './components/Styled';
 import styled from "styled-components";
@@ -18,9 +18,9 @@ export function Test() {
   // 페이지 관련 변수
   const [result, setResult] = useState([]); // API로 불러온 결과
   const page = Math.ceil(result.length / 5); // 전체 페이지
-  const [pagenumber, setPageNumber] = useState(0); // 현재 페이지
-  const currentQ = result.slice(pagenumber*5, (pagenumber+1)*5) // 현재 문항 번호
-  const percent = Math.floor((pagenumber+1)/page*100) // 검사 진행률
+  const [currentPage, setCurrentPage] = useState(0); // 현재 페이지
+  const currentQ = result.slice(currentPage*5, (currentPage+1)*5) // 현재 문항 번호
+  const percent = Math.floor((currentPage+1)/page*100) // 검사 진행률
   
   // 리덕스 관련
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export function Test() {
         data, 
       )
     );
-    navigate(`/test/${pagenumber+1}`)
+    moveNextPage();
   };
 
   // 심리검사 항목 API 호출 함수
@@ -53,9 +53,8 @@ export function Test() {
 
   function checkmap(array) {
     const data = array.map((item, index) => {
-      const name = "B" + String(index+(pagenumber*5)+1);
+      const name = "B" + String(index+(currentPage*5)+1);
       const sessionTotal = JSON.parse(sessionStorage.getItem('checked'));
-      const checked = sessionTotal?.[name];
 
       return (
         <CheckBox 
@@ -67,15 +66,37 @@ export function Test() {
           answerscore02={item["answerScore02"]} 
           value01={item["answer03"]} 
           value02={item["answer04"]} 
-          checked={checked} 
+          checked={sessionTotal?.[name] && name} 
            />
       )
     })
     return data;
   }
 
+  // 이전 버튼 클릭 시 동작
+  const movePrevPage = () => {
+    if (currentPage !== 0) {
+      setCurrentPage(currentPage-1);
+    }
+    navigate(-1);
+  };
+
+  // 다음 버튼 클릭 시 동작
+  const moveNextPage = () => {
+    if (currentPage !== 5) {
+      setCurrentPage(currentPage+1);
+      navigate(`/test/${currentPage+1}`);
+    }
+    else {
+      navigate("/finish");
+    }
+  };
+
   // API 호출(한번만)
   useEffect(() => { QuestionCall() }, []);
+
+  // 페이지가 바뀔 때마다 마우스 스크롤 위로!
+  useEffect(() => { window.scrollTo({top: 0, behavior:"smooth"}) }, [currentPage]);
 
   return (
     <Article testPage={true}>
@@ -89,10 +110,11 @@ export function Test() {
           <ButtonBox>
             <Button 
               type="button" 
-              text="이전" />
+              text="이전" 
+              movePrevPage={movePrevPage} />
             <Button 
               type="submit" 
-              text={pagenumber !== 5 ? "다음" : "제출"} />
+              text={currentPage !== 5 ? "다음" : "제출"} />
           </ButtonBox>
         </Form>
       </FormProvider>

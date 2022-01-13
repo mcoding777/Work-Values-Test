@@ -4,7 +4,8 @@ export function Button(props) {
 
   return (
     <ButtonStyle 
-      type={props.type}>
+      type={props.type}
+      onClick={props?.movePrevPage && props.movePrevPage}>
         {props.text}
     </ButtonStyle>
   );
