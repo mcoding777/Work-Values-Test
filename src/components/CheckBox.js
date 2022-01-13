@@ -17,12 +17,6 @@ export function CheckBox(props) {
   const name = props.name;
   const checked = props.checked;
 
-  // function handleChecked(event) {
-  //   props.updateResult({
-  //     name: event.target.name,
-  //     select: event.target.value});
-  // }
-
   // useForm
   const { register } = useFormContext();
 
@@ -36,7 +30,6 @@ export function CheckBox(props) {
               type="radio" 
               name={name} 
               value={value01}
-              // onClick={handleChecked} 
               defaultChecked={checked === value01} 
               {...register(name, { required: true })} />
             <span>
@@ -48,7 +41,6 @@ export function CheckBox(props) {
               type="radio" 
               name={name} 
               value={value02} 
-              // onClick={handleChecked} 
               defaultChecked={checked === value02} 
               {...register(name, { required: true })} />
             <span>

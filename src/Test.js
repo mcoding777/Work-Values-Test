@@ -1,22 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
-import { CheckBox } from "./CheckBox";
-import { Button } from './Button';
-import { Progressbar } from './Progressbar';
-import "../css/Test.css";
+import { useState, useEffect, useRef } from "react";
+import { CheckBox } from "./components/CheckBox";
+import { Button } from './components/Button';
+import { Progressbar } from './components/Progressbar';
+import "./css/Test.css";
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
+import { useForm, FormProvider } from 'react-hook-form';
+import { Form } from './components/Form';
 
 export function Test(props) {
-  console.log("Test 컴포넌트가 렌더링 됐습니다.");
-
   // 페이지 관련 변수
   const [result, setResult] = useState([]);
   const page = Math.ceil(result.length / 5);
   const [pagenumber, setPageNumber] = useState(0);
   const currentQ = result.slice(pagenumber*5, (pagenumber+1)*5)
   const percent = Math.floor((pagenumber+1)/page*100)
-
-  console.log("현재 Test 컴포넌트에서 pagenumber는 ",pagenumber);
 
   // 5개 항목에 대한 다음 버튼 활성화/비활성화
   const isOn = useRef(false);
@@ -25,6 +23,10 @@ export function Test(props) {
   const [total, setTotal] = useState({});
   const sessionTotal = JSON.parse(sessionStorage.getItem('total')) || {};
   console.log("sessionTotal은", sessionTotal);
+
+  // useForm (양식 컨텍스트에 연결)
+  const methods = useForm();
+  const onSubmit = (data) => { console.log(data); }
 
   // 심리검사 항목 API 호출 함수
   async function QuestionCall() {
@@ -48,8 +50,6 @@ export function Test(props) {
         return newcur;
     })
   }
-
-  console.log("현재 선택한 항목은", total);
 
   // CheckBox 컴포넌트 5개를 만들어낼 map 함수
   const questions = checkmap(currentQ);
@@ -105,13 +105,17 @@ export function Test(props) {
   return (
     <div className="container">
       <Progressbar text="검사진행" percent={percent} />
-      { questions }
+      <FormProvider {...methods} >
+        <Form onSubmit={methods.handleSubmit(onSubmit)}>
+        { questions }
+        </Form>
+      </FormProvider>
       <div className="buttonbox">
         <Link to={pagenumber !== 0 ? "/test/"+String(pagenumber-1) : "/Example/"}>
-          <Button classname="btn" text="이전" prevpage={prevPage} name="prev"  />
+          <Button type="button" text="이전" prevpage={prevPage} name="prev"  />
         </Link>
         <Link to={pagenumber !== 5 ? "/test/"+String(pagenumber+1) : "/Finish/"}>
-          <Button classname="btn" 
+          <Button type="submit" 
             text={pagenumber !== 5 ? "다음" : "제출"} 
             nextpage={nextPage} 
             name={pagenumber !== 5 ? "next" : "submit"}  />

@@ -6,6 +6,7 @@ import { ErrorText } from "./components/Text";
 import styled from "styled-components";
 import { useForm, FormProvider } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { Form } from './components/Form';
 
 // 검사 예시 페이지
 
@@ -15,7 +16,7 @@ export function Example() {
 
   // useForm (양식 컨텍스트에 연결)
   const methods = useForm();
-  const onSubmit = () => { navigate("/text/0"); }
+  const onSubmit = () => { navigate("/test/0"); }
 
   return (
     <Article>
@@ -50,9 +51,4 @@ const Explanation = styled.div`
   color: #293845;
 
   margin: 30px 0;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
 `;

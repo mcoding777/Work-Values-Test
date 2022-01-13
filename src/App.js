@@ -1,7 +1,7 @@
 import React from "react";
 import { Main } from './Main';
 import { Example } from './Example';
-import { Test } from './components/Test';
+import { Test } from './Test';
 import { Finish } from './components/Finish';
 import { Result } from './components/Result';
 import {
@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/example" element={<Example />} />
-        <Route path={"/test/:id"} element={<Test />} />
+        <Route path={"/test/*"} element={<Test />} />
         <Route path="/finish" element={<Finish />} />
         <Route path="/result" element={<Result />} />
       </Routes>
