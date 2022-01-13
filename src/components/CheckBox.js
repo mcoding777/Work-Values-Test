@@ -18,16 +18,14 @@ export function CheckBox(props) {
   const name = props.name;
   const defaultChecked = props.defaultChecked;
 
+  console.log("value01", value01, "value02", value02, "defaultChecked", defaultChecked);
+
   // useForm
   const { register } = useFormContext();
 
   // 체크한 부분 세션 스토리지로 전달
-  const handleAllChecked = (event) => {
-      const name = event.target.name;
-      const value = event.target.value;
-      const sessionTotal = JSON.parse(sessionStorage.getItem('checked')) || {};
-      sessionTotal[name] = value;
-      sessionStorage.setItem('checked', JSON.stringify(sessionTotal));
+  const getSelect = (event) => {
+      props.getSelect(event.target.name, event.target.value);
   };
 
   return (
@@ -38,10 +36,10 @@ export function CheckBox(props) {
           <label title={title01}>
             <input 
               type="radio" 
-              name={name} 
+              name={name}
               value={value01} 
-              onClick={handleAllChecked} 
-              defaultChecked={defaultChecked == value01 || false} 
+              onClick={name !== "ex" && getSelect} 
+              defaultChecked={defaultChecked === value01}
               {...register(name, { required: true })} />
             <span>
               {answer01}
@@ -50,10 +48,10 @@ export function CheckBox(props) {
           <label title={title02}>
             <input 
               type="radio" 
-              name={name} 
+              name={name}
               value={value02} 
-              onClick={name !== "ex" && handleAllChecked} 
-              defaultChecked={defaultChecked == value02 || false} 
+              onClick={name !== "ex" && getSelect} 
+              defaultChecked={defaultChecked === value02}
               {...register(name, { required: true })} />
             <span>
               {answer02}
@@ -111,10 +109,10 @@ const RadioBox = styled.div`
 
     & input[type="radio"] {
 
-      -webkit-appearance:none;
+      /* -webkit-appearance:none;
       -moz-appearance:none;
       -ms-appearance:none;
-      -o-appearance:none;
+      -o-appearance:none; */
 
       width: 13px;
       height: 13px;
@@ -125,7 +123,7 @@ const RadioBox = styled.div`
 
       margin-right: 10px;
       
-      &:checked::before {
+      /* &:checked::before {
         content:'';
 
         display:block;
@@ -138,6 +136,6 @@ const RadioBox = styled.div`
         border-radius: 100%;
 
         background: #081229;
-      };
+      }; */
     };
 `;

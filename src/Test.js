@@ -36,42 +36,20 @@ export function Test() {
     moveNextPage();
   };
 
-  // 심리검사 항목 API 호출 함수
-  const QuestionCall = async () => {
-    try {
-      const response = await axios.get('https://inspct.career.go.kr/openapi/test/questions?apikey=fbc9e4d5e474e6e35b5de6d43988d70d&q=6');
-      const res = response.data.RESULT;
-      setResult([...res]);
-    }
-    catch (error) {
-      console.error("error", error);
-    }
-  };
-
-  // CheckBox 컴포넌트 5개를 만들어낼 map 함수
-  const questions = checkmap(currentQ);
-
-  function checkmap(array) {
-    const data = array.map((item, index) => {
-      const name = "B" + String(index+(currentPage*5)+1);
-      const sessionTotal = JSON.parse(sessionStorage.getItem('checked'));
-
-      return (
-        <CheckBox 
-          key={index}
-          name={name}
-          answer01={item["answer01"]} 
-          answer02={item["answer02"]} 
-          answerscore01={item["answerScore01"]} 
-          answerscore02={item["answerScore02"]} 
-          value01={item["answer03"]} 
-          value02={item["answer04"]} 
-          defaultChecked={sessionTotal?.[name]} 
-           />
-      )
+  // CheckBox에서 선택한 항목
+  const sessionTotal = JSON.parse(sessionStorage.getItem('checked')) || {};
+  const [userSelect, setUserSelect] = useState(sessionTotal);
+  
+  // CheckBox에서 선택한 항목 가져오기
+  const getSelect = (name, value) => {
+    sessionTotal[name] = value;
+    sessionStorage.setItem('checked', JSON.stringify(sessionTotal));
+    setUserSelect((cur) => {
+        const newcur = {...cur}
+        newcur[name] = value;
+        return newcur;
     })
-    return data;
-  }
+  };
 
   // 이전 버튼 클릭 시 동작
   const movePrevPage = () => {
@@ -92,6 +70,39 @@ export function Test() {
     }
   };
 
+    // 심리검사 항목 API 호출 함수
+    const QuestionCall = async () => {
+      try {
+        const response = await axios.get('https://inspct.career.go.kr/openapi/test/questions?apikey=fbc9e4d5e474e6e35b5de6d43988d70d&q=6');
+        const res = response.data.RESULT;
+        setResult([...res]);
+      }
+      catch (error) {
+        console.error("error", error);
+      }
+    };
+  
+  // CheckBox 컴포넌트 5개를 만들어낼 함수
+  const renderQ = currentQ.map((item, index) => {
+        const name = "B" + String(index+(currentPage*5)+1);
+        // console.log(sessionTotal?.[name]);
+
+        return (
+          <CheckBox 
+            key={index}
+            name={name}
+            answer01={item["answer01"]} 
+            answer02={item["answer02"]} 
+            answerscore01={item["answerScore01"]} 
+            answerscore02={item["answerScore02"]} 
+            value01={item["answer03"]} 
+            value02={item["answer04"]} 
+            defaultChecked={"4"} 
+            getSelect={(n, v) => getSelect(n, v)} 
+            />
+        )
+      });
+
   // API 호출(한번만)
   useEffect(() => { QuestionCall() }, []);
 
@@ -106,7 +117,7 @@ export function Test() {
         testPage={true} />
       <FormProvider {...methods} >
         <Form onSubmit={methods.handleSubmit(onSubmit)}>
-          { questions }
+          { renderQ }
           <ButtonBox>
             <Button 
               type="button" 
