@@ -35,7 +35,7 @@ const ProgressbarBox = styled.div`
 `;
 
 const ProgressbarGauge = styled.div`
-  width: ${props => props.percent ? String(props.percent) + "%" : "200px"};
+  width: ${props => String(props.percent) + "%"};
   height: 100%;
 
   background-color: #ec5990;

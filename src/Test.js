@@ -66,7 +66,7 @@ export function Test() {
           answerscore02={item["answerScore02"]} 
           value01={item["answer03"]} 
           value02={item["answer04"]} 
-          checked={sessionTotal?.[name] && name} 
+          checked={sessionTotal?.[name]} 
            />
       )
     })
