@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useFormContext } from "react-hook-form";
 
 export function CheckBox(props) {
 
@@ -16,38 +17,47 @@ export function CheckBox(props) {
   const name = props.name;
   const checked = props.checked;
 
-  function handleChecked(event) {
-    props.updateResult({
-      name: event.target.name,
-      select: event.target.value});
-  }
+  // function handleChecked(event) {
+  //   props.updateResult({
+  //     name: event.target.name,
+  //     select: event.target.value});
+  // }
+
+  // useForm
+  const { register } = useFormContext();
 
   return (
-    <FlexBox>
-      <Text>두 개 가치 중에 자신에게 더 중요한 가치를 선택하세요.</Text>
-      <RadioBox>
-        <label title={title01}>
-          <input type="radio" 
-            name={name} 
-            value={value01}
-            onClick={handleChecked} 
-            defaultChecked={checked === value01} />
-          <span>
-            {answer01}
-          </span> : {title01}
-        </label>
-        <label title={title02}>
-          <input type="radio" 
-            name={name} 
-            value={value02} 
-            onClick={handleChecked} 
-            defaultChecked={checked === value02} />
-          <span>
-            {answer02}
-          </span> : {title02}
-        </label>
-      </RadioBox>
-    </FlexBox>
+    <>
+      <FlexBox>
+        <Text>두 개 가치 중에 자신에게 더 중요한 가치를 선택하세요.</Text>
+        <RadioBox>
+          <label title={title01}>
+            <input 
+              type="radio" 
+              name={name} 
+              value={value01}
+              // onClick={handleChecked} 
+              defaultChecked={checked === value01} 
+              {...register(name, { required: true })} />
+            <span>
+              {answer01}
+            </span> : {title01}
+          </label>
+          <label title={title02}>
+            <input 
+              type="radio" 
+              name={name} 
+              value={value02} 
+              // onClick={handleChecked} 
+              defaultChecked={checked === value02} 
+              {...register(name, { required: true })} />
+            <span>
+              {answer02}
+            </span> : {title02}
+          </label>
+        </RadioBox>
+      </FlexBox>
+    </>
   );
 }
 

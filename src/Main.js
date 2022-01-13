@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { changeUserInfo } from './components/ReduxAction';
+import { ErrorText } from './components/Text';
 
 // 검사 시작 페이지
 
@@ -36,7 +37,7 @@ export function Main() {
   return (
     <Article>
       <h1>직업 가치관 검사</h1>
-      <UserBox onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <NameBox>
           <ItemText>이름</ItemText>
           <input 
@@ -70,14 +71,14 @@ export function Main() {
         <Button 
           text="검사시작"
           type="submit" />
-      </UserBox>
+      </Form>
     </Article>
   );
 }
 
 // styled-components
 
-const UserBox = styled.form`
+const Form = styled.form`
   margin : 30px 0;
 
   width: 200px;
@@ -157,10 +158,4 @@ const ItemText = styled.p`
   text-align: left;
 
   font-weight: bold;
-`;
-
-const ErrorText = styled.p`
-  color: #ff6fa5;
-  font-size: 0.8rem;
-
 `;
