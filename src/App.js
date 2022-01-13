@@ -11,8 +11,7 @@ import {
 import { createGlobalStyle } from 'styled-components';
 
 function App() {
-  console.log("App 컴포넌트가 렌더링 됐습니다.");
-  
+
   return (
     <>
       <GlobalStyle />

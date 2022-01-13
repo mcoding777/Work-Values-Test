@@ -3,27 +3,35 @@ import { Button } from './components/Button';
 import styled from 'styled-components';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { changeUserInfo } from './components/ReduxAction';
 
 // 검사 시작 페이지
 
 export function Main() {
+  // 라우터 네비게이트
   const navigate = useNavigate();
+
+  // 리덕스 관련
+  const dispatch = useDispatch();
+  const reduxtState = useSelector(state => state);
+  // console.log(reduxtState);
+
+  // 이미 입력한 이름과 성별
+  const userName = reduxtState?.user_name;
+  const userGender = reduxtState?.user_gender;
 
   // useForm
   const { register, handleSubmit, watch, formState: {errors} } = useForm();
   const onSubmit = data => {
+    dispatch(
+      changeUserInfo(
+        data.user_name, data.user_gender, 
+      )
+    );
     navigate("/example");
   };
   // console.log(watch('user_gender'));
-
-  // input에 들어온 이름으로 바꾸는 함수
-  function handleChange(event) {
-    sessionStorage.setItem("user_gender", event.target.value);
-  }
-
-  function getGender(event) {
-    sessionStorage.setItem("user_gender", event.target.value);
-  }
 
   return (
     <Article>
@@ -33,6 +41,7 @@ export function Main() {
           <ItemText>이름</ItemText>
           <input 
             type="text" 
+            defaultValue={userName} 
             {...register("user_name", { required: true })} />
           {errors.user_name && <ErrorText>이름을 입력해주세요</ErrorText>}
         </NameBox>
@@ -43,6 +52,7 @@ export function Main() {
               type="radio" 
               name="radio" 
               value="male" 
+              defaultChecked={userGender === "male"} 
               {...register("user_gender", { required: true })} />
             남자
           </label>
@@ -51,6 +61,7 @@ export function Main() {
               type="radio" 
               name="radio" 
               value="female" 
+              defaultChecked={userGender === "female"} 
               {...register("user_gender", { required: true })} />
             여자
           </label>

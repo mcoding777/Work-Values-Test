@@ -4,7 +4,6 @@ import { Progressbar } from './components/Progressbar';
 import { Article } from './components/Area'; 
 import { CheckBox } from "./components/CheckBox";
 import styled from "styled-components";
-import { Link, } from 'react-router-dom';
 
 // 검사 예시 페이지
 
@@ -28,13 +27,11 @@ export function Example() {
         answer02="자율성" 
         value01="직업을 통해 자신의 능력을 발휘하는 것입니다." 
         value02="일하는 시간과 방식에 대해서 스스로 결정할 수 있는 것입니다." 
+        checked={false} 
       />
-      <div className="buttonContainer">
-        <Link to={checked ? "/test/0" : "/example"}>
-          <Button classname={checked ? "btn_click" : "btn"} 
-          text="검사시작" name="example" />
-        </Link>
-      </div>
+      <Button 
+        text="검사시작" 
+        name="example" />
     </Article>
   );
 }
