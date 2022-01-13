@@ -23,13 +23,11 @@ export function CheckBox(props) {
 
   // 체크한 부분 세션 스토리지로 전달
   const handleAllChecked = (event) => {
-    if (name !== "ex") {
       const name = event.target.name;
       const value = event.target.value;
       const sessionTotal = JSON.parse(sessionStorage.getItem('checked')) || {};
       sessionTotal[name] = value;
       sessionStorage.setItem('checked', JSON.stringify(sessionTotal));
-    }
   };
 
   return (
@@ -43,7 +41,7 @@ export function CheckBox(props) {
               name={name} 
               value={value01} 
               onClick={handleAllChecked} 
-              defaultChecked={defaultChecked === value01} 
+              defaultChecked={defaultChecked == value01 || false} 
               {...register(name, { required: true })} />
             <span>
               {answer01}
@@ -54,8 +52,8 @@ export function CheckBox(props) {
               type="radio" 
               name={name} 
               value={value02} 
-              onClick={handleAllChecked} 
-              defaultChecked={defaultChecked === value02} 
+              onClick={name !== "ex" && handleAllChecked} 
+              defaultChecked={defaultChecked == value02 || false} 
               {...register(name, { required: true })} />
             <span>
               {answer02}
