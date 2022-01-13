@@ -1,16 +1,18 @@
 import styled from "styled-components";
+import { FlexBox } from "./Styled";
 
-export function Progressbar(props) {
+export function Progressbar({text, percent, testPage}) {
   return (
-  <div>
-    <Percent>
-      <h2>{props.text}</h2>
-      <h2>{props.percent}%</h2>
-    </Percent>
-    <ProgressbarBox>
-      <ProgressbarGauge />
-    </ProgressbarBox>
-  </div>);
+    <FlexBox testPage>
+      <Percent>
+        <h2>{text}</h2>
+        <h2>{percent}%</h2>
+      </Percent>
+      <ProgressbarBox>
+        <ProgressbarGauge />
+      </ProgressbarBox>
+    </FlexBox>
+    );
   }
 
 // styled-components

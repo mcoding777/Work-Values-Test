@@ -101,25 +101,39 @@ export function Test(props) {
   useEffect(() => { QuestionCall() }, []);
 
   return (
-    <div className="container">
-      <Progressbar text="검사진행" percent={percent} />
+    <Article testPage={true}>
+      <Progressbar 
+        text="검사 진행률" 
+        percent={percent} 
+        testPage={true} />
       <FormProvider {...methods} >
         <Form onSubmit={methods.handleSubmit(onSubmit)}>
         { questions }
         </Form>
       </FormProvider>
       <ButtonBox>
-        <Link to={pagenumber !== 0 ? "/test/"+String(pagenumber-1) : "/Example/"}>
-          <Button type="button" text="이전" prevpage={prevPage} name="prev"  />
+        <Link 
+          to={
+            pagenumber !== 0 ? "/test/"+String(pagenumber-1) : "/Example/"
+          }>
+          <Button 
+            type="button" 
+            text="이전" 
+            prevpage={prevPage} 
+            name="prev"  />
         </Link>
-        <Link to={pagenumber !== 5 ? "/test/"+String(pagenumber+1) : "/Finish/"}>
-          <Button type="submit" 
+        <Link 
+          to={
+            pagenumber !== 5 ? "/test/"+String(pagenumber+1) : "/Finish/"
+          }>
+          <Button 
+            type="submit" 
             text={pagenumber !== 5 ? "다음" : "제출"} 
             nextpage={nextPage} 
             name={pagenumber !== 5 ? "next" : "submit"}  />
         </Link>
       </ButtonBox>
-    </div>
+    </Article>
   );
 }
 
@@ -127,4 +141,8 @@ export function Test(props) {
 const ButtonBox = styled.div`
     display: flex;
     justify-content: space-between;
+
+    width: 700px;
+
+    margin-bottom: 50px;
 `;

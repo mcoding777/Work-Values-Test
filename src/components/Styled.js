@@ -6,7 +6,14 @@ export const Article = styled.article`
   justify-content: center;
   align-items: center;
 
-  height: 100vh;
+  height: ${props => props.testPage ? "100%" : "100vh"};
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  margin: ${props => props.testPage ? "50px" : "0"};
 `;
 
 export const Form = styled.form`
