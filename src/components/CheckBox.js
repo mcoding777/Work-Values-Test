@@ -16,18 +16,20 @@ export function CheckBox(props) {
 
   // 공통 정보
   const name = props.name;
-  const checked = props.checked;
+  const defaultChecked = props.defaultChecked;
 
   // useForm
   const { register } = useFormContext();
 
   // 체크한 부분 세션 스토리지로 전달
   const handleAllChecked = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    const sessionTotal = JSON.parse(sessionStorage.getItem('checked')) || {};
-    sessionTotal[name] = value;
-    sessionStorage.setItem('checked', JSON.stringify(sessionTotal));
+    if (name !== "ex") {
+      const name = event.target.name;
+      const value = event.target.value;
+      const sessionTotal = JSON.parse(sessionStorage.getItem('checked')) || {};
+      sessionTotal[name] = value;
+      sessionStorage.setItem('checked', JSON.stringify(sessionTotal));
+    }
   };
 
   return (
@@ -41,7 +43,7 @@ export function CheckBox(props) {
               name={name} 
               value={value01} 
               onClick={handleAllChecked} 
-              defaultChecked={checked === value01} 
+              defaultChecked={defaultChecked === value01} 
               {...register(name, { required: true })} />
             <span>
               {answer01}
@@ -53,7 +55,7 @@ export function CheckBox(props) {
               name={name} 
               value={value02} 
               onClick={handleAllChecked} 
-              defaultChecked={checked === value02} 
+              defaultChecked={defaultChecked === value02} 
               {...register(name, { required: true })} />
             <span>
               {answer02}
