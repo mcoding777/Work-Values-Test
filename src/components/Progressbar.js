@@ -9,7 +9,7 @@ export function Progressbar({text, percent, testPage}) {
         <h2>{percent}%</h2>
       </Percent>
       <ProgressbarBox>
-        <ProgressbarGauge />
+        <ProgressbarGauge percent={percent} />
       </ProgressbarBox>
     </FlexBox>
     );
@@ -35,7 +35,7 @@ const ProgressbarBox = styled.div`
 `;
 
 const ProgressbarGauge = styled.div`
-  width: ${props => props.percent ? props.percent + "%" : "200px"};
+  width: ${props => props.percent ? String(props.percent) + "%" : "200px"};
   height: 100%;
 
   background-color: #ec5990;
