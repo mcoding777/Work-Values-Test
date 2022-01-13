@@ -4,3 +4,8 @@ export const changeUserInfo = (name, gender) => ({
     name,
     gender,
   });
+
+export const changeUserSelect = (select) => ({
+  type: "CHANGE_USERSELECT",
+  select,
+});

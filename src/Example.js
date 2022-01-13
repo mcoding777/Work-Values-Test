@@ -36,7 +36,8 @@ export function Example() {
           <Button 
             text="검사시작" 
             type="submit" />
-          {methods.formState.errors?.ex && <ErrorText>선택하지않은 항목이 있습니다.</ErrorText>}
+          {methods.formState.errors?.ex && 
+            <ErrorText>선택하지않은 항목이 있습니다.</ErrorText>}
         </Form>
       </FormProvider>
     </Article>

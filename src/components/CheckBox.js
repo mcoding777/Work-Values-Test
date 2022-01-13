@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useFormContext } from "react-hook-form";
+import { current } from "@reduxjs/toolkit";
 
 export function CheckBox(props) {
 
@@ -20,6 +21,15 @@ export function CheckBox(props) {
   // useForm
   const { register } = useFormContext();
 
+  // 체크한 부분 세션 스토리지로 전달
+  const handleAllChecked = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    const sessionTotal = JSON.parse(sessionStorage.getItem('checked')) || {};
+    sessionTotal[name] = value;
+    sessionStorage.setItem('checked', JSON.stringify(sessionTotal));
+  };
+
   return (
     <>
       <FlexBox>
@@ -29,7 +39,8 @@ export function CheckBox(props) {
             <input 
               type="radio" 
               name={name} 
-              value={value01}
+              value={value01} 
+              onClick={handleAllChecked} 
               defaultChecked={checked === value01} 
               {...register(name, { required: true })} />
             <span>
@@ -41,6 +52,7 @@ export function CheckBox(props) {
               type="radio" 
               name={name} 
               value={value02} 
+              onClick={handleAllChecked} 
               defaultChecked={checked === value02} 
               {...register(name, { required: true })} />
             <span>

@@ -9,6 +9,7 @@ import { changeUserInfo } from './components/ReduxAction';
 // 검사 시작 페이지
 
 export function Main() {
+  
   // 라우터 네비게이트
   const navigate = useNavigate();
 

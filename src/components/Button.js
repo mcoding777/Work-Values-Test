@@ -2,9 +2,6 @@ import styled from "styled-components";
 
 export function Button(props) {
 
-  const buttonname = props.name;
-  const nextbutton = props.nextbutton;
-
   return (
     <ButtonStyle 
       type={props.type}>
