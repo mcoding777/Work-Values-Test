@@ -1,12 +1,10 @@
 import { Button } from './components/Button';
 import { Progressbar } from './components/Progressbar';
-import { Article } from './components/Area'; 
+import { Article, ErrorText, Form } from './components/Styled'; 
 import { CheckBox } from "./components/CheckBox";
-import { ErrorText } from "./components/Text";
 import styled from "styled-components";
 import { useForm, FormProvider } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Form } from './components/Form';
 
 // 검사 예시 페이지
 

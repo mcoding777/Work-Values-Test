@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { CheckBox } from "./components/CheckBox";
 import { Button } from './components/Button';
 import { Progressbar } from './components/Progressbar';
-import "./css/Test.css";
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
-import { Form } from './components/Form';
+import { Article, Form } from './components/Styled';
+import styled from "styled-components";
 
 export function Test(props) {
   // 페이지 관련 변수
@@ -98,9 +98,7 @@ export function Test(props) {
   }
 
   // API 호출(한번만)
-  useEffect(() => {
-    QuestionCall()
-  }, []);
+  useEffect(() => { QuestionCall() }, []);
 
   return (
     <div className="container">
@@ -110,7 +108,7 @@ export function Test(props) {
         { questions }
         </Form>
       </FormProvider>
-      <div className="buttonbox">
+      <ButtonBox>
         <Link to={pagenumber !== 0 ? "/test/"+String(pagenumber-1) : "/Example/"}>
           <Button type="button" text="이전" prevpage={prevPage} name="prev"  />
         </Link>
@@ -120,7 +118,13 @@ export function Test(props) {
             nextpage={nextPage} 
             name={pagenumber !== 5 ? "next" : "submit"}  />
         </Link>
-      </div>
+      </ButtonBox>
     </div>
   );
 }
+
+// styled-components
+const ButtonBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;

@@ -1,11 +1,10 @@
-import { Article } from './components/Area';
+import { Article, ErrorText } from './components/Styled';
 import { Button } from './components/Button';
 import styled from 'styled-components';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { changeUserInfo } from './components/ReduxAction';
-import { ErrorText } from './components/Text';
 
 // 검사 시작 페이지
 
