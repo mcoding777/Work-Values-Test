@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useFormContext } from "react-hook-form";
-import { current } from "@reduxjs/toolkit";
 
 export function CheckBox(props) {
 
@@ -39,7 +38,7 @@ export function CheckBox(props) {
               name={name}
               value={value01} 
               onClick={name !== "ex" && getSelect} 
-              defaultChecked={defaultChecked === value01}
+              checked={defaultChecked === value01}
               {...register(name, { required: true })} />
             <span>
               {answer01}
@@ -51,7 +50,7 @@ export function CheckBox(props) {
               name={name}
               value={value02} 
               onClick={name !== "ex" && getSelect} 
-              defaultChecked={defaultChecked === value02}
+              checked={defaultChecked === value02}
               {...register(name, { required: true })} />
             <span>
               {answer02}

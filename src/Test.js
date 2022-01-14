@@ -97,7 +97,7 @@ export function Test() {
             answerscore02={item["answerScore02"]} 
             value01={item["answer03"]} 
             value02={item["answer04"]} 
-            defaultChecked={"4"} 
+            defaultChecked={userSelect[name]} 
             getSelect={(n, v) => getSelect(n, v)} 
             />
         )
