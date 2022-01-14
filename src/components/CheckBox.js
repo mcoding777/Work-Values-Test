@@ -24,7 +24,9 @@ export function CheckBox(props) {
 
   // 체크한 부분 세션 스토리지로 전달
   const getSelect = (event) => {
+    if (typeof props.getSelect === "function") {
       props.getSelect(event.target.name, event.target.value);
+    }
   };
 
   return (
@@ -37,8 +39,8 @@ export function CheckBox(props) {
               type="radio" 
               name={name}
               value={value01} 
-              onClick={name !== "ex" && getSelect} 
-              checked={defaultChecked === value01}
+              onClick={(event) => getSelect(event)} 
+              defaultChecked={defaultChecked === value01}
               {...register(name, { required: true })} />
             <span>
               {answer01}
@@ -49,8 +51,8 @@ export function CheckBox(props) {
               type="radio" 
               name={name}
               value={value02} 
-              onClick={name !== "ex" && getSelect} 
-              checked={defaultChecked === value02}
+              onClick={(event) => getSelect(event)} 
+              defaultChecked={defaultChecked === value02}
               {...register(name, { required: true })} />
             <span>
               {answer02}
