@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from "react";
-import "../css/Finish.css";
-import { Button } from './Button';
+import { useState, useEffect } from "react";
+import { Button } from './components/Button';
+import { Article } from './components/Styled';
 import axios from 'axios';
-import {
-  Link,
-} from 'react-router-dom';
+import { Link, } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import styled from "styled-components";
 
 // 검사 예시 페이지
 
-export function Finish(props) {
-  console.log("Finish 컴포넌트가 렌더링 됐습니다.");
+export function Finish() {
+  // 리덕스에서 유저 이름, 성별 가져오기
+  const reduxtState = useSelector(state => state);
+  const username = reduxtState?.user_name;
+  const usergender = reduxtState?.user_gender;
 
-  const username = localStorage.getItem('user_name');
-  const usergender = localStorage.getItem('user_gender');
-  const total = JSON.parse(localStorage.getItem('total'));
+  // 세션 스토리지에서 유저가 선택한 값 가져오기
+  const total = JSON.parse(sessionStorage.getItem('checked'));
 
   // 최종 결과(항목별 점수)를 개체화한 변수
   const [objectvalue, setObjectValue] = useState([]);
@@ -23,10 +25,6 @@ export function Finish(props) {
   const [minvalue, setMinValue] = useState([]);
   let maxvalue_join = maxvalue.join('');
   let minvalue_join = minvalue.join('');
-
-  console.log("username은", username);
-  console.log("maxvalue는", maxvalue);
-  console.log("minvalue는", minvalue);
 
   if (maxvalue && maxvalue.length >= 2) {
     maxvalue_join = maxvalue.join('와(과)');}
@@ -141,21 +139,32 @@ export function Finish(props) {
   }, []);
 
   return (
-    <div className="container" style={{marginTop:"20%"}}>
-        <h2>검사가 완료되었습니다.</h2>
-      <div className="explanation">
-        <p>검사결과는 여러분이 직업을 선택할 때 상대적으로 어떠한 가치를 중요하게 생각하는지를 알려주고,</p>
-        <p>중요 가치를 충족시켜줄 수 있는 직업에 대해 생각해 볼 기회를 제공합니다.</p>
+    <Article>
+        <FinishText>검사가 완료되었습니다.</FinishText>
+      <Explanation>
+        검사 결과 {username}님은 상대적으로 {maxvalue_join}를(을) 중요하다고 생각하며,
+        <br />
+        {minvalue_join}를(을) 덜 중요하게 생각한다고 나왔습니다.
         <br />
         <br />
-        <p>검사 결과 {username}님은 상대적으로 {maxvalue_join}를(을) 중요하다고 생각하며,</p>
-        <p>{minvalue_join}를(을) 덜 중요하게 생각한다고 나왔습니다.</p>
-      </div>
-      <div className="buttonContainer">
-        <Link to="/result">
-          <Button classname="btn" text="결과 보기" />
-        </Link>
-      </div>
-    </div>
+        더 자세한 결과는 아래 '결과 보기'를 눌러주세요 :)
+      </Explanation>
+      <Link to="/result">
+        <Button type="button" text="결과 보기" />
+      </Link>
+    </Article>
   );
 }
+
+// styled-components
+const FinishText = styled.h2`
+  color: #ec5990;
+`;
+const Explanation = styled.p`
+  line-height: 120%;
+
+  font-size: 1rem;
+  font-weight: bold;
+
+  margin: 30px 0;
+`;

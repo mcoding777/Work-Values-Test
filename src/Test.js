@@ -85,6 +85,7 @@ export function Test() {
   // CheckBox 컴포넌트 5개를 만들어낼 함수
   const renderQ = currentQ.map((item, index) => {
         const name = "B" + String(index+(currentPage*5)+1);
+        const checked = userSelect[name];
         // console.log(sessionTotal?.[name]);
 
         return (
@@ -97,7 +98,7 @@ export function Test() {
             answerscore02={item["answerScore02"]} 
             value01={item["answer03"]} 
             value02={item["answer04"]} 
-            defaultChecked={userSelect[name]} 
+            defaultChecked={checked} 
             getSelect={(n, v) => getSelect(n, v)} 
             />
         )

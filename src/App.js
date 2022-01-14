@@ -2,7 +2,7 @@ import React from "react";
 import { Main } from './Main';
 import { Example } from './Example';
 import { Test } from './Test';
-import { Finish } from './components/Finish';
+import { Finish } from './Finish';
 import { Result } from './components/Result';
 import {
   Route,
