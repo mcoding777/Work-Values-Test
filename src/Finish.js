@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link, } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { objectToString } from './functions/objectToString';
 
 // 검사 예시 페이지
 
@@ -25,41 +26,18 @@ export function Finish() {
   const [minvalue, setMinValue] = useState([]);
   let maxvalue_join = maxvalue.join('');
   let minvalue_join = minvalue.join('');
+  console.log("max_value는", maxvalue);
+  console.log("min_value", minvalue);
 
   if (maxvalue && maxvalue.length >= 2) {
-    maxvalue_join = maxvalue.join('와(과)');}
+    maxvalue_join = maxvalue.join('와(과) ');}
   if (minvalue && minvalue.length >= 2) {
-    minvalue_join = minvalue.join('와(과)');}
-
-  // 객체를 value 기준으로 오름차순 정렬해서 배열로 반환하는 함수
-  // 반환 값 [['B1', '1'], ['B2', '2'], ['B3', '3'], ...]
-  function objectSort(ob) {
-    let ob_list = [];
-    for (let i in ob) {
-      ob_list.push([i, ob[i]]);
-    }
-    ob_list = ob_list.sort((a, b) => {
-      return a[1] - b[1]
-    })
-    return ob_list;
-  }
-
-  // 배열을 string으로 반환하는 함수
-  // 반환 값 "B1=1 B2=3 B3=6..."
-  function objectString(ob) {
-    let ob_string = "";
-    for (let j in ob) {
-      ob_string = ob_string + `${ob[j][0]}=${ob[j][1]} `;
-    }
-    return ob_string;
-  }
+    minvalue_join = minvalue.join('와(과) ');}
 
   // 가공한 결과 값을 활용해서 POST 요청하는 함수
   useEffect(() => {
-    const sorted_object = objectSort(total);
-    console.log("전체 항목을 정렬했습니다", sorted_object);
-    const string_object = objectString(sorted_object);
-    console.log("전체 항목을 문자로 바꿨습니다", string_object);
+    const string_total = objectToString(total);
+    console.log("전체 항목을 문자로 바꿨습니다", string_total);
 
     // Post 요청
     axios({
@@ -73,18 +51,17 @@ export function Finish() {
         "gender": `${usergender === "female" ? "100324" : "100323"}`,
         "grade": "",
         "startDtm": 1550466291034,
-        "answers": string_object
+        "answers": string_total
       },
-       }).then((response) => {
-          console.log("response.data 입니다", response.data.RESULT.url);
-
+       }) // Post 요청 결과 값이 주소로 옴 ㅡㅡ
+       .then((response) => {
           const url = response.data.RESULT.url;
           console.log("이것은 추출한 data", url);
 
           const url_seq = url.split('=')[1];
           console.log("이것은 추출한 url_seq", url_seq);
 
-          // Get 요청
+          // url_seq로 결과 값 Get 요청
           axios.get(`https://www.career.go.kr/inspct/api/psycho/report?seq=${url_seq}`)
           .then((response) => {
             console.log("이것은 결과값을 get한 데이터입니다", response.data);
@@ -92,42 +69,34 @@ export function Finish() {
             const score = response.data.result.wonScore;
             console.log("이것은 score입니다", score);
 
-            // 받아온 결과 값(score) 가공 : 상대적으로 중요시 하는 가치와 덜 중요한 가치 뽑기
+            // score 가공 : 상대적으로 중요시 하는 가치와 덜 중요한 가치 뽑기
             const score_value = ["능력발휘", "자율성", "보수", "안정성", "사회적인정", "사회봉사", "자기계발", "창의성"]
             const score_list = score.split(' ');
             let score_object;
             score_list.forEach((num, index)=>{
-              const data = num.split('=');
-              score_object = {...score_object, [score_value[index]] : Number(data[1])};
-            })
+              const data = num.split('=')[1];
+              score_object = {...score_object, [score_value[index]] : Number(data)};
+            });
 
             console.log("가공된 데이터는", score_object);
+            sessionStorage.setItem('result', JSON.stringify(score_object))
 
-            localStorage.setItem('result', JSON.stringify(
-              score_object
-              ))
-
-            const score_object_key = Object.keys(score_object).slice(0,-1); // 끝에 undefined 없애기
             const score_object_value = Object.values(score_object).slice(0,-1); // 끝에 null 없애기
             setObjectValue([...score_object_value]);
+            console.log("value는", score_object_value);
 
             const max = Math.max(...score_object_value);
             const min = Math.min(...score_object_value);
 
-            console.log("key는", score_object_key);
-            console.log("value는", score_object_value);
             console.log("max는", max);
             console.log("min은", min);
 
             for (let x in score_object_value) {
               if (score_object_value[x] === min) {
-                setMinValue([...minvalue, score_object_key[x]]);}
+                setMinValue((current) => [...current, score_value[x]]);}
               if (score_object_value[x] === max) {
-                setMaxValue([...maxvalue, score_object_key[x]]);}
-            }
-
-            console.log("max_value는", maxvalue);
-            console.log("min_value", minvalue);
+                setMaxValue((current) => [...current, score_value[x]]);}
+              }
 
           })
           .catch((error) => {
