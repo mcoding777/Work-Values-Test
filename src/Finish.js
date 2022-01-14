@@ -21,7 +21,6 @@ export function Finish() {
   // 최종 결과(항목별 점수)를 배열한 변수
   const score_value = ["능력발휘", "자율성", "보수", "안정성", "사회적인정", "사회봉사", "자기계발", "창의성"]
   const [arrayValue, setArrayValue] = useState([]);
-  console.log("value는", score_object_value);
 
   // 결과값 받아오면서 생긴 변수들
   const [maxvalue, setMaxValue] = useState([]);
@@ -82,11 +81,12 @@ export function Finish() {
             console.log("가공된 데이터는", score_object);
             sessionStorage.setItem('result', JSON.stringify(score_object))
 
-            const score_object_value = Object.values(score_object)
+            const score_object_value = Object.values(score_object);
             setArrayValue(score_object_value);
+            console.log("score_object_value는", score_object_value);
 
-            const max = Math.max(score_object_value);
-            const min = Math.min(score_object_value);
+            const max = Math.max(...score_object_value);
+            const min = Math.min(...score_object_value);
 
             console.log("max는", max);
             console.log("min은", min);
