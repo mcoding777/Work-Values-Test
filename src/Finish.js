@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from './components/Button';
-import { Article } from './components/Styled';
+import { Article, Explanation } from './components/Styled';
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
 import { useSelector } from "react-redux";
@@ -159,12 +159,4 @@ export function Finish() {
 // styled-components
 const FinishText = styled.h2`
   color: #ec5990;
-`;
-const Explanation = styled.p`
-  line-height: 120%;
-
-  font-size: 1rem;
-  font-weight: bold;
-
-  margin: 30px 0;
 `;

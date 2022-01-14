@@ -111,7 +111,7 @@ export function Test() {
   useEffect(() => { window.scrollTo({top: 0, behavior:"smooth"}) }, [currentPage]);
 
   return (
-    <Article testPage={true}>
+    <Article long={true}>
       <Progressbar 
         text="검사 진행률" 
         percent={percent} 

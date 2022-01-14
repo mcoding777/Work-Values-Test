@@ -6,7 +6,7 @@ export const Article = styled.article`
   justify-content: center;
   align-items: center;
 
-  height: ${props => props.testPage ? "100%" : "100vh"};
+  height: ${props => props.long ? "100%" : "100vh"};
 `;
 
 export const FlexBox = styled.div`
@@ -24,4 +24,13 @@ export const Form = styled.form`
 export const ErrorText = styled.p`
   color: #ff6fa5;
   font-size: 0.8rem;
+`;
+
+export const Explanation = styled.p`
+  line-height: 120%;
+
+  font-size: 1rem;
+  font-weight: bold;
+
+  margin: 30px 0;
 `;
