@@ -18,8 +18,10 @@ export function Finish() {
   // 세션 스토리지에서 유저가 선택한 값 가져오기
   const total = JSON.parse(sessionStorage.getItem('checked'));
 
-  // 최종 결과(항목별 점수)를 개체화한 변수
-  const [objectvalue, setObjectValue] = useState([]);
+  // 최종 결과(항목별 점수)를 배열한 변수
+  const score_value = ["능력발휘", "자율성", "보수", "안정성", "사회적인정", "사회봉사", "자기계발", "창의성"]
+  const [arrayValue, setArrayValue] = useState([]);
+  console.log("value는", score_object_value);
 
   // 결과값 받아오면서 생긴 변수들
   const [maxvalue, setMaxValue] = useState([]);
@@ -66,11 +68,10 @@ export function Finish() {
           .then((response) => {
             console.log("이것은 결과값을 get한 데이터입니다", response.data);
 
-            const score = response.data.result.wonScore;
+            const score = (response.data.result.wonScore).trim();
             console.log("이것은 score입니다", score);
 
             // score 가공 : 상대적으로 중요시 하는 가치와 덜 중요한 가치 뽑기
-            const score_value = ["능력발휘", "자율성", "보수", "안정성", "사회적인정", "사회봉사", "자기계발", "창의성"]
             const score_list = score.split(' ');
             let score_object;
             score_list.forEach((num, index)=>{
@@ -81,12 +82,11 @@ export function Finish() {
             console.log("가공된 데이터는", score_object);
             sessionStorage.setItem('result', JSON.stringify(score_object))
 
-            const score_object_value = Object.values(score_object).slice(0,-1); // 끝에 null 없애기
-            setObjectValue([...score_object_value]);
-            console.log("value는", score_object_value);
+            const score_object_value = Object.values(score_object)
+            setArrayValue(score_object_value);
 
-            const max = Math.max(...score_object_value);
-            const min = Math.min(...score_object_value);
+            const max = Math.max(score_object_value);
+            const min = Math.min(score_object_value);
 
             console.log("max는", max);
             console.log("min은", min);

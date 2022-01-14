@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
-import { Article, Explanation, FlexBox } from './components/Styled';
+import { Article, Explanation } from './components/Styled';
 import { Button } from './components/Button';
+import { BarChart } from './components/Chart';
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
 import styled from "styled-components";
 import { getTodayDate } from './functions/getTodayDate';
+import { useSelector } from "react-redux";
 
 export function Result() {
 
-  const username = localStorage.getItem('user_name');
-  const usergender = localStorage.getItem('user_gender');
-  const result = JSON.parse(localStorage.getItem('result'));
-  const maxValue = JSON.parse(localStorage.getItem('maxValue'));
+  // 유저 이름, 성별, 결과 값 가져오기
+  const reduxtState = useSelector(state => state);
+  const username = reduxtState?.user_name;
+  const usergender = reduxtState?.user_gender;
+  const result = JSON.parse(sessionStorage.getItem('result'));
+  const maxValue = JSON.parse(sessionStorage.getItem('maxValue'));
 
   console.log("result는", result);
 
@@ -48,9 +52,7 @@ export function Result() {
         <div>{TodayDate}</div>
       </UserTable>
       <TableTitle>직업가치관 결과</TableTitle>
-      <div>
-        그래프 넣을 곳
-      </div>
+      <BarChart values={result} />
       <div className="values">
         <TableTitle>나의 가치관과 관련이 높은 직업 (학력별)</TableTitle>
         <JobTable>
@@ -124,12 +126,15 @@ const UserTable = styled.div`
 `;
 
 const TableTitle = styled.p`
+  width: 800px;
+
   text-align: left;
 
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.5rem;
 
   margin-top: 50px;
+  margin-bottom: 10px;
 `;
 
 const JobTable = styled.div`
