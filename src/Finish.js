@@ -20,7 +20,6 @@ export function Finish() {
 
   // 최종 결과(항목별 점수)를 배열한 변수
   const score_value = ["능력발휘", "자율성", "보수", "안정성", "사회적인정", "사회봉사", "자기계발", "창의성"]
-  const [arrayValue, setArrayValue] = useState([]);
 
   // 결과값 받아오면서 생긴 변수들
   const [maxvalue, setMaxValue] = useState([]);
@@ -82,7 +81,6 @@ export function Finish() {
             sessionStorage.setItem('result', JSON.stringify(score_object))
 
             const score_object_value = Object.values(score_object);
-            setArrayValue(score_object_value);
             console.log("score_object_value는", score_object_value);
 
             const max = Math.max(...score_object_value);
@@ -91,12 +89,20 @@ export function Finish() {
             console.log("max는", max);
             console.log("min은", min);
 
+            const max_total = [];
+            const min_total = [];
+
             for (let x in score_object_value) {
               if (score_object_value[x] === min) {
-                setMinValue((current) => [...current, score_value[x]]);}
+                min_total.push(score_value[x]);
+                }
               if (score_object_value[x] === max) {
-                setMaxValue((current) => [...current, score_value[x]]);}
+                max_total.push(score_value[x]);
               }
+            }
+
+            setMinValue(min_total);
+            setMaxValue(max_total);
 
           })
           .catch((error) => {
