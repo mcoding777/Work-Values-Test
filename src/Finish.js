@@ -103,6 +103,7 @@ export function Finish() {
 
             setMinValue(min_total);
             setMaxValue(max_total);
+            sessionStorage.setItem('maxValue', JSON.stringify(max_total))
 
           })
           .catch((error) => {

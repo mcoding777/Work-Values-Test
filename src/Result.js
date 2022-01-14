@@ -17,7 +17,7 @@ export function Result() {
   const result = JSON.parse(sessionStorage.getItem('result'));
   const maxValue = JSON.parse(sessionStorage.getItem('maxValue'));
 
-  console.log("result는", result);
+  console.log("maxValue", maxValue);
 
   // 날짜 구하기
   const TodayDate = getTodayDate();
@@ -25,8 +25,8 @@ export function Result() {
   // 학력별 직업 정보 가져오는 함수
   async function schoolCall() {
     try {
-      const response = await axios.get(`https://inspct.career.go.kr/inspct/api/psycho/value/jobs?no1="${maxValue[0]}"&no2="${maxValue[1] || null}"`);
-      console.log(response);
+      const response = await axios.get(`https://inspct.career.go.kr/inspct/api/psycho/value/jobs?no1=${maxValue?.[0]}` + `${maxValue[1] ? "&no2=" + maxValue[1] : null}`);
+      console.log("response", response);
     } catch (error) {
       console.error(error);
     }
