@@ -3,7 +3,7 @@ import { CheckBox } from "./components/CheckBox";
 import { Button } from './components/Button';
 import { Progressbar } from './components/Progressbar';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Article, Form } from './components/Styled';
 import styled from "styled-components";
@@ -39,6 +39,7 @@ export function Test() {
   // CheckBox에서 선택한 항목
   const sessionTotal = JSON.parse(sessionStorage.getItem('checked')) || {};
   const [userSelect, setUserSelect] = useState(sessionTotal);
+  console.log("userSelect", userSelect);
   
   // CheckBox에서 선택한 항목 가져오기
   const getSelect = (name, value) => {
@@ -85,8 +86,7 @@ export function Test() {
   // CheckBox 컴포넌트 5개를 만들어낼 함수
   const renderQ = currentQ.map((item, index) => {
         const name = "B" + String(index+(currentPage*5)+1);
-        const checked = userSelect[name];
-        // console.log(sessionTotal?.[name]);
+        const checked = userSelect?.[name];
 
         return (
           <CheckBox 
@@ -98,7 +98,7 @@ export function Test() {
             answerscore02={item["answerScore02"]} 
             value01={item["answer03"]} 
             value02={item["answer04"]} 
-            defaultChecked={checked} 
+            defaultChecked={checked}
             getSelect={(n, v) => getSelect(n, v)} 
             />
         )

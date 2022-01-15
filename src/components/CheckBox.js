@@ -22,7 +22,7 @@ export function CheckBox(props) {
   // useForm
   const { register } = useFormContext();
 
-  // 체크한 부분 세션 스토리지로 전달
+  // 체크한 항목 Test 컴포넌트로 전달
   const getSelect = (event) => {
     if (typeof props.getSelect === "function") {
       props.getSelect(event.target.name, event.target.value);
