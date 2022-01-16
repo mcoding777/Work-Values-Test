@@ -16,11 +16,11 @@ function App() {
     <>
       <GlobalStyle />
       <Routes>
-        <Route path="/elice_first_project/" element={<Main />} />
-        <Route path="/elice_first_project/example" element={<Example />} />
-        <Route path="/elice_first_project/test" element={<Test />} />
-        <Route path="/elice_first_project/finish" element={<Finish />} />
-        <Route path="/elice_first_project/result" element={<Result />} />
+        <Route path="/" element={<Main />} />
+        <Route path="/example" element={<Example />} />
+        <Route path="/test" element={<Test />} />
+        <Route path="/finish" element={<Finish />} />
+        <Route path="/result" element={<Result />} />
       </Routes>
     </>
   );
