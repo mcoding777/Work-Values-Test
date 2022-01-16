@@ -17,8 +17,7 @@ export function CheckBox(props) {
   // 공통 정보
   const name = props.name;
 
-  // CheckBox에서 선택한 항목
-  const sessionTotal = JSON.parse(sessionStorage.getItem('checked')) || {};
+  // CheckBox에서 선택한 항목 제어
   const [userSelect, setUserSelect] = useState({});
   console.log("userSelect", userSelect);
 
@@ -27,14 +26,10 @@ export function CheckBox(props) {
 
   // 선택한 항목 저장하기
   const getSelect = (event) => {
-    const targetName = event.target.name;
-    const targetValue = event.target.value;
-    sessionTotal[targetName] = targetValue;
-    sessionStorage.setItem('checked', JSON.stringify(sessionTotal));
     setUserSelect((cur) => {
         const newcur = {
           ...cur,
-          [targetName] : targetValue,
+          [event.target.name] : event.target.value,
         }
         return newcur;
     });

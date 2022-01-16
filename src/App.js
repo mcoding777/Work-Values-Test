@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/example" element={<Example />} />
-        <Route path={"/test/*"} element={<Test />} />
+        <Route path="/test" element={<Test />} />
         <Route path="/finish" element={<Finish />} />
         <Route path="/result" element={<Result />} />
       </Routes>
