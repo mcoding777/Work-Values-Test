@@ -21,14 +21,14 @@ ChartJS.register(
     Legend
   );
 
-export function BarChart({values}) {
+export function ResultChart({values}) {
 
     const data = {
       labels: Object.keys(values),
       datasets: [
         {
           label: '검사 점수',
-          backgroundColor: '#23324d',
+          backgroundColor: '#ec5990',
           data: Object.values(values),
         },
       ],
@@ -50,14 +50,14 @@ export function BarChart({values}) {
     };
   
     return (
-        <BarChartDiv>
+        <ResultChartDiv>
             <Bar data={data} options={options} />
-        </BarChartDiv>
+        </ResultChartDiv>
     )
   }
 
   // styled-components
-  const BarChartDiv = styled.div`
+  const ResultChartDiv = styled.div`
     width: 800px;
 
     padding: 50px;

@@ -27,7 +27,7 @@ export const ErrorText = styled.p`
 `;
 
 export const Explanation = styled.p`
-  line-height: 120%;
+  line-height: 150%;
 
   font-size: 1rem;
   font-weight: bold;

@@ -18,26 +18,10 @@ export function Finish() {
   // 세션 스토리지에서 유저가 선택한 값 가져오기
   const total = JSON.parse(sessionStorage.getItem('checked'));
 
-  // 최종 결과(항목별 점수)를 배열한 변수
-  const score_value = ["능력발휘", "자율성", "보수", "안정성", "사회적인정", "사회봉사", "자기계발", "창의성"]
-
-  // 결과값 받아오면서 생긴 변수들
-  const [maxvalue, setMaxValue] = useState([]);
-  const [minvalue, setMinValue] = useState([]);
-  let maxvalue_join = maxvalue.join('');
-  let minvalue_join = minvalue.join('');
-  console.log("max_value는", maxvalue);
-  console.log("min_value", minvalue);
-
-  if (maxvalue && maxvalue.length >= 2) {
-    maxvalue_join = maxvalue.join('와(과) ');}
-  if (minvalue && minvalue.length >= 2) {
-    minvalue_join = minvalue.join('와(과) ');}
-
   // 가공한 결과 값을 활용해서 POST 요청하는 함수
   useEffect(() => {
-    const string_total = objectToString(total);
-    console.log("전체 항목을 문자로 바꿨습니다", string_total);
+    const string_total = objectToString(total); // B1=2 B2=4... 형태로 변경
+    console.log("string_total", string_total);
 
     // Post 요청
     axios({
@@ -56,55 +40,31 @@ export function Finish() {
        }) // Post 요청 결과 값이 주소로 옴 ㅡㅡ
        .then((response) => {
           const url = response.data.RESULT.url;
-          console.log("이것은 추출한 data", url);
+          console.log("data", url);
 
           const url_seq = url.split('=')[1];
-          console.log("이것은 추출한 url_seq", url_seq);
+          console.log("url_seq", url_seq);
 
           // url_seq로 결과 값 Get 요청
           axios.get(`https://www.career.go.kr/inspct/api/psycho/report?seq=${url_seq}`)
           .then((response) => {
-            console.log("이것은 결과값을 get한 데이터입니다", response.data);
+            console.log("response.data", response.data);
 
             const score = (response.data.result.wonScore).trim();
-            console.log("이것은 score입니다", score);
+            console.log("score", score);
 
             // score 가공 : 상대적으로 중요시 하는 가치와 덜 중요한 가치 뽑기
             const score_list = score.split(' ');
             let score_object;
-            score_list.forEach((num, index)=>{
+            score_list.forEach((num, index) => {
               const data = num.split('=')[1];
-              score_object = {...score_object, [score_value[index]] : Number(data)};
+              score_object = {
+                ...score_object, 
+                [index] : Number(data)
+              };
             });
-
-            console.log("가공된 데이터는", score_object);
+            console.log("score_object", score_object);
             sessionStorage.setItem('result', JSON.stringify(score_object))
-
-            const score_object_value = Object.values(score_object);
-            console.log("score_object_value는", score_object_value);
-
-            const max = Math.max(...score_object_value);
-            const min = Math.min(...score_object_value);
-
-            console.log("max는", max);
-            console.log("min은", min);
-
-            const max_total = [];
-            const min_total = [];
-
-            for (let x in score_object_value) {
-              if (score_object_value[x] === min) {
-                min_total.push(score_value[x]);
-                }
-              if (score_object_value[x] === max) {
-                max_total.push(score_value[x]);
-              }
-            }
-
-            setMinValue(min_total);
-            setMaxValue(max_total);
-            sessionStorage.setItem('maxValue', JSON.stringify(max_total))
-
           })
           .catch((error) => {
             console.log(error, "GET 에러입니다 ㅡㅡ");
@@ -118,12 +78,12 @@ export function Finish() {
     <Article>
         <FinishText>검사가 완료되었습니다.</FinishText>
       <Explanation>
-        검사 결과 {username}님은 상대적으로 {maxvalue_join}를(을) 중요하다고 생각하며,
+        검사 결과는 여러분이 직업을 선택할 때 상대적으로 어떠한 가치를 중요하게 생각하는지를 알려주고,
         <br />
-        {minvalue_join}를(을) 덜 중요하게 생각한다고 나왔습니다.
+        중요 가치를 충족시켜줄 수 있는 직업에 대해 생각해 볼 기회를 제공합니다.
         <br />
         <br />
-        더 자세한 결과는 아래 '결과 보기'를 눌러주세요 :)
+        결과가 궁금하다면 아래 '결과 보기'를 눌러주세요 :)
       </Explanation>
       <Link to="/result">
         <Button type="button" text="결과 보기" />

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { Article, Explanation } from './components/Styled';
 import { Button } from './components/Button';
-import { BarChart } from './components/Chart';
+import { ResultChart } from './chart/ResultChart';
+import UserTable from './chart/UserTable';
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
 import styled from "styled-components";
@@ -10,22 +11,46 @@ import { useSelector } from "react-redux";
 
 export function Result() {
 
+  // 가치별 인덱스
+  const valueIndex = {
+    0: "능력발휘", 
+    1: "자율성", 
+    2: "보수", 
+    3: "안정성", 
+    4: "사회적인정", 
+    5: "사회봉사", 
+    6: "자기계발", 
+    7: "창의성"
+  };
+
   // 유저 이름, 성별, 결과 값 가져오기
   const reduxtState = useSelector(state => state);
-  const username = reduxtState?.user_name;
-  const usergender = reduxtState?.user_gender;
+  const username = "임미선" //reduxtState?.user_name;
+  const usergender = "여자" //reduxtState?.user_gender;
   const result = JSON.parse(sessionStorage.getItem('result'));
-  const maxValue = JSON.parse(sessionStorage.getItem('maxValue'));
-
-  console.log("maxValue", maxValue);
+  const [firstValue, secondValue] = getTopValue();
+  console.log("firstValue", firstValue);
+  console.log("secondValue", secondValue);
 
   // 날짜 구하기
   const TodayDate = getTodayDate();
 
+  // 직업 정보를 가져오기위한 최고 가치관 2개 구하는 함수
+  function getTopValue() {
+    const maxValue = Math.max(...Object.values(result));
+    const maxValueArray = [];
+
+    for (let i in result) {
+      result[i] === maxValue && maxValueArray.push(Number(i));
+    }
+
+    return [(maxValueArray?.[0] + 1), (maxValueArray?.[1] + 1)];
+  };
+
   // 학력별 직업 정보 가져오는 함수
   async function schoolCall() {
     try {
-      const response = await axios.get(`https://inspct.career.go.kr/inspct/api/psycho/value/jobs?no1=${maxValue?.[0]}` + `${maxValue[1] ? "&no2=" + maxValue[1] : null}`);
+      const response = await axios.get(`https://inspct.career.go.kr/inspct/api/psycho/value/jobs?no1=${firstValue}&no2=${secondValue}`);
       console.log("response", response);
     } catch (error) {
       console.error(error);
@@ -39,20 +64,11 @@ export function Result() {
     <Article long={true}>
         <Title>직업가치관검사 결과표</Title>
         <Explanation>
-        검사결과는 여러분이 직업을 선택할 때 상대적으로 어떠한 가치를 중요하게 생각하는지를 알려주고,
-        <br />
-        중요 가치를 충족시켜줄 수 있는 직업에 대해 생각해 볼 기회를 제공합니다.
+
         </Explanation>
-      <UserTable>
-        <div>이름</div>
-        <div>성별</div>
-        <div>검사일</div>
-        <div>{username}</div>
-        <div>{usergender}</div>
-        <div>{TodayDate}</div>
-      </UserTable>
+      <UserTable name={username} gender={usergender} date={TodayDate} />
       <TableTitle>직업가치관 결과</TableTitle>
-      <BarChart values={result} />
+      <ResultChart values={result} />
       <div className="values">
         <TableTitle>나의 가치관과 관련이 높은 직업 (학력별)</TableTitle>
         <JobTable>
@@ -101,28 +117,7 @@ const Title = styled.div`
 
   border-bottom: 5px solid #ec5990;
 
-  margin: 50px 0;
-`;
-
-const UserTable = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 50%;
-
-    border: 1px solid gray;
-
-    width: 700px;
-    height: 80px;
-
-    margin-top: 40px;
-
-    & div {
-      border: 1px solid gray;
-      border-collapse: collapse;
-      
-      text-align: center;
-      line-height: 40px;
-    }
+  margin: 50px 0 30px 0;
 `;
 
 const TableTitle = styled.p`
