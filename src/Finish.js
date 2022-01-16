@@ -10,13 +10,11 @@ import { objectToString } from './functions/objectToString';
 // 검사 예시 페이지
 
 export function Finish() {
-  // 리덕스에서 유저 이름, 성별 가져오기
+  // 리덕스에서 유저 이름, 성별, 선택 값 가져오기
   const reduxtState = useSelector(state => state);
   const username = reduxtState?.user_name;
   const usergender = reduxtState?.user_gender;
-
-  // 세션 스토리지에서 유저가 선택한 값 가져오기
-  const total = JSON.parse(sessionStorage.getItem('checked'));
+  const total = reduxtState?.user_select;
 
   // 가공한 결과 값을 활용해서 POST 요청하는 함수
   useEffect(() => {

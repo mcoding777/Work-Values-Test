@@ -28,6 +28,8 @@ export function Result() {
   const reduxtState = useSelector(state => state);
   const username = reduxtState?.user_name;
   const usergender = reduxtState?.user_gender;
+
+  // 결과에 따른 최고 가치관
   const result = JSON.parse(sessionStorage.getItem('result'));
   const firstValue = getTopValue();
   const secondValue = getTopValue();
@@ -51,7 +53,7 @@ export function Result() {
     let topValue = resultValueArray.findIndex(item => item === maxValue);
     result[topValue] = 0;
 
-    return topValue;
+    return topValue + 1;
   };
 
   // 직업 정보 가져오는 함수
@@ -65,7 +67,7 @@ export function Result() {
         5: [],
       };
       await axios.get(`https://inspct.career.go.kr/inspct/api/psycho/value/jobs?no1=${firstValue}&no2=${secondValue}`)
-        .then(res => (res.data).forEach((item) => school[item[2]].push(item[1])))
+        .then(res => res.data.forEach((item) => school[item[2]].push(item[1])))
         .then(() => setSchoolJob(school));
 
       const major = {
