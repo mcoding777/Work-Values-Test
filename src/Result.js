@@ -7,8 +7,13 @@ import JobTable from './chart/JobTable';
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
 import styled from "styled-components";
+import { useDispatch } from 'react-redux';
+import { changeUserInfo, changeUserSelect } from './components/ReduxAction';
 
 export function Result() {
+
+  // 리덕스 관련
+  const dispatch = useDispatch();
 
   // 결과에 따른 최고 가치관
   const result = JSON.parse(sessionStorage.getItem('result'));
@@ -26,7 +31,7 @@ export function Result() {
 
   // 직업 정보를 가져오기 위한 최고 가치관 구하는 함수
   function getTopValue() {
-    const resultValueArray = Object.values(result)
+    const resultValueArray = Object?.values(result)
     const maxValue = Math.max(...resultValueArray);
     let topValue = resultValueArray.findIndex(item => item === maxValue);
     result[topValue] = 0;
@@ -67,6 +72,13 @@ export function Result() {
     }
   }
 
+  // 메인화면으로 돌아갈 때 함수
+  function handleReStart() {
+    dispatch(changeUserInfo("", ""));
+    dispatch(changeUserSelect({}));
+    sessionStorage.clear();
+  }
+
   // 추천 직업 받아오기
   useEffect(() => { jobCall() }, []);
 
@@ -91,7 +103,7 @@ export function Result() {
         <JobTable type="school" jobs={schoolJob} />
         <JobTable type="major" jobs={majorJob} />
       </FlexBox>
-      <LinkBox to="/" onClick={() => { sessionStorage.clear(); }}>
+      <LinkBox to="/" onClick={handleReStart}>
         <Button text="다시 검사" type="button" />
       </LinkBox>
     </Article>
