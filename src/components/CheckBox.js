@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useFormContext } from "react-hook-form";
+import { useState } from 'react';
 
 export function CheckBox(props) {
 
@@ -15,18 +16,28 @@ export function CheckBox(props) {
 
   // 공통 정보
   const name = props.name;
-  const defaultChecked = props.defaultChecked;
 
-  console.log("value01", value01, "value02", value02, "defaultChecked", defaultChecked);
+  // CheckBox에서 선택한 항목
+  const sessionTotal = JSON.parse(sessionStorage.getItem('checked')) || {};
+  const [userSelect, setUserSelect] = useState({});
+  console.log("userSelect", userSelect);
 
   // useForm
   const { register } = useFormContext();
 
-  // 체크한 항목 Test 컴포넌트로 전달
+  // 선택한 항목 저장하기
   const getSelect = (event) => {
-    if (typeof props.getSelect === "function") {
-      props.getSelect(event.target.name, event.target.value);
-    }
+    const targetName = event.target.name;
+    const targetValue = event.target.value;
+    sessionTotal[targetName] = targetValue;
+    sessionStorage.setItem('checked', JSON.stringify(sessionTotal));
+    setUserSelect((cur) => {
+        const newcur = {
+          ...cur,
+          [targetName] : targetValue,
+        }
+        return newcur;
+    });
   };
 
   return (
@@ -34,30 +45,36 @@ export function CheckBox(props) {
       <FlexBox>
         <Text>두 개 가치 중에 자신에게 더 중요한 가치를 선택하세요.</Text>
         <RadioBox>
-          <label title={title01}>
-            <input 
-              type="radio" 
-              name={name}
-              value={value01} 
-              onClick={(event) => getSelect(event)} 
-              // defaultChecked={defaultChecked === value01}
-              {...register(name, { required: true })} />
-            <span>
-              {answer01}
-            </span> : {title01}
-          </label>
-          <label title={title02}>
-            <input 
-              type="radio" 
-              name={name}
-              value={value02} 
-              onClick={(event) => getSelect(event)} 
-              // defaultChecked={defaultChecked === value02}
-              {...register(name, { required: true })} />
-            <span>
-              {answer02}
-            </span> : {title02}
-          </label>
+          <div>
+            <label>
+              <input 
+                type="radio" 
+                name={name}
+                value={value01} 
+                onClick={(event) => getSelect(event)} 
+                checked={name === "ex" ? null : userSelect[name] === value01}
+                {...register(name, { required: true })}
+              />
+              <span>
+                {answer01}
+              </span> : {title01}
+            </label>
+          </div>
+          <div>
+            <label>
+              <input 
+                type="radio" 
+                name={name}
+                value={value02} 
+                onClick={(event) => getSelect(event)} 
+                checked={name === "ex" ? null : userSelect[name] === value02}
+                {...register(name, { required: true })}
+              />
+              <span>
+                {answer02}
+              </span> : {title02}
+            </label>
+          </div>
         </RadioBox>
       </FlexBox>
     </>

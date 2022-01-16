@@ -36,22 +36,6 @@ export function Test() {
     moveNextPage();
   };
 
-  // CheckBox에서 선택한 항목
-  const sessionTotal = JSON.parse(sessionStorage.getItem('checked')) || {};
-  const [userSelect, setUserSelect] = useState(sessionTotal);
-  console.log("userSelect", userSelect);
-  
-  // CheckBox에서 선택한 항목 가져오기
-  const getSelect = (name, value) => {
-    sessionTotal[name] = value;
-    sessionStorage.setItem('checked', JSON.stringify(sessionTotal));
-    setUserSelect((cur) => {
-        const newcur = {...cur}
-        newcur[name] = value;
-        return newcur;
-    })
-  };
-
   // 이전 버튼 클릭 시 동작
   const movePrevPage = () => {
     if (currentPage !== 0) {
@@ -86,7 +70,6 @@ export function Test() {
   // CheckBox 컴포넌트 5개를 만들어낼 함수
   const renderQ = currentQ.map((item, index) => {
         const name = "B" + String(index+(currentPage*5)+1);
-        const checked = userSelect?.[name];
 
         return (
           <CheckBox 
@@ -98,9 +81,7 @@ export function Test() {
             answerscore02={item["answerScore02"]} 
             value01={item["answer03"]} 
             value02={item["answer04"]} 
-            defaultChecked={checked}
-            getSelect={(n, v) => getSelect(n, v)} 
-            />
+          />
         )
       });
 
