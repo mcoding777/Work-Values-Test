@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/elice_first_project/static/js/main.bb7b83b9.chunk.js",
-    "main.js.map": "/elice_first_project/static/js/main.bb7b83b9.chunk.js.map",
+    "main.js": "/elice_first_project/static/js/main.5c2c6752.chunk.js",
+    "main.js.map": "/elice_first_project/static/js/main.5c2c6752.chunk.js.map",
     "runtime-main.js": "/elice_first_project/static/js/runtime-main.4692a2d7.js",
     "runtime-main.js.map": "/elice_first_project/static/js/runtime-main.4692a2d7.js.map",
     "static/js/2.041e70b7.chunk.js": "/elice_first_project/static/js/2.041e70b7.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.4692a2d7.js",
     "static/js/2.041e70b7.chunk.js",
-    "static/js/main.bb7b83b9.chunk.js"
+    "static/js/main.5c2c6752.chunk.js"
   ]
 }
