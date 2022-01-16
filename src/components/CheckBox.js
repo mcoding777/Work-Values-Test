@@ -40,7 +40,7 @@ export function CheckBox(props) {
               name={name}
               value={value01} 
               onClick={(event) => getSelect(event)} 
-              defaultChecked={defaultChecked === value01}
+              // defaultChecked={defaultChecked === value01}
               {...register(name, { required: true })} />
             <span>
               {answer01}
@@ -52,7 +52,7 @@ export function CheckBox(props) {
               name={name}
               value={value02} 
               onClick={(event) => getSelect(event)} 
-              defaultChecked={defaultChecked === value02}
+              // defaultChecked={defaultChecked === value02}
               {...register(name, { required: true })} />
             <span>
               {answer02}

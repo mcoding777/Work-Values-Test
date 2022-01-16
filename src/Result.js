@@ -29,7 +29,8 @@ export function Result() {
   const username = "임미선" //reduxtState?.user_name;
   const usergender = "여자" //reduxtState?.user_gender;
   const result = JSON.parse(sessionStorage.getItem('result'));
-  const [firstValue, secondValue] = getTopValue();
+  const firstValue = getTopValue();
+  const secondValue = getTopValue();
   console.log("firstValue", firstValue);
   console.log("secondValue", secondValue);
 
@@ -43,16 +44,14 @@ export function Result() {
   console.log("schoolJob", schoolJob);
   console.log("majorJob", majorJob);
 
-  // 직업 정보를 가져오기위한 최고 가치관 2개 구하는 함수
+  // 직업 정보를 가져오기 위한 최고 가치관 구하는 함수
   function getTopValue() {
-    const maxValue = Math.max(...Object.values(result));
-    const maxValueArray = [];
+    const resultValueArray = Object.values(result)
+    const maxValue = Math.max(...resultValueArray);
+    let topValue = resultValueArray.findIndex(item => item === maxValue);
+    result[topValue] = 0;
 
-    for (let i in result) {
-      result[i] === maxValue && maxValueArray.push(Number(i));
-    }
-
-    return [(maxValueArray?.[0] + 1), (maxValueArray?.[1] + 1)];
+    return topValue;
   };
 
   // 직업 정보 가져오는 함수
