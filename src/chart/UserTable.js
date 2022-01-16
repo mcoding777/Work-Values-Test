@@ -43,7 +43,7 @@ export default function UserTable({name, gender, date}) {
 
   return (
     <UserTableDiv>
-        <TableContainer component={Paper} sx={{ margin: 3 }}>
+        <TableContainer component={Paper}>
         <Table sx={{ maxWidth: 700 }} aria-label="customized table">
             <TableHead>
             <TableRow>

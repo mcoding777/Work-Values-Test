@@ -21,10 +21,10 @@ ChartJS.register(
     Legend
   );
 
-export function ResultChart({values}) {
+export function ResultChart({index, values}) {
 
     const data = {
-      labels: Object.keys(values),
+      labels: Object.values(index),
       datasets: [
         {
           label: '검사 점수',
@@ -58,7 +58,7 @@ export function ResultChart({values}) {
 
   // styled-components
   const ResultChartDiv = styled.div`
-    width: 800px;
+    width: 900px;
 
     padding: 50px;
 

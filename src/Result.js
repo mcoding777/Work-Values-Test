@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
-import { Article, Explanation } from './components/Styled';
+import { useEffect, useState } from "react";
+import { Article, FlexBox } from './components/Styled';
 import { Button } from './components/Button';
 import { ResultChart } from './chart/ResultChart';
 import UserTable from './chart/UserTable';
+import JobTable from './chart/JobTable';
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
 import styled from "styled-components";
@@ -35,6 +36,13 @@ export function Result() {
   // 날짜 구하기
   const TodayDate = getTodayDate();
 
+  // 학력별 직업 정보
+  const [schoolJob, setSchoolJob] = useState({});
+  const [majorJob, setMajorJob] = useState({});
+        
+  console.log("schoolJob", schoolJob);
+  console.log("majorJob", majorJob);
+
   // 직업 정보를 가져오기위한 최고 가치관 2개 구하는 함수
   function getTopValue() {
     const maxValue = Math.max(...Object.values(result));
@@ -47,62 +55,55 @@ export function Result() {
     return [(maxValueArray?.[0] + 1), (maxValueArray?.[1] + 1)];
   };
 
-  // 학력별 직업 정보 가져오는 함수
-  async function schoolCall() {
+  // 직업 정보 가져오는 함수
+  async function jobCall() {
     try {
-      const response = await axios.get(`https://inspct.career.go.kr/inspct/api/psycho/value/jobs?no1=${firstValue}&no2=${secondValue}`);
-      console.log("response", response);
+      const school = {
+        1: [],
+        2: [],
+        3: [],
+        4: [],
+        5: [],
+      };
+      await axios.get(`https://inspct.career.go.kr/inspct/api/psycho/value/jobs?no1=${firstValue}&no2=${secondValue}`)
+        .then(res => (res.data).forEach((item) => school[item[2]].push(item[1])))
+        .then(() => setSchoolJob(school));
+
+      const major = {
+        0: [],
+        1: [],
+        2: [],
+        3: [],
+        4: [],
+        5: [],
+        6: [],
+        7: [],
+      };
+      await axios.get(`https://inspct.career.go.kr/inspct/api/psycho/value/majors?no1=${firstValue}&no2=${secondValue}`)
+        .then(res => (res.data).forEach((item) => major[item[2]].push(item[1])))
+        .then(() => setMajorJob(major));
+
     } catch (error) {
-      console.error(error);
+      console.error("error", error);
     }
   }
 
   // 추천 직업 받아오기
-  useEffect(() => { schoolCall() }, []);
+  useEffect(() => { jobCall() }, []);
 
   return (
     <Article long={true}>
-        <Title>직업가치관검사 결과표</Title>
-        <Explanation>
-
-        </Explanation>
+      <Title>직업가치관검사 결과표</Title>
       <UserTable name={username} gender={usergender} date={TodayDate} />
-      <TableTitle>직업가치관 결과</TableTitle>
-      <ResultChart values={result} />
-      <div className="values">
-        <TableTitle>나의 가치관과 관련이 높은 직업 (학력별)</TableTitle>
-        <JobTable>
-          <div>분야</div>
-          <div>직업명</div>
-          <div>고졸</div>
-          <div>고졸내용</div>
-          <div>전문대졸</div>
-          <div>전문대졸내용</div>
-          <div>대졸</div>
-          <div>대졸내용</div>
-          <div>대학원졸</div>
-          <div>대학원졸내용</div>
-      </JobTable>
-      <TableTitle>나의 가치관과 관련이 높은 직업 (전공별)</TableTitle>
-        <JobTable>
-          <div>계열무관</div>
-          <div>계열무관내용</div>
-          <div>인문</div>
-          <div>인문내용</div>
-          <div>사회</div>
-          <div>사회내용</div>
-          <div>교육</div>
-          <div>교육내용</div>
-          <div>공학</div>
-          <div>공학내용</div>
-          <div>자연</div>
-          <div>자연내용</div>
-          <div>의학</div>
-          <div>의학내용</div>
-          <div>예체능</div>
-          <div>예체능내용</div>
-      </JobTable>
-      </div>
+      <FlexBox>
+        <TableTitle>직업가치관 결과</TableTitle>
+        <ResultChart index={valueIndex} values={result} />
+      </FlexBox>
+      <FlexBox>
+        <TableTitle>나의 가치관과 관련이 높은 직업</TableTitle>
+        <JobTable type="school" jobs={schoolJob} />
+        <JobTable type="major" jobs={majorJob} />
+      </FlexBox>
       <LinkBox to="/" onClick={() => { sessionStorage.clear(); }}>
         <Button text="다시 검사" type="button" />
       </LinkBox>
@@ -129,12 +130,6 @@ const TableTitle = styled.p`
   font-size: 1.5rem;
 
   margin-top: 50px;
-  margin-bottom: 10px;
-`;
-
-const JobTable = styled.div`
-  width: 700px;
-  height: 400px;
 `;
 
 const LinkBox = styled(Link)`
