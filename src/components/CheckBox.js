@@ -19,7 +19,7 @@ export function CheckBox(props) {
 
   // CheckBox에서 선택한 항목 제어
   const [userSelect, setUserSelect] = useState({});
-  console.log("userSelect", userSelect);
+  // console.log("userSelect", userSelect);
 
   // useForm
   const { register } = useFormContext();

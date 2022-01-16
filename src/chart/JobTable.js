@@ -67,7 +67,7 @@ export default function JobTable({type, jobs}) {
     );
   });
 
-  console.log("rows", rows);
+  // console.log("rows", rows);
 
   return (
     <UserTableDiv>

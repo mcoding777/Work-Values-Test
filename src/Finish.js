@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Button } from './components/Button';
 import { Article, Explanation } from './components/Styled';
 import axios from 'axios';
@@ -10,6 +10,7 @@ import { objectToString } from './functions/objectToString';
 // 검사 예시 페이지
 
 export function Finish() {
+  
   // 리덕스에서 유저 이름, 성별, 선택 값 가져오기
   const reduxtState = useSelector(state => state);
   const username = reduxtState?.user_name;
@@ -19,7 +20,7 @@ export function Finish() {
   // 가공한 결과 값을 활용해서 POST 요청하는 함수
   useEffect(() => {
     const string_total = objectToString(total); // B1=2 B2=4... 형태로 변경
-    console.log("string_total", string_total);
+    // console.log("string_total", string_total);
 
     // Post 요청
     axios({
@@ -30,7 +31,7 @@ export function Finish() {
         "qestrnSeq": "6",
         "trgetSe": "100209",
         "name": username,
-        "gender": `${usergender === "female" ? "100324" : "100323"}`,
+        "gender": usergender === "female" ? "100324" : "100323",
         "grade": "",
         "startDtm": 1550466291034,
         "answers": string_total
@@ -38,18 +39,18 @@ export function Finish() {
        }) // Post 요청 결과 값이 주소로 옴 ㅡㅡ
        .then((response) => {
           const url = response.data.RESULT.url;
-          console.log("data", url);
+          // console.log("data", url);
 
           const url_seq = url.split('=')[1];
-          console.log("url_seq", url_seq);
+          // console.log("url_seq", url_seq);
 
           // url_seq로 결과 값 Get 요청
           axios.get(`https://www.career.go.kr/inspct/api/psycho/report?seq=${url_seq}`)
           .then((response) => {
-            console.log("response.data", response.data);
+            // console.log("response.data", response.data);
 
             const score = (response.data.result.wonScore).trim();
-            console.log("score", score);
+            // console.log("score", score);
 
             // score 가공 : 상대적으로 중요시 하는 가치와 덜 중요한 가치 뽑기
             const score_list = score.split(' ');
@@ -61,14 +62,14 @@ export function Finish() {
                 [index] : Number(data)
               };
             });
-            console.log("score_object", score_object);
+            // console.log("score_object", score_object);
             sessionStorage.setItem('result', JSON.stringify(score_object))
           })
           .catch((error) => {
-            console.log(error, "GET 에러입니다 ㅡㅡ");
+            console.log(error, "GET 에러입니다");
           })
       }).catch((error) => {
-        console.log(error, "POST 에러입니다 ㅡㅡ");
+        console.log(error, "POST 에러입니다");
       });
   }, []);
 

@@ -14,15 +14,15 @@ export function Result() {
   const result = JSON.parse(sessionStorage.getItem('result'));
   const firstValue = getTopValue();
   const secondValue = getTopValue();
-  console.log("firstValue", firstValue);
-  console.log("secondValue", secondValue);
+  // console.log("firstValue", firstValue);
+  // console.log("secondValue", secondValue);
 
   // 학력별 직업 정보
   const [schoolJob, setSchoolJob] = useState({});
   const [majorJob, setMajorJob] = useState({});
         
-  console.log("schoolJob", schoolJob);
-  console.log("majorJob", majorJob);
+  // console.log("schoolJob", schoolJob);
+  // console.log("majorJob", majorJob);
 
   // 직업 정보를 가져오기 위한 최고 가치관 구하는 함수
   function getTopValue() {
@@ -31,7 +31,7 @@ export function Result() {
     let topValue = resultValueArray.findIndex(item => item === maxValue);
     result[topValue] = 0;
 
-    return topValue + 1;
+    return topValue + 1; // 가치관은 1부터 시작!
   };
 
   // 직업 정보 가져오는 함수
