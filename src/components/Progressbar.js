@@ -3,7 +3,7 @@ import { FlexBox } from "./Styled";
 
 export function Progressbar({text, percent, testPage}) {
   return (
-    <FlexBox testPage>
+    <FlexBox testPage={testPage}>
       <Percent>
         <h2>{text}</h2>
         <h2>{percent}%</h2>
