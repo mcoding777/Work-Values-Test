@@ -21,15 +21,28 @@ ChartJS.register(
     Legend
   );
 
-export function ResultChart({index, values}) {
+export function ResultChart() {
+  // 가치별 인덱스
+  const valueIndex = {
+    0: "능력발휘", 
+    1: "자율성", 
+    2: "보수", 
+    3: "안정성", 
+    4: "사회적인정", 
+    5: "사회봉사", 
+    6: "자기계발", 
+    7: "창의성"
+  };
+
+  const value = JSON.parse(sessionStorage.getItem('result'));
 
     const data = {
-      labels: Object.values(index),
+      labels: Object.values(valueIndex),
       datasets: [
         {
           label: '검사 점수',
           backgroundColor: '#ec5990',
-          data: Object.values(values),
+          data: Object.values(value),
         },
       ],
     };
