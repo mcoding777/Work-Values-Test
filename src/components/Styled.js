@@ -30,7 +30,8 @@ export const Explanation = styled.p`
   line-height: 150%;
 
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: ${props => props.resultPage || "bold"};
+  text-align: ${props => props.resultPage && "left"};
 
-  margin: 30px 0;
+  margin: ${props => props.resultPage ? "10px" : "30px"} 0;
 `;

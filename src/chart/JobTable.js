@@ -62,7 +62,7 @@ export default function JobTable({type, jobs}) {
     return (
       createData(
         type === "school" ? school[item] : major[item], 
-        jobs?.[item]?.join(",")
+        jobs?.[item]?.join(", ")
       )
     );
   });
@@ -75,7 +75,9 @@ export default function JobTable({type, jobs}) {
         <Table sx={{ minWidth: 700, height: 500 }} aria-label="customized table">
             <TableHead>
             <TableRow>
-                <StyledTableCell align="center">분야</StyledTableCell>
+                <StyledTableCell align="center">
+                  {type === "school" ? "학력" : "전공"}
+                </StyledTableCell>
                 <StyledTableCell align="center">직업</StyledTableCell>
             </TableRow>
             </TableHead>
@@ -97,7 +99,11 @@ export default function JobTable({type, jobs}) {
 
 // styled-components
 const UserTableDiv = styled.div`
-  width: 1000px;
+  width: 900px;
 
-  margin: 50px auto;
+  margin: 10px auto;
+
+  & .css-1eorqe0-MuiTableCell-root {
+    padding: 30px;
+  }
 `;

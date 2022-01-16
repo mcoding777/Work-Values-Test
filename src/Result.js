@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Article, FlexBox } from './components/Styled';
+import { Article, FlexBox, Explanation } from './components/Styled';
 import { Button } from './components/Button';
 import { ResultChart } from './chart/ResultChart';
 import UserTable from './chart/UserTable';
@@ -97,10 +97,18 @@ export function Result() {
       <UserTable name={username} gender={usergender} date={TodayDate} />
       <FlexBox>
         <TableTitle>직업가치관 결과</TableTitle>
+        <Explanation resultPage={true}>
+          여러분이 상대적으로 어떤 가치관을 중요하게 여기고<br />
+          어떤 가치관을 덜 중요하게 여기는지 확인해보세요.
+        </Explanation>
         <ResultChart index={valueIndex} values={result} />
       </FlexBox>
       <FlexBox>
         <TableTitle>나의 가치관과 관련이 높은 직업</TableTitle>
+        <Explanation resultPage={true}>
+          여러분이 중요하게 생각한 가치관과 관련이 높은 직업을 학력별, 직업별로 분류했습니다.<br />
+          어떤 직업군이 있는지 확인해보세요.
+        </Explanation>
         <JobTable type="school" jobs={schoolJob} />
         <JobTable type="major" jobs={majorJob} />
       </FlexBox>
