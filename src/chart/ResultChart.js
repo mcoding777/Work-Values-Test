@@ -22,6 +22,7 @@ ChartJS.register(
   );
 
 export function ResultChart() {
+  
   // 가치별 인덱스
   const valueIndex = {
     0: "능력발휘", 

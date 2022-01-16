@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import styled from 'styled-components';
+import { useSelector } from "react-redux";
+import { getTodayDate } from '../functions/getTodayDate';
 
 const StyledTableCell = styles(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,10 +37,18 @@ function createData(name, gender, date) {
   return { name, gender, date };
 }
 
-export default function UserTable({name, gender, date}) {
+export default function UserTable() {
+
+  // 유저 이름, 성별, 결과 값 가져오기
+  const reduxtState = useSelector(state => state);
+  const username = reduxtState?.user_name;
+  const usergender = reduxtState?.user_gender;
+
+  // 날짜 구하기
+  const TodayDate = getTodayDate();
 
   const rows = [
-    createData(name, gender, date),
+    createData(username, usergender === "female" ? "여자" : "남자", TodayDate),
   ];
 
   return (

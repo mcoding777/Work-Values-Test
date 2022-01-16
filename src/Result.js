@@ -7,15 +7,8 @@ import JobTable from './chart/JobTable';
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
 import styled from "styled-components";
-import { getTodayDate } from './functions/getTodayDate';
-import { useSelector } from "react-redux";
 
 export function Result() {
-
-  // 유저 이름, 성별, 결과 값 가져오기
-  const reduxtState = useSelector(state => state);
-  const username = reduxtState?.user_name;
-  const usergender = reduxtState?.user_gender;
 
   // 결과에 따른 최고 가치관
   const result = JSON.parse(sessionStorage.getItem('result'));
@@ -23,9 +16,6 @@ export function Result() {
   const secondValue = getTopValue();
   console.log("firstValue", firstValue);
   console.log("secondValue", secondValue);
-
-  // 날짜 구하기
-  const TodayDate = getTodayDate();
 
   // 학력별 직업 정보
   const [schoolJob, setSchoolJob] = useState({});
@@ -83,7 +73,7 @@ export function Result() {
   return (
     <Article long={true}>
       <Title>직업가치관검사 결과표</Title>
-      <UserTable name={username} gender={usergender} date={TodayDate} />
+      <UserTable />
       <FlexBox>
         <TableTitle>직업가치관 결과</TableTitle>
         <Explanation resultPage={true}>
