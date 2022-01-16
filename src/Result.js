@@ -31,11 +31,7 @@ export function Result() {
     let topValue = resultValueArray.findIndex(item => item === maxValue);
     result[topValue] = 0;
 
-<<<<<<< HEAD
     return topValue + 1; // 가치관은 1부터 시작한다
-=======
-    return topValue + 1; // 가치관은 1부터 시작!
->>>>>>> sprint
   };
 
   // 직업 정보 가져오는 함수
