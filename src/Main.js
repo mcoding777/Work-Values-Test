@@ -23,7 +23,7 @@ export function Main() {
   const userGender = reduxtState?.user_gender;
 
   // useForm
-  const { register, handleSubmit, watch, formState: {errors} } = useForm();
+  const { register, handleSubmit, formState: {errors} } = useForm();
   const onSubmit = data => {
     dispatch(
       changeUserInfo(

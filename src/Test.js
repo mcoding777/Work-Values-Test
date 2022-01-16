@@ -41,14 +41,15 @@ export function Test() {
     if (currentPage !== 0) {
       setCurrentPage(currentPage-1);
     }
-    navigate(-1);
+    else {
+      navigate(-1);
+    }
   };
 
   // 다음 버튼 클릭 시 동작
   const moveNextPage = () => {
     if (currentPage !== 5) {
       setCurrentPage(currentPage+1);
-      navigate(`/test/${currentPage+1}`);
     }
     else {
       navigate("/finish");

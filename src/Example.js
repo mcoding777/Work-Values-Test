@@ -14,7 +14,7 @@ export function Example() {
 
   // useForm (양식 컨텍스트에 연결)
   const methods = useForm();
-  const onSubmit = () => { navigate("/test/0"); }
+  const onSubmit = () => { navigate("/test"); }
 
   return (
     <Article>

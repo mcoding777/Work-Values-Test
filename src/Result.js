@@ -7,44 +7,22 @@ import JobTable from './chart/JobTable';
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
 import styled from "styled-components";
-import { getTodayDate } from './functions/getTodayDate';
-import { useSelector } from "react-redux";
 
 export function Result() {
-
-  // 가치별 인덱스
-  const valueIndex = {
-    0: "능력발휘", 
-    1: "자율성", 
-    2: "보수", 
-    3: "안정성", 
-    4: "사회적인정", 
-    5: "사회봉사", 
-    6: "자기계발", 
-    7: "창의성"
-  };
-
-  // 유저 이름, 성별, 결과 값 가져오기
-  const reduxtState = useSelector(state => state);
-  const username = reduxtState?.user_name;
-  const usergender = reduxtState?.user_gender;
 
   // 결과에 따른 최고 가치관
   const result = JSON.parse(sessionStorage.getItem('result'));
   const firstValue = getTopValue();
   const secondValue = getTopValue();
-  console.log("firstValue", firstValue);
-  console.log("secondValue", secondValue);
-
-  // 날짜 구하기
-  const TodayDate = getTodayDate();
+  // console.log("firstValue", firstValue);
+  // console.log("secondValue", secondValue);
 
   // 학력별 직업 정보
   const [schoolJob, setSchoolJob] = useState({});
   const [majorJob, setMajorJob] = useState({});
         
-  console.log("schoolJob", schoolJob);
-  console.log("majorJob", majorJob);
+  // console.log("schoolJob", schoolJob);
+  // console.log("majorJob", majorJob);
 
   // 직업 정보를 가져오기 위한 최고 가치관 구하는 함수
   function getTopValue() {
@@ -53,7 +31,11 @@ export function Result() {
     let topValue = resultValueArray.findIndex(item => item === maxValue);
     result[topValue] = 0;
 
+<<<<<<< HEAD
     return topValue + 1; // 가치관은 1부터 시작한다
+=======
+    return topValue + 1; // 가치관은 1부터 시작!
+>>>>>>> sprint
   };
 
   // 직업 정보 가져오는 함수
@@ -95,14 +77,14 @@ export function Result() {
   return (
     <Article long={true}>
       <Title>직업가치관검사 결과표</Title>
-      <UserTable name={username} gender={usergender} date={TodayDate} />
+      <UserTable />
       <FlexBox>
         <TableTitle>직업가치관 결과</TableTitle>
         <Explanation resultPage={true}>
           여러분이 상대적으로 어떤 가치관을 중요하게 여기고<br />
           어떤 가치관을 덜 중요하게 여기는지 확인해보세요.
         </Explanation>
-        <ResultChart index={valueIndex} values={result} />
+        <ResultChart />
       </FlexBox>
       <FlexBox>
         <TableTitle>나의 가치관과 관련이 높은 직업</TableTitle>

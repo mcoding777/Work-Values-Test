@@ -18,7 +18,7 @@ export function objectToString(object) {
     let string = "";
 
     for (let j in sort_array) {
-        string = string + " " + `${sort_array[j][0]}=${sort_array[j][1]}`;
+        string = string.concat(" ", `${sort_array[j][0]}=${sort_array[j][1]}`);
     }
 
     return string.trim(); // 처음에 오는 공백 제거

@@ -17,24 +17,19 @@ export function CheckBox(props) {
   // 공통 정보
   const name = props.name;
 
-  // CheckBox에서 선택한 항목
-  const sessionTotal = JSON.parse(sessionStorage.getItem('checked')) || {};
+  // CheckBox에서 선택한 항목 제어
   const [userSelect, setUserSelect] = useState({});
-  console.log("userSelect", userSelect);
+  // console.log("userSelect", userSelect);
 
   // useForm
   const { register } = useFormContext();
 
   // 선택한 항목 저장하기
   const getSelect = (event) => {
-    const targetName = event.target.name;
-    const targetValue = event.target.value;
-    sessionTotal[targetName] = targetValue;
-    sessionStorage.setItem('checked', JSON.stringify(sessionTotal));
     setUserSelect((cur) => {
         const newcur = {
           ...cur,
-          [targetName] : targetValue,
+          [event.target.name] : event.target.value,
         }
         return newcur;
     });
@@ -127,13 +122,13 @@ const RadioBox = styled.div`
 
     & input[type="radio"] {
 
-      /* -webkit-appearance:none;
+      -webkit-appearance:none;
       -moz-appearance:none;
       -ms-appearance:none;
-      -o-appearance:none; */
+      -o-appearance:none;
 
-      width: 13px;
-      height: 13px;
+      width: 15px;
+      height: 15px;
 
       border: 2px solid #081229;
       border-radius: 13px;
@@ -141,19 +136,19 @@ const RadioBox = styled.div`
 
       margin-right: 10px;
       
-      /* &:checked::before {
+      &:checked::before {
         content:'';
 
         display:block;
 
-        width: 75%;
-        height:75%;
+        width: 81%;
+        height: 81%;
 
-        margin: 13% auto;
+        margin: 10%;
 
         border-radius: 100%;
 
         background: #081229;
-      }; */
+      };
     };
 `;
