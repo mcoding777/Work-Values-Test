@@ -26,8 +26,8 @@ export function Result() {
 
   // 유저 이름, 성별, 결과 값 가져오기
   const reduxtState = useSelector(state => state);
-  const username = "임미선" //reduxtState?.user_name;
-  const usergender = "여자" //reduxtState?.user_gender;
+  const username = reduxtState?.user_name;
+  const usergender = reduxtState?.user_gender;
   const result = JSON.parse(sessionStorage.getItem('result'));
   const firstValue = getTopValue();
   const secondValue = getTopValue();
