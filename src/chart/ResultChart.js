@@ -75,6 +75,7 @@ export function ResultChart() {
     width: 900px;
 
     padding: 50px;
+    margin-bottom: 30px;
 
     background-color: white;
   `;

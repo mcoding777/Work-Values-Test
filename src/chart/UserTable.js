@@ -81,5 +81,5 @@ export default function UserTable() {
 const UserTableDiv = styled.div`
   width: 700px;
 
-  margin: 0 auto;
+  margin: 30px auto;
 `;
