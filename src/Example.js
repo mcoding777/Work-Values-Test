@@ -18,7 +18,7 @@ export function Example() {
 
   return (
     <Article>
-      <Progressbar text="진행률 예시" percent="20" />
+      <Progressbar text="진행률 예시" percent="0" />
       <Explanation>
         <p>직업과 관련된 두개의 가치 중에서 자기에게 더 중요한 가치에 표시하세요.</p>
         <p>가치의 뜻을 잘 모르겠다면 설명을 확인해보세요.</p>
